@@ -1,12 +1,3 @@
-:root {
-  --font-family-primary: ;
-  --font-family-secondary: ;
-  --color-bg-primary: ;
-  --color-text-primary: ;
-}
-
-
-
 .sectBookingVisi {
     display: flex;
     flex-direction: column;
