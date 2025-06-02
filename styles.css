@@ -1,0 +1,11 @@
+:root {
+  --font-family-primary: ;
+  --font-family-secondary: ;
+  --color-bg-primary: ;
+  --color-text-primary: ;
+}
+
+
+.home-container {
+    background-color: orange;
+}

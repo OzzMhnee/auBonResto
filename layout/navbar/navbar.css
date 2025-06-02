@@ -1,0 +1,16 @@
+.navbar {
+  background-color: blueviolet;
+  width: 100%;
+  display: flex;
+}
+
+.nav-section {
+  display: flex;
+  gap: 12px;
+  color: antiquewhite;
+}
+
+ul,
+li {
+  list-style: none;
+}
