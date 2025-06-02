@@ -5,6 +5,15 @@
   --color-text-primary: ;
 }
 
+.logo{
+  width: 200px;
+}
+.logo1{
+  
+}
+.logo2{
+  
+}
 * {
   margin: 0;
   padding: 0;
@@ -12,7 +21,32 @@
   font-family: var(--font-family-primary);
 }
 
-
 .home-container {
-    background-color: orange;
+    /* background-color: orange; */
+    margin: 2%;
+    padding: 2%;
+}
+.testCoeur{
+  background-color: red;
+}
+
+/* ------------------  MON CSS  ---------------------------------- */
+.divCardsResto{
+display: flex;
+justify-content: center;
+margin: 2%;
+padding: 4%;
+}
+
+.cardResto{
+    width: 250px;
+    margin: 2%;
+    }
+
+    .imgCardResto{
+        width: 300px;
+    }
+.content{
+  display: flex;
+  flex-direction: column;
 }
