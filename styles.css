@@ -1,3 +1,5 @@
+css site aubonresto
+
 :root {
   --font-family-primary: ;
   --font-family-secondary: ;
@@ -5,42 +7,69 @@
   --color-text-primary: ;
 }
 
-.logo{
-  width: 200px;
-}
-.logo1{
-  
-}
-.logo2{
-  
+*{
+  margin: 0;
+  padding: 0;
 }
 
-.home-container {
-    /* background-color: orange; */
-    margin: 2%;
-    padding: 2%;
-}
-.testCoeur{
-  background-color: red;
-}
+/* -------------------------------  SECTION HOME ------------------------------------------ */
 
-/* ------------------  MON CSS  ---------------------------------- */
-.divCardsResto{
-display: flex;
-justify-content: center;
-margin: 2%;
-padding: 4%;
-}
-
-.cardResto{
-    width: 250px;
-    margin: 2%;
-    }
-
-    .imgCardResto{
-        width: 300px;
-    }
-.content{
+.divCards{
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin: 2%;
 }
+.card {
+  position: relative;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  max-width: 250px;
+  margin: 2%;
+  margin: 0 auto;
+  margin-bottom: 2%;
+  text-align: center;
+}
+
+.card img{
+  width: 100%;
+}
+.card button {
+  position: absolute;
+  background-color: transparent;
+  top: 2px;
+  right: 2px;
+  border: none;
+  outline: 0;
+  text-align: center;
+  cursor: pointer;
+}
+
+.card:hover {
+  transform: scale(1.1);
+  transition: transform .5s;
+  /* overflow: hidden; */
+}
+
+
+.fa-heart{
+  /* position: absolute; */
+  /* top: 50px;
+  top: 0;
+  left: 275px;
+  left: 0; */
+}
+
+.fa-star{
+  width: 7%;
+  margin: 1%;
+}
+
+
+            .active {
+              color: red;
+            }
+            .inactive {
+              color: white;
+            }
+         
+

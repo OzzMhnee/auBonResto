@@ -17,3 +17,4 @@ document.addEventListener('DOMContentLoaded', () => {
   loadHTML('nav-container', '/layout/navbar/navbar.html', '/layout/navbar/navbar.css');
   loadHTML('footer-container', '/layout/footer/footer.html', '/layout/footer/footer.css');
 });
+
