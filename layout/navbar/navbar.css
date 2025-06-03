@@ -3,7 +3,6 @@ li {
   list-style: none;
 }
 
-
 .navbar {
   position: fixed;
   top: 0;
@@ -11,7 +10,7 @@ li {
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 1000;
+  z-index: 1;
 }
 
 .nav-section {
@@ -22,7 +21,7 @@ li {
   background-color: rgba(255, 255, 255, 0.25);
   border: 1px solid black;
   border-radius: 12px;
-/*backdrop-filter: blur(1px);*/
+  backdrop-filter: blur(1px);
 }
 
 .nav-btn a,

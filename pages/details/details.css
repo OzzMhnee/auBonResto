@@ -1,8 +1,3 @@
-.sectBookingVisi {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-.sectBookingVisi p {
-    text-align: center;
+.details-container {
+    background-color: #1c8b2e;
 }
