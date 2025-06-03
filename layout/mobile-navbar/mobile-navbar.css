@@ -1,0 +1,118 @@
+.mobile-navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: transparent;
+  pointer-events: none;
+  transition: background-color 0.3s ease;
+  z-index: 1;
+}
+
+.mobile-navbar.open {
+  background-color: rgba(0, 0, 0, 0.3);
+  pointer-events: auto;
+}
+
+.burger {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  width: 40px;
+  height: 25px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  z-index: 3;
+}
+
+.burger span {
+  height: 3px;
+  width: 100%;
+  background: black;
+  border-radius: 2px;
+  transition: all 0.4s ease;
+}
+
+.burger.active span:nth-child(1) {
+  background-color: orange;
+  transform: rotate(45deg) translate(15px);
+}
+
+.burger.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.burger.active span:nth-child(3) {
+  background-color: green;
+  transform: rotate(-45deg) translate(15px);
+}
+
+.mobile-nav-section {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 280px;
+  height: 100vh;
+  background-color: #fff;
+  box-shadow: 3px 0 10px rgba(0, 0, 0, 0.15);
+  transform: translateX(-100%);
+  transition: transform 0.3s ease;
+  z-index: 2;
+  pointer-events: auto;
+  padding: 60px 20px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  overflow-y: auto;
+}
+
+.mobile-nav-section.open {
+  transform: translateX(0);
+}
+
+.mobile-nav-btn {
+  border-bottom: 1px solid #eee;
+  padding: 15px 10px;
+  font-weight: 600;
+}
+
+.mobile-nav-btn a {
+  text-decoration: none;
+  color: #333;
+  font-size: 1.1rem;
+  display: block;
+  transition: color 0.3s ease;
+}
+
+.mobile-nav-btn a:hover {
+  color: orange;
+}
+
+#mobile-cta-login {
+  margin-top: 50px;
+  background-color: black;
+  padding: 12px 20px;
+  border-radius: 8px;
+  text-align: center;
+}
+
+#mobile-cta-login a {
+  color: white;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 1.1rem;
+  display: block;
+}
+
+#mobile-cta-login:hover {
+  background-color: orange;
+  cursor: pointer;
+}
+
+ul,
+li {
+  list-style: none;
+}
