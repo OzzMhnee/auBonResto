@@ -1,16 +1,52 @@
+ul,
+li {
+  list-style: none;
+}
+
 .navbar {
-  background-color: blueviolet;
+  position: fixed;
+  top: 0;
   width: 100%;
   display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
 }
 
 .nav-section {
   display: flex;
-  gap: 12px;
-  color: antiquewhite;
+  align-items: center;
+  gap: 24px;
+  padding: 24px;
+  background-color: rgba(255, 255, 255, 0.25);
+  border: 1px solid black;
+  border-radius: 12px;
+  backdrop-filter: blur(1px);
 }
 
-ul,
-li {
-  list-style: none;
+.nav-btn a,
+#cta-login a {
+  text-decoration: none;
+  font-weight: 700;
+  transition: color 0.3s ease;
+}
+
+.nav-btn a {
+  color: black;
+  text-shadow: 2px 2px whitesmoke;
+}
+
+.nav-btn a:hover {
+  color: orange;
+}
+
+#cta-login a {
+  background-color: black;
+  color: whitesmoke;
+  padding: 8px 16px;
+  border-radius: 4px;
+}
+
+#cta-login a:hover {
+  color: orange;
 }

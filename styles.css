@@ -1,12 +1,13 @@
 css site aubonresto
 
 :root {
-  --font-family-primary: ;
+  --font-family-primary: 'Roboto', sans-serif;
   --font-family-secondary: ;
   --color-bg-primary: ;
   --color-text-primary: ;
 }
 
+<<<<<<< HEAD
 *{
   margin: 0;
   padding: 0;
@@ -73,3 +74,11 @@ css site aubonresto
             }
          
 
+=======
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: var(--font-family-primary);
+}
+>>>>>>> 1487398e9d7979f782d0e1e0c190aa726b334272
