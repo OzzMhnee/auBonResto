@@ -1,0 +1,34 @@
+tenter de régler en css le pb du choix catégories
+
+partie html
+<div class="radio-container">
+  <input type="radio" id="option1" name="group1" value="Option 1">
+  <label for="option1">
+    <div class="clickable-div">
+      Option 1
+    </div>
+  </label>
+
+  <input type="radio" id="option2" name="group1" value="Option 2">
+  <label for="option2">
+    <div class="clickable-div">
+      Option 2
+    </div>
+  </label>
+</div>
+
+partie css 
+.clickable-div {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.clickable-div:hover {
+  background-color: #f0f0f0;
+}
+
+https://developer.mozilla.org/en-US/docs/Web/CSS/Nesting_selector
