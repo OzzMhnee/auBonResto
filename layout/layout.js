@@ -12,7 +12,13 @@ document.addEventListener("DOMContentLoaded", () => {
   const htmlPath = `/pages/${page}/${page}.html`;
   const cssPath = `/pages/${page}/${page}.css`;
 
-  loadHTML("page-content", htmlPath, cssPath);
+  loadHTML("page-content", htmlPath, cssPath).then(() => {
+    if (page === "details") {
+      const script = document.createElement("script");
+      script.src = "/pages/details/details.js";
+      document.body.appendChild(script);
+    }
+  });
 
   window.addEventListener("resize", () => {
     loadNavbar();
