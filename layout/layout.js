@@ -13,11 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const cssPath = `/pages/${page}/${page}.css`;
 
   loadHTML("page-content", htmlPath, cssPath).then(() => {
-    if (page === "details") {
-      const script = document.createElement("script");
-      script.src = "/pages/details/details.js";
-      document.body.appendChild(script);
-    }
+    loadPageScript(page);
   });
 
   window.addEventListener("resize", () => {
@@ -25,3 +21,17 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
+
+function loadPageScript(page) {
+  const scriptPath = `/pages/${page}/${page}.js`;
+  
+  const script = document.createElement('script');
+  script.src = scriptPath;
+  script.onload = () => {
+    if (window.initializePage) {
+      window.initializePage(page);
+    }
+  };
+
+  document.body.appendChild(script);
+}
