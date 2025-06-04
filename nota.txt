@@ -1,0 +1,16 @@
+COULEURS :
+    - Noir modif en : #111
+    - Blanc modif en : whiteSmoke
+    - gris : #ececec
+    
+BREAKPOINTS : 
+    - Tablette : 768px
+    - Mobile : 380px
+
+POLICES : 
+    - Roboto
+    - Parisienne
+
+DISNEY paramètres écran Desktop:
+    - max-width: 1600px;
+    - margin: 0 auto;
