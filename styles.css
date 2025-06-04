@@ -1,84 +1,13 @@
-css site aubonresto
-
 :root {
-  --font-family-primary: 'Roboto', sans-serif;
+  --font-family-primary: "Roboto", sans-serif;
   --font-family-secondary: "parisienne", cursive;
   --color-bg-primary: ;
   --color-text-primary: ;
 }
 
-<<<<<<< HEAD
-*{
-  margin: 0;
-  padding: 0;
-}
-
-/* -------------------------------  SECTION HOME ------------------------------------------ */
-
-.divCards{
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  margin: 2%;
-}
-.card {
-  position: relative;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  max-width: 250px;
-  margin: 2%;
-  margin: 0 auto;
-  margin-bottom: 2%;
-  text-align: center;
-}
-
-.card img{
-  width: 100%;
-}
-.card button {
-  position: absolute;
-  background-color: transparent;
-  top: 2px;
-  right: 2px;
-  border: none;
-  outline: 0;
-  text-align: center;
-  cursor: pointer;
-}
-
-.card:hover {
-  transform: scale(1.1);
-  transition: transform .5s;
-  /* overflow: hidden; */
-}
-
-
-.fa-heart{
-  /* position: absolute; */
-  /* top: 50px;
-  top: 0;
-  left: 275px;
-  left: 0; */
-}
-
-.fa-star{
-  width: 7%;
-  margin: 1%;
-}
-
-
-            .active {
-              color: red;
-            }
-            .inactive {
-              color: white;
-            }
-         
-
-=======
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-family: var(--font-family-primary);
 }
->>>>>>> 1487398e9d7979f782d0e1e0c190aa726b334272
