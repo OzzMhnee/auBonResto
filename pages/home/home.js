@@ -42,7 +42,7 @@ function render() {
       template
         .replace(/{id}/g, restaurant.id)
         .replace(/{name}/g, restaurant.name)
-        .replace(/{image}/g, restaurant.image_main) // <-- image_main !
+        .replace(/{image}/g, restaurant.image_main)
         .replace(/{specialty}/g, restaurant.specialty)
         .replace(/{address}/g, restaurant.contact?.address || "")
         .replace(/{stars}/g, generateStars(restaurant.rating))
@@ -52,7 +52,7 @@ function render() {
   container.innerHTML = html;
   initFavorites();
 
-  // Ajoute la redirection dynamique sur chaque bouton "Voir le détail"
+  // Redirection dynamique sur chaque bouton "Voir le détail"
   container.querySelectorAll('.btn-detail').forEach(btn => {
     btn.addEventListener('click', (e) => {
       e.stopPropagation();
