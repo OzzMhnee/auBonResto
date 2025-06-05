@@ -42,6 +42,26 @@ const restaurants = [
         cat4secondColumnPrice: "8 €<br><br>8 €<br><br>8 €<br><br>10 €<br><br>10 €",
         cat4secondColumnPlat: "Trois boules de glaces<br>&nbsp;&nbsp;&nbsp;&nbsp;<span>(vanille, café, chocolat, rhum raisin, fraise et menthe)</span><br>Trois boules de sorbet<br>&nbsp;&nbsp;&nbsp;&nbsp;<span>(citron, framboise, poire, cassis, pomme, passion)</span><br>Assiette de fromages<br>&nbsp;&nbsp;&nbsp;&nbsp;<span>(penser au vin !)</span><br>Palette de desserts<br>&nbsp;&nbsp;&nbsp;&nbsp;<span>(hors menu)</span><br>Café ou thé gourmands<br>&nbsp;&nbsp;&nbsp;&nbsp;<span>(hors menus)</span>",
         //Section MoreInfo
+        titreMoreInfo1: "Besoin d'un traiteur pour une occasion spéciale ?<br>Notre service traiteur saura vous satisfaire à vos besoin !<br>Devis sur demande",
+        imgMoreInfo1: "/images/chezVincent/moreInfo1.png",
+        titreMoreInfo2: "La sélection inclut des vins régionaux, grands crus et champagnes. <br>Idéal pour une  expérience culinaire mémorable, que ce soit pour un dîner intime, une  célébration entre amis ou un évènement professionnel.",
+        imgMoreInfo2: "/images/chezVincent/moreInfo2.png",
+        //Section Avis
+        comment1: "Un repas succulent !<br>Nous y retournerons !",
+        comment1autor: "Bakugo",
+        comment1autorImg: "/images/general/Avatar1.png",
+        comment2: "Un merveilleux repas d'entreprise",
+        comment2autor: "Yuki",
+        comment2autorImg: "/images/general/Avatar2.png",
+        comment3: "Succulent",
+        comment3autor: "Denji",
+        comment3autorImg: "/images/general/Avatar3.png",
+        map: "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d22648.79868028827!2d-0.567171!3d44.799154!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd55271c42176583%3A0x3781fb1f45d67bda!2sChez%20Vincent!5e0!3m2!1sfr!2sfr!4v1748950028020!5m2!1sfr!2sfr",
+        contact: "38 rue Vincent Gonzales<br>33130 - Bègles<br><br>05 56 49 01 45",
+        facebook: "/images/general/iconFacebook.png",
+        instagram: "/images/general/iconInstagram.png",
+        linkedin: "/images/general/iconLinkedin.png",
+        youtube: "/images/general/iconYoutube.png",
     }
 ]
 

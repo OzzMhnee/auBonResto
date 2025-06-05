@@ -140,9 +140,29 @@ function initializeEachRestaurant() {
     document.querySelector('#menuDetailsCat4 > div > p:nth-of-type(2)').innerHTML = resto.cat4firstColumnPlat;
     document.querySelector('#menuDetailsCat4 > div > p:nth-of-type(3)').innerHTML = resto.cat4secondColumnPrice;
     document.querySelector('#menuDetailsCat4 > div > p:nth-of-type(4)').innerHTML = resto.cat4secondColumnPlat;
-    
-
-
+    // Section More Info
+    document.querySelector('#moreInfoPart1 > p').textContent = resto.titreMoreInfo1;
+    document.querySelector('#moreInfoPart1 > img').src = resto.imgMoreInfo1;
+    document.querySelector('#moreInfoPart2 > p').textContent = resto.titreMoreInfo2;
+    document.querySelector('#moreInfoPart2 > img').src = resto.imgMoreInfo2;
+    // Section Avis
+    document.querySelector('#cardComment1 > p').textContent = resto.comment1;
+    document.querySelector('#cardComment2 > p').textContent = resto.comment2;
+    document.querySelector('#cardComment3 > p').textContent = resto.comment3;
+    document.querySelector('#cardComment1 > div > p').textContent = resto.comment1autor;
+    document.querySelector('#cardComment2 > div > p').textContent = resto.comment2autor;
+    document.querySelector('#cardComment3 > div > p').textContent = resto.comment3autor;
+    document.querySelector('#cardComment1 > div > img').src = resto.comment1autorImg;
+    document.querySelector('#cardComment2 > div > img').src = resto.comment2autorImg;
+    document.querySelector('#cardComment3 > div > img').src = resto.comment3autorImg;
+    //section MAPS
+    document.querySelector('#sectMaps > div > iframe').src = resto.map;
+    document.querySelector('#adress > img').src = resto.imgLogoAlpha;
+    document.querySelector('#adress > p').textContent = resto.contact;
+    document.querySelector('#reseaux > img:nth-of-type(1)').src = resto.facebook;
+    document.querySelector('#reseaux > img:nth-of-type(2)').src = resto.instagram;
+    document.querySelector('#reseaux > img:nth-of-type(3)').src = resto.linkedin;
+    document.querySelector('#reseaux > img:nth-of-type(4)').src = resto.youtube;
 
     //Toute la zone en dessous correspond au choix des catégory de Menu
     ['1','2','3','4'].forEach(num => {
