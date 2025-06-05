@@ -209,7 +209,8 @@
       }
     }
   },
-    {
+
+  {
     "id": 2,
     "name": "Chez Gérard",
     "image_main": "/images/chezVincent/category3.png",
@@ -419,7 +420,8 @@
       }
     }
   },
-      {
+
+  {
     "id": 3,
     "name": "Chez Béber",
     "image_main": "/images/chezVincent/category3.png",
