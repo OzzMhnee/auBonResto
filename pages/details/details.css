@@ -75,14 +75,14 @@ header {
   left: 4%;
   top: 50%;
   transform: translate(-50%, -50%);
-  z-index: 5;
+  z-index: 4;
 }
 #rightArrow {
   position: absolute;
   right: 4%;
   top: 50%;
   transform: translate(50%, -50%);
-    z-index: 5;
+    z-index: 4;
 }
 .slideshowCircles {
   position: absolute;
@@ -90,7 +90,7 @@ header {
   left: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
-    z-index: 5;
+    z-index: 4;
 }
 .circle {
   display: inline-block;
@@ -110,7 +110,7 @@ header {
   position: absolute;
   top: 580px;
   left: 1420px;
-  z-index: 10;
+  z-index: 5;
 }
 #logo img {
   width: 40%;
@@ -120,7 +120,7 @@ header {
   position: absolute;
   top: 310px;
   left: 550px;
-  z-index: 10;
+  z-index: 5;
 }
 /* #endregion */
 
@@ -169,7 +169,7 @@ header {
   overflow: hidden;
   visibility: hidden;
   transition: all 1s;
-  z-index: 99;
+  z-index: 7;
   box-shadow: 0px 0px 30px rgba(255, 255, 255, 0.9);
   -ms-transform: translate(-50%, -50%);
   -webkit-transform: translate(-50%, -50%);
@@ -184,7 +184,7 @@ header {
   position: absolute;
   top: 0;
   right: 0;
-  z-index: 4;
+  z-index: 3;
   width: 40px;
   margin: 15px;
   font-size: 1.6em;
@@ -194,7 +194,7 @@ input[type="radio"] {
 }
 input[type="radio"][id="open"]:checked ~ #overlay {
   opacity: .8;
-  z-index: 98;
+  z-index: 6;
 }
 
 input[type="radio"][id="open"]:checked ~ #info {

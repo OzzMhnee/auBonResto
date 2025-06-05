@@ -13,7 +13,8 @@ window.initializePage = function (page) {
 async function loadAndRender() {
   try {
     const response = await fetch("/data/restaurants.json");
-    if (!response.ok) throw new Error("Erreur lords de la récupération des données");
+    if (!response.ok)
+      throw new Error("Erreur lords de la récupération des données");
 
     restaurants = await response.json();
     render();
@@ -53,11 +54,11 @@ function render() {
   initFavorites();
 
   // Redirection dynamique sur chaque bouton "Voir le détail"
-  container.querySelectorAll('.btn-detail').forEach(btn => {
-    btn.addEventListener('click', (e) => {
+  container.querySelectorAll(".btn-detail").forEach((btn) => {
+    btn.addEventListener("click", (e) => {
       e.stopPropagation();
-      const id = btn.getAttribute('data-id');
-      window.location.href = `/pages/details/details.html?id=${id}`;
+      const id = btn.getAttribute("data-id");
+      window.location.href = `index.html?page=details&id=${id}`;
     });
   });
 }
