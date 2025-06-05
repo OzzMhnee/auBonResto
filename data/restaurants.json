@@ -9,55 +9,55 @@
   },
   {
     "id": 2,
-    "name": "Chez Vincent",
+    "name": "Le dragon d'or",
     "image": "./images/chezVincent/category3.png",
-    "specialty": "Cuisine traditionnelle",
+    "specialty": "Cuisine asiatique",
     "address": "38 rue Vincent Gonzales, Bègles",
     "rating": 4
   },
   {
     "id": 3,
-    "name": "Chez Vincent",
+    "name": "La Cour de Nana",
     "image": "./images/chezVincent/category3.png",
-    "specialty": "Cuisine traditionnelle",
-    "address": "38 rue Vincent Gonzales, Bègles",
-    "rating": 4
+    "specialty": "Cuisine syrienne",
+    "address": "73 cours Victor Hugo, Bordeaux",
+    "rating": 5
   },
   {
     "id": 4,
-    "name": "Chez Vincent",
+    "name": "Le Marino",
     "image": "./images/chezVincent/category3.png",
-    "specialty": "Cuisine traditionnelle",
+    "specialty": "Cuisine méditerranéenne",
     "address": "38 rue Vincent Gonzales, Bègles",
     "rating": 4
   },
   {
     "id": 5,
-    "name": "Chez Vincent",
+    "name": "Chez Nikos",
     "image": "./images/chezVincent/category3.png",
-    "specialty": "Cuisine traditionnelle",
+    "specialty": "Cuisine grecque",
     "address": "38 rue Vincent Gonzales, Bègles",
     "rating": 4
   },
   {
     "id": 1,
-    "name": "Chez Vincent",
+    "name": "Oceanica",
     "image": "./images/chezVincent/category3.png",
-    "specialty": "Cuisine traditionnelle",
+    "specialty": "Cuisine poissons",
     "address": "38 rue Vincent Gonzales, Bègles",
     "rating": 4
   },
   {
     "id": 6,
-    "name": "Chez Vincent",
+    "name": "Mamma mia",
     "image": "./images/chezVincent/category3.png",
-    "specialty": "Cuisine traditionnelle",
+    "specialty": "Cuisine italienne",
     "address": "38 rue Vincent Gonzales, Bègles",
     "rating": 4
   },
   {
     "id": 7,
-    "name": "Chez Vincent",
+    "name": "Le Carnivore",
     "image": "./images/chezVincent/category3.png",
     "specialty": "Cuisine traditionnelle",
     "address": "38 rue Vincent Gonzales, Bègles",
@@ -65,25 +65,25 @@
   },
   {
     "id": 8,
-    "name": "Chez Vincent",
+    "name": "Le Taginier",
     "image": "./images/chezVincent/category3.png",
-    "specialty": "Cuisine traditionnelle",
+    "specialty": "Cuisine marocaine",
     "address": "38 rue Vincent Gonzales, Bègles",
     "rating": 4
   },
   {
     "id": 9,
-    "name": "Chez Vincent",
+    "name": "Chez Dupont",
     "image": "./images/chezVincent/category3.png",
     "specialty": "Cuisine traditionnelle",
-    "address": "38 rue Vincent Gonzales, Bègles",
+    "address": "45 rue Notre Dame, Bordeaux",
     "rating": 4
   },
   {
     "id": 10,
-    "name": "Chez Vincent",
+    "name": "Côté Sushi",
     "image": "./images/chezVincent/category3.png",
-    "specialty": "Cuisine traditionnelle",
+    "specialty": "Cuisine japonaise",
     "address": "38 rue Vincent Gonzales, Bègles",
     "rating": 4
   },
