@@ -73,10 +73,10 @@
             const input = document.getElementById(this.dataset.target);
             if (input.type === "password") {
             input.type = "text";
-            this.textContent = "👁️"; // Icône œil barré
+            this.textContent = "Jeter un oeil"; 
             } else {
             input.type = "password";
-            this.textContent = "🤞"; // Icône œil
+            this.textContent = "Croire en la Force"; 
             }
         });
     });

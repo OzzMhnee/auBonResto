@@ -1,77 +1,67 @@
-.contact-container {
-    background-color: yellow;
-}
 /* ========================= */
 /*       GENERALITES         */
 /* ========================= */
-/* #region Généralités */
 * {
   box-sizing: border-box;
 }
 :root {
   --font-family-primary: "Roboto", sans-serif;
-  --font-family-secondary: "parisienne", cursive;
+  --font-family-secondary: "Parisienne", cursive;
 }
 main {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: linear-gradient(135deg, #ffffff 0%, #8a8a8a 100%);
-  max-width: 1400px;
+  min-height: 100vh;
+  width: 1400px;
   margin: 0 auto;
-  padding: 10%;
   box-shadow: 0px 1px 80px #111;
+  background: linear-gradient(135deg, #ffffff 0%, #8a8a8a 100%);
 }
-/* #endregion */
 
 /* ========================= */
 /*       FORMULAIRE          */
 /* ========================= */
-/*    #region FORMULAIRE     */
-
-/* Conteneur du formulaire */
+#confirmation-message { 
+  display: none; 
+}
 .contact-form {
   background: #fff;
   padding: 2.5rem 3rem;
   border-radius: 12px;
   box-shadow: 0 8px 20px #111;
   width: 450px;
-  transition: transform 1s ease;
+  transition: transform 0.3s ease;
 }
 .contact-form:hover {
-  transform: scale(1.2);
+  transform: scale(1.05);
   box-shadow: 0 15px 30px #111;
 }
-/* Titre */
 .contact-form > h2 {
   text-align: center;
   margin-bottom: 1.5rem;
-  font-family: "Roboto", sans-serif;
+  font-family: var(--font-family-primary);
   text-transform: uppercase;
   color: #8a8a8a;
   font-weight: 700;
   letter-spacing: 1.2px;
 }
-/* Champs du formulaire */
 .form-group {
   position: relative;
   margin-bottom: 1.8rem;
 }
-/* Labels flottants */
 label {
   position: absolute;
   top: 14px;
   left: 15px;
-  background: #fff;
   padding: 0 6px;
   color: #999;
   font-size: 0.9rem;
-  font-family: "Roboto", sans-serif;
+  font-family: var(--font-family-primary);
   pointer-events: none;
   transition: 0.3s ease all;
   border-radius: 4px;
 }
-/* Inputs et textarea */
 input[type="text"],
 input[type="email"],
 input[list],
@@ -79,7 +69,7 @@ textarea {
   width: 100%;
   padding: 14px 15px;
   font-size: 1rem;
-  font-family: "Roboto", sans-serif;
+  font-family: var(--font-family-primary);
   border: 2px solid #ddd;
   border-radius: 8px;
   outline: none;
@@ -88,8 +78,6 @@ textarea {
   min-height: 45px;
   background: #fafafa;
 }
-
-/* Focus sur input */
 input[type="text"]:focus,
 input[type="email"]:focus,
 input[list]:focus,
@@ -97,25 +85,21 @@ textarea:focus {
   border-color: #5f574d;
   background: #fff;
 }
-
-/* Animation label au focus ou si le champ est rempli */
 input[type="text"]:focus + label,
-input[type="text"]:not(:placeholder-shown) + label,
+input[type="text"]:valid + label,
 input[type="email"]:focus + label,
-input[type="email"]:not(:placeholder-shown) + label,
+input[type="email"]:valid + label,
 input[list]:focus + label,
-input[list]:not(:placeholder-shown) + label,
+input[list]:valid + label,
 textarea:focus + label,
-textarea:not(:placeholder-shown) + label {
+textarea:valid + label {
   top: -8px;
   left: 12px;
   font-size: 0.75rem;
-  font-family: "Roboto", sans-serif;
   color: #3f3f3f;
   font-weight: 600;
+  background: #fff;
 }
-
-/* Bouton */
 button {
   width: 100%;
   padding: 14px 0;
@@ -124,7 +108,7 @@ button {
   border-radius: 8px;
   color: white;
   font-size: 1.1rem;
-  font-family: "Roboto", sans-serif;
+  font-family: var(--font-family-primary);
   font-weight: 700;
   cursor: pointer;
   box-shadow: 0 6px 15px #8a8a8a;
@@ -134,13 +118,27 @@ button:hover {
   background: #111;
   box-shadow: 0 8px 20px #111;
 }
-
-/* #endregion */
-
+#confirmation-message {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px #111;
+  padding: 2.5rem 3rem;
+  text-align: center;
+  margin: 0 auto;
+  max-width: 450px;
+}
+#confirmation-message h2 {
+  color: #8a8a8a;
+  margin-bottom: 1rem;
+}
+#confirmation-message p {
+  color: #333;
+  margin-bottom: 2rem;
+}
 /* Responsive */
 @media (max-width: 480px) {
-  .contact-form {
-    width: 320px;
+  .contact-form, #confirmation-message {
+    width: 95vw;
     padding: 2rem 1.5rem;
   }
 }

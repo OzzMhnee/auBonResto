@@ -76,7 +76,7 @@ label {
   position: absolute;
   top: 14px;
   left: 15px;
-  background: #fff;
+  ;
   padding: 0 6px;
   color: #999;
   font-size: 0.9rem;
@@ -109,18 +109,19 @@ textarea:focus {
 }
 
 input[type="text"]:focus + label,
-input[type="text"]:not(:placeholder-shown) + label,
+input[type="text"]:valid + label,
 input[type="email"]:focus + label,
-input[type="email"]:not(:placeholder-shown) + label,
+input[type="email"]:valid + label,
 input[list]:focus + label,
-input[list]:not(:placeholder-shown) + label,
+input[list]:valid + label,
 textarea:focus + label,
-textarea:not(:placeholder-shown) + label {
+textarea:valid + label {
   top: -8px;
   left: 12px;
   font-size: 0.75rem;
   color: #3f3f3f;
   font-weight: 600;
+  background: #fff
 }
 button:hover {
   background: #111;
@@ -161,7 +162,6 @@ button:hover {
   border-bottom: 2px solid transparent;
   transition: border-color 0.2s, color 0.2s;
   box-shadow: 0 6px 15px #8a8a8a;
-  border-radius: 8px;
 }
 
 .tab.active {
@@ -177,7 +177,6 @@ label {
   position: absolute;
   top: 14px;
   left: 15px;
-  background: #fff;
   padding: 0 6px;
   color: #999;
   font-size: 0.9rem;
@@ -208,16 +207,17 @@ input[type="password"]:focus {
 }
 
 input[type="text"]:focus + label,
-input[type="text"]:not(:placeholder-shown) + label,
+input[type="text"]:valid + label,
 input[type="email"]:focus + label,
-input[type="email"]:not(:placeholder-shown) + label,
+input[type="email"]:valid + label,
 input[type="password"]:focus + label,
-input[type="password"]:not(:placeholder-shown) + label {
+input[type="password"]:valid + label {
   top: -8px;
   left: 12px;
   font-size: 0.75rem;
   color: #111;
   font-weight: 600;
+  background: #fff
 }
 
 button[type="submit"] {
@@ -240,6 +240,16 @@ button[type="submit"]:hover {
   color: #111;
   border: 5px solid #111; 
   box-shadow: 0 8px 40px #111;
+}
+
+
+#loginTab {
+  border-bottom-right-radius: 30px;
+  border-top-right-radius: 30px;
+}
+#registerTab {
+  border-bottom-left-radius: 30px;
+  border-top-left-radius: 30px;
 }
 
 .form-links {
@@ -279,6 +289,10 @@ button[type="submit"]:hover {
 @media (max-width: 480px) {
   #form-container, .confirmation-message {
     padding: 2rem 1.2rem;
+    width: 350px;
+  }
+  .contact-form1, .contact-form2 {
+    width: 100%;
   }
 }
 /* #endregion */
