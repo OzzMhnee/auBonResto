@@ -1,184 +1,89 @@
+<head>
+  <meta charset="UTF-8">
+  <title>Détails du restaurant</title>
+  <link rel="stylesheet" href="/pages/details/details.css">
+</head>
 
-    <header>
-      <div id="nav-container"></div>
-      <div class="slideshowContainer">
-  
-          <!-- Replace the image 'src' with the images in your project.
-          Javascript is set up so that you can add as many images as you like, but make sure that you match the number of 'circle' span elements (below) to the number of images -->
-          <img class="imageSlides" id="carrousel1">
-          <img class="imageSlides" id="carrousel2">
-          <img class="imageSlides" id="carrousel3">
-          
-          <!-- I would recommend to replace these 'span' elements with 'img' files
-          for each the left and right arrow that fits your project, and size accordingly.
-          I've shown 'span' elements because I didn't want to upload files. -->
-          <span id ="leftArrow" class="slideshowArrow">&#8249;</span>
-          <span id ="rightArrow" class="slideshowArrow">&#8250;</span>
-        
-        <div class="slideshowCircles">
-          <!-- Filled 'dot' class is set to first image in slideshow, and then via Javascript the filled 'dot' class follows the current image.
-          Make sure you match the number of these 'circle' span elements to the number of images in your slideshow. -->
-          <span class="circle dot"></span>
-          <span class="circle"></span>
-          <span class="circle"></span>
+<header>
+<div class="slideshowContainer" id="carouselContainer"></div>
+
+  <div id="logo">
+    <img id="logoImg" src="" alt="Logo restaurant" />
+  </div>
+</header>
+
+<main>
+  <!-- Modal de Réservation -->
+  <section class="sectBooking">
+    <div class="sectBookingVisi">
+      <h2>Découvrir le restaurant <span id="restaurantName"></span></h2>
+      <p id="restaurantDescription"></p>
+      <div id="wrapper">
+        <input type="radio" id="open" name="popup" />
+        <input type="radio" id="close" name="popup" />
+        <div id="popup">
+          <label class="submit" for="open"
+            >Pour réserver une table, c'est ici !</label
+          >
+        </div>
+        <div id="overlay"></div>
+        <div id="info">
+          <h3>Informations de réservation</h3>
+          <label for="close"><i class="fa fa-times-circle fa-lg"></i></label>
+          <p>Pour réserver une table, veuillez nous contacter au :</p>
+          <p><strong id="contactPhone"></strong></p>
+          <p id="contactOpening"></p>
         </div>
       </div>
-      <div id="logo">
-        <img src="/images/chezVincent/logoAlpha.png" alt="">
+    </div>
+  </section>
+
+  <!-- Section Menu -->
+  <section class="sectMenu">
+    <h2>Menu</h2>
+
+  <div class="optionDisplayMenu" id="menuCategories"></div>
+<div id="menuDetails"></div>
+
+
+
+  <!-- Section Informations Supplémentaires -->
+<section class="sectMoreInfo" id="moreInfoSection"></section>
+
+  <!-- Section Avis -->
+  <section class="sectComments">
+    <h2>Vous avez aimé, et vous en parlez !</h2>
+    <div class="comments"></div>
+  </section>
+
+  <!-- Section Localisation -->
+  <section class="sectMaps">
+    <div>
+      <h2>Vous y rendre</h2>
+      <iframe
+        id="mapIframe"
+        src=""
+        width="600"
+        height="450"
+        style="border: 0"
+        allowfullscreen=""
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+    </div>
+
+    <!-- Section Contact et réseaux -->
+    <div class="adress">
+      <img id="logoMapImg" src="" alt="Logo restaurant" />
+      <p id="addressBlock"></p>
+      <div class="reseaux">
+        <img src="/images/general/iconFacebook.png" alt="Facebook" />
+        <img src="/images/general/iconInstagram.png" alt="Instagram" />
+        <img src="/images/general/iconLinkedin.png" alt="LinkedIn" />
+        <img src="/images/general/iconYoutube.png" alt="YouTube" />
       </div>
-      <div id="title"> 
-        <img src="/images/general/Page Title.png" alt="">
-      </div>
-    </header>
-    <main>
-      <!-- #region Section Booking -->
-      <section class="sectBooking">
-          <div class="sectBookingVisi">
-            <H1></H1>
-            <p></p>
-            <div id="wrapper">
-              <input type="radio" id="open" name="popup">
-              <input type="radio" id="close" name="popup">
-              <div id="popup">
-                <label class="submit" id="button" for="open">Pour réserver une table, c'est ici !</label>
-              </div>
-              <div id="overlay"></div>
-              <div id="info">
-                <h1>More info</h1>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                <label id="close" for="close"><i class="fa fa-times-circle fa-lg"></i></label>
-              </div>
-            </div>
-          </div>
-      </section>
-      <!-- #endregion Section Booking -->
-      <!-- #region Section Menu -->
-      <section class="sectMenu">
-        <h1>Menu</h1>
-        <div class="optionDisplayMenu">
-          <div class="menuCategory" id="menuCategory1">
-            <img>
-            <h2></h2>
-          </div>
-          <div class="menuCategory" id="menuCategory2">
-            <img>
-            <h2></h2>
-          </div>
-          <div class="menuCategory" id="menuCategory3">
-            <img>
-            <h2></h2>
-          </div>
-          <div class="menuCategory" id="menuCategory4">
-            <img>
-            <h2></h2>
-          </div>
-        </div>
-        <div class="menuCategoryDetails" id="menuDetailsCat1">
-          <h1></h1>
-          <div>
-            <p></p>
-            <p></p>
-            <p></p>
-            <p></p>
-          </div>
-        </div>
-        <div class="menuCategoryDetails" id="menuDetailsCat2">
-          <h1></h1>
-          <div>
-            <p></p>
-            <p></p>
-            <p></p>
-            <p></p>
-          </div>
-        </div>
-        <div class="menuCategoryDetails" id="menuDetailsCat3">
-          <h1></h1>
-          <div>
-            <p></p>
-            <p></p>
-            <p></p>
-            <p></p>
-          </div>
-        </div>
-        <div class="menuCategoryDetails" id="menuDetailsCat4">
-          <h1></h1>
-          <div>
-            <p></p>
-            <p></p>
-            <p></p>
-            <p></p>
-          </div>
-        </div>
-        <div class="iconRegime">
-          <img src="/images/general/iconGlutenFree.png" alt="">
-          <img src="/images/general/iconHalal.png" alt="">
-          <img src="/images/general/iconHighProtein.png" alt="">
-        </div>
-      </section>
-      <!-- #endregion Section Menu -->
-      <!-- #region Section More Infos -->
-      <section class="sectMoreInfo">
-        <div class="moreInfoPart1">
-          <p></p>
-          <img>
-        </div>
-        <div class="moreInfoPart2">
-          <img>
-          <p></p>
-        </div>
-      </section>
-      <!-- #endregion Section More Infos -->
-      <!-- #region Section Avis -->
-      <section class="sectComments">
-        <h1>Vous avez aimé, et vous en parlez !</h1>
-        <div class="comments">
-          <div class="cardComment" id="cardComment1">
-            <p></p>
-            <div class="avatarComment">
-              <img>
-              <p></p>
-            </div>
-          </div>
-          <div class="cardComment" id="cardComment2">
-            <p></p>
-            <div class="avatarComment">
-              <img>
-              <p></p>
-            </div>
-          </div>
-          <div class="cardComment" id="cardComment3">
-            <p></p>
-            <div class="avatarComment">
-              <img>
-              <p></p>
-            </div>
-          </div>
-        </div>
-      </section>
-      <!-- #endregion Section Avis -->
-      <!-- #region Section Maps -->
-      <section class="sectMaps">
-        <div>
-          <h1>Vous y rendre</h1>
-          <iframe width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-        </div>
-        <div class="adress">
-          <img>
-          <p></p>
-          <div class="reseaux">
-            <img alt="Facebook">
-            <img alt="Instagram">
-            <img alt="Linkedin">
-            <img alt="Youtube">
-          </div>
-        </div>
-      </section>
-      <!-- #endregion Section Maps -->
-      <!-- #region Injection Script Carrousel -->
-      <script src="/pages/details/carrousel.js"></script>
-      <!-- #endregion Injection Script Carrousel -->
-      <!-- #region Injection Infos restaurants -->
-      <script src="/pages/details/details.js"></script>
-      <script src="restaurants.js"></script>
-      <!-- #endregion Injection Infos restaurants -->
-    </main>
+    </div>
+  </section>
+</main>
+
+<script src="/pages/details/details.js"></script>

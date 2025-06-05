@@ -1,190 +1,239 @@
-// Attendre que les éléments soient disponibles dans le DOM
-function initializeCarousel() {
-  // Vérifier que les éléments existent avant de continuer
-  const imageSlides = document.getElementsByClassName("imageSlides");
-  const circles = document.getElementsByClassName("circle");
-  const leftArrow = document.getElementById("leftArrow");
-  const rightArrow = document.getElementById("rightArrow");
+let restaurants = [];
+let currentSlide = 0;
 
-  // Si les éléments ne sont pas encore disponibles, réessayer plus tard
-  if (!imageSlides.length || !circles.length || !leftArrow || !rightArrow) {
-    setTimeout(initializeCarousel, 100);
-    return;
-  }
-
-  let counter = 0;
-  let imageSlideshowInterval;
-
-  // HIDE ALL IMAGES FUNCTION
-  function hideImages() {
-    for (let i = 0; i < imageSlides.length; i++) {
-      imageSlides[i].classList.remove("visible");
-    }
-  }
-
-  // REMOVE ALL DOTS FUNCTION
-  function removeDots() {
-    for (let i = 0; i < circles.length; i++) {
-      circles[i].classList.remove("dot");
-    }
-  }
-
-  // SINGLE IMAGE LOOP/CIRCLES FUNCTION
-  function imageLoop() {
-    const currentImage = imageSlides[counter];
-    const currentDot = circles[counter];
-    currentImage.classList.add("visible");
-    removeDots();
-    currentDot.classList.add("dot");
-    counter++;
-  }
-
-  // LEFT & RIGHT ARROW FUNCTION & CLICK EVENT LISTENERS
-  function arrowClick(e) {
-    const target = e.target;
-    if (target === leftArrow) {
-      clearInterval(imageSlideshowInterval);
-      hideImages();
-      removeDots();
-      if (counter === 1) {
-        counter = imageSlides.length - 1;
-        imageLoop();
-        imageSlideshowInterval = setInterval(slideshow, 10000);
-      } else {
-        counter--;
-        counter--;
-        imageLoop();
-        imageSlideshowInterval = setInterval(slideshow, 10000);
-      }
-    } else if (target === rightArrow) {
-      clearInterval(imageSlideshowInterval);
-      hideImages();
-      removeDots();
-      if (counter === imageSlides.length) {
-        counter = 0;
-        imageLoop();
-        imageSlideshowInterval = setInterval(slideshow, 10000);
-      } else {
-        imageLoop();
-        imageSlideshowInterval = setInterval(slideshow, 10000);
-      }
-    }
-  }
-
-  leftArrow.addEventListener("click", arrowClick);
-  rightArrow.addEventListener("click", arrowClick);
-
-  // IMAGE SLIDE FUNCTION
-  function slideshow() {
-    if (counter < imageSlides.length) {
-      imageLoop();
-    } else {
-      counter = 0;
-      hideImages();
-      imageLoop();
-    }
-  }
-
-  // SHOW FIRST IMAGE, & THEN SET & CALL SLIDE INTERVAL
-  setTimeout(slideshow, 1000);
-  imageSlideshowInterval = setInterval(slideshow, 10000);
+function loadRestaurantsData() {
+  return fetch("/data/restaurants.json")
+    .then((response) => response.json())
+    .then((data) => {
+      restaurants = data;
+    });
 }
 
-// Démarrer l'initialisation du carousel
-initializeCarousel();
+function showSlide(slideIndex, images) {
+  images.forEach((img, i) => {
+    img.classList.toggle("visible", i === slideIndex);
+  });
+}
+let autoSlideInterval = null;
 
-function initializeEachRestaurant() {
-  const params = new URLSearchParams(window.location.search); // Récupérer l'ID du restaurant dans l'URL
-  const id = params.get('id'); // Récupérer l'ID du restaurant dans l'URL
-  const resto = restaurants.find(r => r.id === id);  // Trouver le restaurant correspondant
-  if (resto) {   // Modifier dynamiquement l'image de la catégorie 1
-    document.querySelector('#logo > img').src = resto.imgLogoAlpha;
-    //Carrousel
-    document.querySelector('#carrousel1').src = resto.imgCarrousel1;
-    document.querySelector('#carrousel2').src = resto.imgCarrousel2;
-    document.querySelector('#carrousel3').src = resto.imgCarrousel3;
-    // Section Booking
-    document.querySelector('.sectBookingVisi > h1').textContent = resto.titleBooking;
-    document.querySelector('.sectBookingVisi > p').textContent = resto.pBooking;
-    // popUp <-----------
-    // Section Menu
-    document.querySelector('#menuCategory1 > img').src = resto.imgCategory1;
-    document.querySelector('#menuCategory1 > h2').textContent = resto.titreCategory1;
-    document.querySelector('#menuCategory2 > img').src = resto.imgCategory2;
-    document.querySelector('#menuCategory2 > h2').textContent = resto.titreCategory2;
-    document.querySelector('#menuCategory3 > img').src = resto.imgCategory3;
-    document.querySelector('#menuCategory3 > h2').textContent = resto.titreCategory3;
-    document.querySelector('#menuCategory4 > img').src = resto.imgCategory4;
-    document.querySelector('#menuCategory4 > h2').textContent = resto.titreCategory4;
-    // Detail Menu Catégory 1
-    document.querySelector('#menuDetailsCat1 > h1').textContent = resto.titreCategory1;
-    document.querySelector('#menuDetailsCat1 > div > p:nth-of-type(1)').innerHTML = resto.cat1firstColumnPrice;
-    document.querySelector('#menuDetailsCat1 > div > p:nth-of-type(2)').innerHTML = resto.cat1firstColumnPlat;
-    document.querySelector('#menuDetailsCat1 > div > p:nth-of-type(3)').innerHTML = resto.cat1secondColumnPrice;
-    document.querySelector('#menuDetailsCat1 > div > p:nth-of-type(4)').innerHTML = resto.cat1secondColumnPlat;
-    // Detail Menu Catégory 2
-    document.querySelector('#menuDetailsCat2 > h1').textContent = resto.titreCategory2;
-    document.querySelector('#menuDetailsCat2 > div > p:nth-of-type(1)').innerHTML = resto.cat2firstColumnPrice;
-    document.querySelector('#menuDetailsCat2 > div > p:nth-of-type(2)').innerHTML = resto.cat2firstColumnPlat;
-    document.querySelector('#menuDetailsCat2 > div > p:nth-of-type(3)').innerHTML = resto.cat2secondColumnPrice;
-    document.querySelector('#menuDetailsCat2 > div > p:nth-of-type(4)').innerHTML = resto.cat2secondColumnPlat;
-    // Detail Menu Catégory 3
-    document.querySelector('#menuDetailsCat3 > h1').textContent = resto.titreCategory3;
-    document.querySelector('#menuDetailsCat3 > div > p:nth-of-type(1)').innerHTML = resto.cat3firstColumnPrice;
-    document.querySelector('#menuDetailsCat3 > div > p:nth-of-type(2)').innerHTML = resto.cat3firstColumnPlat;
-    document.querySelector('#menuDetailsCat3 > div > p:nth-of-type(3)').innerHTML = resto.cat3secondColumnPrice;
-    document.querySelector('#menuDetailsCat3 > div > p:nth-of-type(4)').innerHTML = resto.cat3secondColumnPlat;
-    // Detail Menu Catégory 4
-    document.querySelector('#menuDetailsCat4 > h1').textContent = resto.titreCategory4;
-    document.querySelector('#menuDetailsCat4 > div > p:nth-of-type(1)').innerHTML = resto.cat4firstColumnPrice;
-    document.querySelector('#menuDetailsCat4 > div > p:nth-of-type(2)').innerHTML = resto.cat4firstColumnPlat;
-    document.querySelector('#menuDetailsCat4 > div > p:nth-of-type(3)').innerHTML = resto.cat4secondColumnPrice;
-    document.querySelector('#menuDetailsCat4 > div > p:nth-of-type(4)').innerHTML = resto.cat4secondColumnPlat;
-    // Section More Info
-    document.querySelector('#moreInfoPart1 > p').textContent = resto.titreMoreInfo1;
-    document.querySelector('#moreInfoPart1 > img').src = resto.imgMoreInfo1;
-    document.querySelector('#moreInfoPart2 > p').textContent = resto.titreMoreInfo2;
-    document.querySelector('#moreInfoPart2 > img').src = resto.imgMoreInfo2;
-    // Section Avis
-    document.querySelector('#cardComment1 > p').textContent = resto.comment1;
-    document.querySelector('#cardComment2 > p').textContent = resto.comment2;
-    document.querySelector('#cardComment3 > p').textContent = resto.comment3;
-    document.querySelector('#cardComment1 > div > p').textContent = resto.comment1autor;
-    document.querySelector('#cardComment2 > div > p').textContent = resto.comment2autor;
-    document.querySelector('#cardComment3 > div > p').textContent = resto.comment3autor;
-    document.querySelector('#cardComment1 > div > img').src = resto.comment1autorImg;
-    document.querySelector('#cardComment2 > div > img').src = resto.comment2autorImg;
-    document.querySelector('#cardComment3 > div > img').src = resto.comment3autorImg;
-    //section MAPS
-    document.querySelector('#sectMaps > div > iframe').src = resto.map;
-    document.querySelector('#adress > img').src = resto.imgLogoAlpha;
-    document.querySelector('#adress > p').textContent = resto.contact;
-    document.querySelector('#reseaux > img:nth-of-type(1)').src = resto.facebook;
-    document.querySelector('#reseaux > img:nth-of-type(2)').src = resto.instagram;
-    document.querySelector('#reseaux > img:nth-of-type(3)').src = resto.linkedin;
-    document.querySelector('#reseaux > img:nth-of-type(4)').src = resto.youtube;
+function initializeCarousel(restaurant) {
+  const carouselContainer = document.getElementById("carouselContainer");
+  if (!carouselContainer || !Array.isArray(restaurant.carousel)) return;
 
-    //Toute la zone en dessous correspond au choix des catégory de Menu
-    ['1','2','3','4'].forEach(num => {
-      document.getElementById('menuCategory' + num).addEventListener('click', function() {
-        // Cacher toutes les sections de détails
-        document.querySelectorAll('.menuCategoryDetails').forEach(div => {
-          div.style.display = 'none';
-        });
-        // Afficher la bonne section
-        document.getElementById('menuDetailsCat' + num).style.display = 'flex';
+  carouselContainer.innerHTML = restaurant.carousel
+    .map(
+      (img, i) =>
+        `<img class="imageSlides${i === 0 ? " visible" : ""}" src="${img}" alt="Image ${i + 1}" />`
+    )
+    .join("") +
+    `
+    <span id="leftArrow" class="slideshowArrow">&#8249;</span>
+    <span id="rightArrow" class="slideshowArrow">&#8250;</span>
+    <div class="slideshowCircles">
+      ${restaurant.carousel
+        .map(
+          (_, i) =>
+            `<span class="circle${i === 0 ? " dot" : ""}" data-index="${i}"></span>`
+        )
+        .join("")}
+    </div>
+    `;
 
-        // Retirer la classe 'selected' de toutes les images
-        document.querySelectorAll('.menuCategory img').forEach(img => {
-          img.classList.remove('selected');
-        });
-        // Ajouter la classe 'selected' à l'image cliquée
-        this.querySelector('img').classList.add('selected');
+  const images = Array.from(carouselContainer.querySelectorAll(".imageSlides"));
+  const leftArrow = carouselContainer.querySelector("#leftArrow");
+  const rightArrow = carouselContainer.querySelector("#rightArrow");
+  const circles = Array.from(carouselContainer.querySelectorAll(".circle"));
+
+  let slide = 0;
+  showSlide(slide, images);
+  updateCircles(slide, circles);
+
+  function updateCircles(idx, circles) {
+    circles.forEach((c, i) =>
+      c.classList.toggle("dot", i === idx)
+    );
+  }
+
+  function goToSlide(idx) {
+    slide = (idx + images.length) % images.length;
+    showSlide(slide, images);
+    updateCircles(slide, circles);
+  }
+
+  // Auto défilement
+  function startAutoSlide() {
+    stopAutoSlide();
+    autoSlideInterval = setInterval(() => {
+      goToSlide(slide + 1);
+    }, 4000); // 4 secondes
+  }
+  function stopAutoSlide() {
+    if (autoSlideInterval) clearInterval(autoSlideInterval);
+  }
+
+  if (leftArrow) leftArrow.onclick = () => { goToSlide(slide - 1); startAutoSlide(); };
+  if (rightArrow) rightArrow.onclick = () => { goToSlide(slide + 1); startAutoSlide(); };
+  circles.forEach((circle, i) => {
+    circle.onclick = () => { goToSlide(i); startAutoSlide(); };
+  });
+
+  // Pause auto-défilement au survol
+  carouselContainer.onmouseenter = stopAutoSlide;
+  carouselContainer.onmouseleave = startAutoSlide;
+
+  startAutoSlide();
+}
+
+function initializeRestaurantData() {
+  const params = new URLSearchParams(window.location.search);
+  const restaurantId = params.get("id") || "1";
+  let restaurantIdNum = Number(restaurantId);
+  if (isNaN(restaurantIdNum)) restaurantIdNum = 1;
+
+  const restaurant = restaurants.find((r) => r.id === restaurantIdNum);
+  if (!restaurant) return;
+  renderMoreInfo(restaurant.moreInfo);
+
+  // ===== CAROUSEL DYNAMIQUE =====
+  initializeCarousel(restaurant);
+
+  // ===== LOGOS =====
+  const logoImg = document.getElementById("logoImg");
+  if (logoImg) logoImg.src = restaurant.logo;
+
+  const logoSiteImg = document.getElementById("logoSiteImg");
+  if (logoSiteImg) logoSiteImg.src = "/images/general/logoSite.png";
+
+  // ===== PRÉSENTATION =====
+  const nameSpan = document.getElementById("restaurantName");
+  if (nameSpan) nameSpan.textContent = restaurant.name;
+
+  const descP = document.getElementById("restaurantDescription");
+  if (descP) descP.textContent = restaurant.description;
+
+  // ===== POPUP CONTACT =====
+  const phoneStrong = document.getElementById("contactPhone");
+  if (phoneStrong) phoneStrong.textContent = restaurant.contact?.phone || "";
+
+  const openingP = document.getElementById("contactOpening");
+  if (openingP) openingP.textContent = restaurant.contact?.openingHours || "";
+
+  // ===== MENU CATÉGORIES DYNAMIQUES =====
+ // ===== MENU CATÉGORIES DYNAMIQUES =====
+  const menuCategories = document.getElementById("menuCategories");
+  const menuDetails = document.getElementById("menuDetails");
+  if (menuCategories && Array.isArray(restaurant.menu)) {
+    // Génère les catégories
+    menuCategories.innerHTML = restaurant.menu
+      .map(
+        (cat, i) => `
+        <div class="menuCategory${i === 0 ? " active" : ""}" data-index="${i}">
+          <img src="${cat.image || ""}" alt="${cat.name || ""}" />
+          <h2>${cat.name || ""}</h2>
+        </div>
+      `
+      )
+      .join("");
+
+    // Génère les détails (un seul affiché)
+    function renderMenuDetails(activeIdx) {
+      menuDetails.innerHTML = `
+        <div class="menuCategoryDetails active">
+          <h1>${restaurant.menu[activeIdx].name || ""}</h1>
+          <div class="menu-items">
+            ${
+              Array.isArray(restaurant.menu[activeIdx].items)
+                ? restaurant.menu[activeIdx].items
+                    .map(
+                      (item) =>
+                        `<div class="menu-item"><span>${item.name || ""}</span> <span>${item.price ? item.price + "€" : ""}</span></div>`
+                    )
+                    .join("")
+                : ""
+            }
+          </div>
+        </div>
+      `;
+    }
+
+    // Affiche la première catégorie par défaut
+    let activeMenuIdx = 0;
+    renderMenuDetails(activeMenuIdx);
+
+    // Ajoute les listeners pour le clic sur chaque catégorie
+    Array.from(menuCategories.children).forEach((catDiv, i) => {
+      catDiv.addEventListener("click", () => {
+        // Change l'état actif visuel
+        Array.from(menuCategories.children).forEach((el) =>
+          el.classList.remove("active")
+        );
+        catDiv.classList.add("active");
+        // Affiche le détail correspondant
+        renderMenuDetails(i);
+        activeMenuIdx = i;
       });
-    });} else {
-      document.getElementById('restaurant-detail').innerHTML = `
-      <p>Restaurant introuvable</p>`;
-    }
+    });
+  }
+
+
+ 
+
+  // ===== MORE INFO =====
+function renderMoreInfo(moreInfo) {
+  const moreInfoSection = document.getElementById("moreInfoSection");
+  if (!moreInfoSection || !moreInfo || typeof moreInfo !== "object") return;
+
+  // Génère dynamiquement chaque bloc
+  moreInfoSection.innerHTML = Object.entries(moreInfo)
+    .map(([key, part]) => `
+      <div class="moreInfoPart">
+        <h3>${part.label || key}</h3>
+        <p>${part.text || ""}</p>
+        ${part.image ? `<img src="${part.image}" alt="${part.label || key}">` : ""}
+      </div>
+    `)
+    .join("");
+}
+  // ===== AVIS =====
+  const commentsContainer = document.querySelector(".comments");
+  if (commentsContainer && restaurant.testimonials) {
+    commentsContainer.innerHTML = restaurant.testimonials
+      .map(
+        (review) => `
+      <div class="cardComment">
+        <p>"${review.text || ""}"</p>
+        <div class="avatarComment">
+          <img src="${review.avatar || ""}" alt="Avatar">
+          <p>${review.author || ""}</p>
+        </div>
+      </div>
+    `
+      )
+      .join("");
+  }
+
+  // ===== MAP ET ADRESSE =====
+  const mapIframe = document.getElementById("mapIframe");
+  if (mapIframe) mapIframe.src = restaurant.contact?.mapUrl || "";
+
+  const logoMapImg = document.getElementById("logoMapImg");
+  if (logoMapImg) logoMapImg.src = restaurant.logo;
+
+  const addressBlock = document.getElementById("addressBlock");
+  if (addressBlock) {
+    addressBlock.innerHTML = `${restaurant.contact?.address || ""}<br />${restaurant.contact?.city || ""}<br /><br />${restaurant.contact?.phone || ""}`;
+  }
 }
 
-initializeEachRestaurant();
+// ========== INITIALISATION ==========
+function initializeAllFeatures() {
+  loadRestaurantsData().then(() => {
+    initializeRestaurantData();
+  });
+}
+
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", initializeAllFeatures);
+} else {
+  initializeAllFeatures();
+}

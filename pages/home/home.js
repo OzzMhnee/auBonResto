@@ -42,15 +42,24 @@ function render() {
       template
         .replace(/{id}/g, restaurant.id)
         .replace(/{name}/g, restaurant.name)
-        .replace(/{image}/g, restaurant.image)
+        .replace(/{image}/g, restaurant.image_main)
         .replace(/{specialty}/g, restaurant.specialty)
-        .replace(/{address}/g, restaurant.address)
+        .replace(/{address}/g, restaurant.contact?.address || "")
         .replace(/{stars}/g, generateStars(restaurant.rating))
     )
     .join("");
 
   container.innerHTML = html;
   initFavorites();
+
+  // Redirection dynamique sur chaque bouton "Voir le détail"
+  container.querySelectorAll('.btn-detail').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const id = btn.getAttribute('data-id');
+      window.location.href = `/pages/details/details.html?id=${id}`;
+    });
+  });
 }
 
 // Génération des étoiles (selon rating du fichier restaurants.json)

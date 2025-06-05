@@ -46,7 +46,7 @@
   overflow: hidden;
 }
 
-.card button {
+.btn-heart {
   position: absolute;
   background-color: transparent;
   top: 3%;
@@ -73,4 +73,8 @@
 .fa-star {
   width: 7%;
   margin: 1%;
+}
+
+.btn-detail {
+  color: white
 }
