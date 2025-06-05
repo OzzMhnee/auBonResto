@@ -2,105 +2,211 @@
   {
     "id": 1,
     "name": "Chez Vincent",
-    "image": "./images/chezVincent/category3.png",
+    "image_main": "/images/chezVincent/category3.png",
+    "logo": "/images/chezVincent/logoAlpha.png",
     "specialty": "Cuisine traditionnelle",
-    "address": "38 rue Vincent Gonzales, Bègles",
-    "rating": 4
-  },
-  {
-    "id": 2,
-    "name": "Chez Vincent",
-    "image": "./images/chezVincent/category3.png",
-    "specialty": "Cuisine traditionnelle",
-    "address": "38 rue Vincent Gonzales, Bègles",
-    "rating": 4
-  },
-  {
-    "id": 3,
-    "name": "Chez Vincent",
-    "image": "./images/chezVincent/category3.png",
-    "specialty": "Cuisine traditionnelle",
-    "address": "38 rue Vincent Gonzales, Bègles",
-    "rating": 4
-  },
-  {
-    "id": 4,
-    "name": "Chez Vincent",
-    "image": "./images/chezVincent/category3.png",
-    "specialty": "Cuisine traditionnelle",
-    "address": "38 rue Vincent Gonzales, Bègles",
-    "rating": 4
-  },
-  {
-    "id": 5,
-    "name": "Chez Vincent",
-    "image": "./images/chezVincent/category3.png",
-    "specialty": "Cuisine traditionnelle",
-    "address": "38 rue Vincent Gonzales, Bègles",
-    "rating": 4
-  },
-  {
-    "id": 1,
-    "name": "Chez Vincent",
-    "image": "./images/chezVincent/category3.png",
-    "specialty": "Cuisine traditionnelle",
-    "address": "38 rue Vincent Gonzales, Bègles",
-    "rating": 4
-  },
-  {
-    "id": 6,
-    "name": "Chez Vincent",
-    "image": "./images/chezVincent/category3.png",
-    "specialty": "Cuisine traditionnelle",
-    "address": "38 rue Vincent Gonzales, Bègles",
-    "rating": 4
-  },
-  {
-    "id": 7,
-    "name": "Chez Vincent",
-    "image": "./images/chezVincent/category3.png",
-    "specialty": "Cuisine traditionnelle",
-    "address": "38 rue Vincent Gonzales, Bègles",
-    "rating": 4
-  },
-  {
-    "id": 8,
-    "name": "Chez Vincent",
-    "image": "./images/chezVincent/category3.png",
-    "specialty": "Cuisine traditionnelle",
-    "address": "38 rue Vincent Gonzales, Bègles",
-    "rating": 4
-  },
-  {
-    "id": 9,
-    "name": "Chez Vincent",
-    "image": "./images/chezVincent/category3.png",
-    "specialty": "Cuisine traditionnelle",
-    "address": "38 rue Vincent Gonzales, Bègles",
-    "rating": 4
-  },
-  {
-    "id": 10,
-    "name": "Chez Vincent",
-    "image": "./images/chezVincent/category3.png",
-    "specialty": "Cuisine traditionnelle",
-    "address": "38 rue Vincent Gonzales, Bègles",
-    "rating": 4
-  },
-  {
-    "id": 11,
-    "name": "Chez Vincent",
-    "image": "./images/chezVincent/category3.png",
-    "specialty": "Cuisine traditionnelle",
-    "address": "38 rue Vincent Gonzales, Bègles",
-    "rating": 4
-  },
-  {
-    "id": 12,
-    "name": "Chez Vincent",
-    "image": "./images/chezVincent/category3.png",
-    "specialty": "Cuisine traditionnelle",
-    "address": "38 rue Vincent Gonzales, Bègles",
-    "rating": 4
+    "description": "Situé à Bègles, près de Bordeaux, « Chez Vincent » offre un cadre chaleureux pour savourer une cuisine traditionnelle faite de produits frais. Profitez d'un repas agréable au coin de la cheminée ou sur la terrasse ombragée. Chez Vincent offre une variété de vins, spiritueux et alcools de qualité pour accompagner vos repas ou enrichir votre soirée. La sélection inclut des vins régionaux, grands crus et champagnes. Idéal pour une expérience culinaire mémorable, que ce soit pour un dîner intime, une célébration entre amis ou un évènement professionnel. Un parcours culinaire autour des meilleures saveurs du Sud-Ouest.",
+    "rating": 4,
+    "contact": {
+      "address": "38 rue Vincent Gonzales",
+      "city": "33130 - Bègles",
+      "phone": "05 56 49 01 45",
+      "openingHours": "Nous sommes ouverts du mardi au samedi de 12h à 14h et de 19h à 22h.",
+      "mapUrl": "https://maps.google.com/maps?width=600&height=450&hl=fr&q=Chez%20Vincent%2C%2038%20rue%20Vincent%20Gonzales%2C%2033130%20Bègles%2C%20France&ie=UTF8&t=&z=15&iwloc=B&output=embed"
+    },
+    "carousel": [
+      "/images/chezVincent/carrousel1.png",
+      "/images/chezVincent/carrousel2.png",
+      "/images/chezVincent/carrousel3.png"
+    ],
+    "testimonials": [
+      {
+        "text": "Un repas succulent ! Nous y retournerons",
+        "author": "Marie D.",
+        "avatar": "/images/general/Avatar1.png"
+      },
+      {
+        "text": "Un merveilleux repas d'entreprise",
+        "author": "Pierre L.",
+        "avatar": "/images/general/Avatar2.png"
+      },
+      {
+        "text": "Succulent",
+        "author": "Sophie M.",
+        "avatar": "/images/general/Avatar3.png"
+      }
+    ],
+    "menu": [
+      {
+        "id": 1,
+        "name": "Entrées",
+        "image": "/images/chezVincent/category1.png",
+        "items": [
+          { "name": "Accras de morue", "price": 12 },
+          { "name": "Soupe de poissons", "price": 12 },
+          { "name": "Salade de gésiers", "price": 14 },
+          {
+            "name": "Salade Vincent",
+            "description": "(Salade, saumon, morue, œufs, tomates et sauce vodka)",
+            "price": 14
+          },
+          { "name": "6 huîtres saucisses", "price": 15 },
+          { "name": "Buffet de hors d'œuvre", "price": 15 },
+          { "name": "Jambon blanc Italien truffé", "price": 15 },
+          { "name": "Pala de charcuterie", "price": 15 },
+          { "name": "Dégustation de saumon mariné", "price": 15 },
+          { "name": "Saumon fumé et sa vodka", "price": 18 },
+          {
+            "name": "Assiette Périgourdine",
+            "description": "(Foie, gésiers, salade, tomates, oeufs et champignons)",
+            "price": 20
+          },
+          {
+            "name": "Duo de foie gras",
+            "description": "(nature et Banyuls)",
+            "price": 20
+          },
+          { "name": "Gambas flambées au whisky", "price": 20 },
+          { "name": "Notre papillote de foie gras", "price": 20 },
+          { "name": "Omelette aux cèpes", "price": 20 },
+          { "name": "Véritable salade César", "price": 20 },
+          { "name": "12 huîtres saucisses", "price": 24 }
+        ]
+      },
+      {
+        "id": 2,
+        "name": "Côté \"Mer\"",
+        "image": "/images/chezVincent/category2.png",
+        "items": [
+          { "name": "Brandade primée à la fête de la morue", "price": 14 },
+          { "name": "Dos de morue à l'ail", "price": 20 },
+          { "name": "Dos de morue à l'Espagnole", "price": 20 },
+          { "name": "Dos de morue à la Norvégienne", "price": 20 },
+          {
+            "name": "Gambas flambées",
+            "description": "(à la crème de Whisky)",
+            "price": 24
+          },
+          { "name": "Brochette de Saumon & Saint-Jacques", "price": 26 },
+          { "name": "Saint-Jacques au Lillet", "price": 26 },
+          { "name": "Assiette de dégustation, trio de morue", "price": 28 },
+          { "name": "Lamproie à la Bordelaise", "price": 28 },
+          {
+            "name": "Papillote de gambas décortiquées & Saint-Jacques au foie gras",
+            "price": 28
+          },
+          { "name": "Parillada de poissons", "price": 28 },
+          {
+            "name": "Thon rouge spécial sushi snacké au sésame",
+            "price": 28
+          }
+        ]
+      },
+      {
+        "id": 3,
+        "name": "Côté \"Terre\"",
+        "image": "/images/chezVincent/category3.png",
+        "items": [
+          { "name": "Filet de poulet fermier à la crème", "price": 14 },
+          { "name": "Bavette à l'échalotte", "price": 15 },
+          { "name": "Andouillette ou boudin au grill", "price": 16 },
+          {
+            "name": "Brochette de magret à l'ananas",
+            "description": "(Ventrèche)",
+            "price": 16
+          },
+          { "name": "Confit de canard du Sud-Ouest", "price": 16 },
+          {
+            "name": "Brochette de boeuf",
+            "description": "(Champignons, oignons)",
+            "price": 18
+          },
+          { "name": "Hamburger du chef au Charolais", "price": 20 },
+          {
+            "name": "Plaisir du Périgord",
+            "description": "(Confit de canard, foie gras, cèpes, purée)",
+            "price": 20
+          },
+          { "name": "Steak tartare au couteau", "price": 20 },
+          { "name": "Carré d'agneau au romarin", "price": 22 },
+          {
+            "name": "Côtelettes d'agneau",
+            "description": "(4 pièces)",
+            "price": 22
+          },
+          { "name": "Magret de canard grillé entier", "price": 22 },
+          { "name": "Côte de veau Normande", "price": 24 },
+          {
+            "name": "Entrecôte de bœuf",
+            "description": "(400 gr)",
+            "price": 24
+          },
+          { "name": "Hamburger Périgourdin", "price": 28 },
+          {
+            "name": "Côte de bœuf",
+            "description": "(1 pers – 700 gr)",
+            "price": 34
+          },
+          {
+            "name": "Côte de bœuf Rossini du chef",
+            "description": "(2 pers – 1400 gr)",
+            "price": 88
+          }
+        ]
+      },
+      {
+        "id": 4,
+        "name": "Desserts",
+        "image": "/images/chezVincent/category4.png",
+        "items": [
+          { "name": "6 Cannelés maison", "price": 8 },
+          { "name": "Chocolat ou café Liégeois", "price": 8 },
+          { "name": "Coupe Colonel", "price": 8 },
+          { "name": "Crème Catalane", "price": 8 },
+          { "name": "Demi-ananas frais", "price": 8 },
+          { "name": "Fondant au chocolat", "price": 8 },
+          { "name": "Ile flottante", "price": 8 },
+          { "name": "Mini baba au rhum", "price": 8 },
+          { "name": "Nougat glacé", "price": 8 },
+          { "name": "Omelette Norvégienne maison", "price": 8 },
+          { "name": "Profiteroles maison", "price": 8 },
+          {
+            "name": "Trois boules de glaces",
+            "description": "(vanille, café, chocolat, rhum raisin, fraise et menthe)",
+            "price": 8
+          },
+          {
+            "name": "Trois boules de sorbet",
+            "description": "(citron, framboise, poire, cassis, pomme, passion)",
+            "price": 8
+          },
+          {
+            "name": "Assiette de fromages",
+            "description": "(penser au vin !)",
+            "price": 8
+          },
+          {
+            "name": "Palette de desserts",
+            "description": "(hors menu)",
+            "price": 10
+          },
+          {
+            "name": "Café ou thé gourmands",
+            "description": "(hors menus)",
+            "price": 10
+          }
+        ]
+      }
+    ],
+    "moreInfo": {
+      "traiteur": {
+        "text": "Besoin d'un traiteur pour une occasion spéciale ?\nNotre service traiteur saura vous satisfaire à vos besoins !\nDevis sur demande",
+        "image": "/images/chezVincent/moreInfo1.png"
+      },
+      "vins": {
+        "text": "La sélection inclut des vins régionaux, grands crus et champagnes.\nIdéal pour une expérience culinaire mémorable, que ce soit pour un dîner intime, une célébration entre amis ou un évènement professionnel.",
+        "image": "/images/chezVincent/moreInfo2.png"
+      }
+    }
   }
 ]
