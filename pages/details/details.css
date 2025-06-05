@@ -43,6 +43,7 @@ header {
   width: 100%;
   height: 800px;
 }
+/* Carousel : masque toutes les images sauf .visible */
 .imageSlides {
   position: absolute;
   left: 50%;
@@ -51,12 +52,14 @@ header {
   min-width: 100%;
   min-height: 100%;
   opacity: 0;
-  transition: opacity 1s ease-in-out;
-  z-index: -1;
+  pointer-events: none;
+  transition: opacity 1s;
+  z-index: 1;
 }
-/* add 'visible' class via Javascript */
-.visible {
+.imageSlides.visible {
   opacity: 1;
+  pointer-events: auto;
+  z-index: 2;
 }
 .slideshowArrow {
   font-size: 7em;
@@ -72,12 +75,14 @@ header {
   left: 4%;
   top: 50%;
   transform: translate(-50%, -50%);
+  z-index: 5;
 }
 #rightArrow {
   position: absolute;
   right: 4%;
   top: 50%;
   transform: translate(50%, -50%);
+    z-index: 5;
 }
 .slideshowCircles {
   position: absolute;
@@ -85,6 +90,7 @@ header {
   left: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
+    z-index: 5;
 }
 .circle {
   display: inline-block;
@@ -257,51 +263,34 @@ label:hover {
   gap: 40px;
   margin-bottom: 50px;
   flex-wrap: wrap;
+}.menuCategory {
+  display: inline-block;
+  cursor: pointer;
+  opacity: 0.7;
+  border-bottom: 2px solid transparent;
+  transition: opacity 0.2s, border-bottom 0.2s;
+  margin-right: 20px;
 }
-.menuCategory {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 20px;
-  
+.menuCategory.active {
+  opacity: 1;
+  border-bottom: 2px solid #111;
 }
 .menuCategory img {
-  width: clamp(150px, 250px, 250px);
-  height: 400px;
-  border-radius: 90px;
-  filter: grayscale(0.8) blur(3px);
-  box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.5);
-}
-.menuCategory img:active {
-  filter: blur(0px);
-  filter: grayscale(0);
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 8px;
 }
 .menuCategoryDetails {
+  margin-top: 20px;
+}
+.menu-item {
   display: flex;
-  background-image: url(/images/general/textureArdoise.png);
-  flex-direction: column;
-  align-items: center;
-  background-size: cover;
-  background-position: right;
-  padding: 45px;
-  box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.5); 
-  clip-path: polygon(10% 0%, 25% 5%, 90% 0%, 100% 10%, 100% 90%, 90% 100%, 10% 100%, 0% 90%, 0% 10%);   /* à améliorer */
+  justify-content: space-between;
+  padding: 6px 0;
+  border-bottom: 1px solid #eee;
 }
-.menuCategoryDetails p, .menuCategoryDetails h1 {
-  color: whitesmoke;
-  line-height: 1.5;
-}
-.menuCategoryDetails span {
-  color: gray;
-}
-.menuCategoryDetails div {
-  display: flex; 
-  gap: 40px;
-  padding: 30px;
-}
-#menuDetailsCat2, #menuDetailsCat3, #menuDetailsCat4 {
-  display: none;
-}
+
 /* #endregion */
 
 /* ========================= */

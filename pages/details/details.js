@@ -1,397 +1,237 @@
+let restaurants = [];
+let currentSlide = 0;
+
 function loadRestaurantsData() {
-  return new Promise((resolve, reject) => {
-    // Vérifier si les données sont déjà chargées
-    if (typeof restaurants !== "undefined") {
-      resolve();
-      return;
-    }
+  return fetch("/data/restaurants.json")
+    .then((response) => response.json())
+    .then((data) => {
+      restaurants = data;
+    });
+}
 
-    console.log("Chargement des données restaurants...");
-    const script = document.createElement("script");
-    script.src = "/pages/details/restaurants.js";
-    script.onload = () => {
-      if (typeof restaurants !== "undefined") {
-        console.log(`✅ ${restaurants.length} restaurant(s) chargé(s)`);
-        resolve();
-      } else {
-        reject(
-          new Error("❌ Données restaurants non trouvées après chargement")
-        );
-      }
-    };
-    script.onerror = () => {
-      reject(new Error("❌ Erreur lors du chargement de restaurants.js"));
-    };
-    document.head.appendChild(script);
+function showSlide(slideIndex, images) {
+  images.forEach((img, i) => {
+    img.classList.toggle("visible", i === slideIndex);
   });
 }
+let autoSlideInterval = null;
 
-// ========== CAROUSEL FUNCTIONS (conservées) ==========
-function initializeCarousel() {
-  const imageSlides = document.getElementsByClassName("imageSlides");
-  const circles = document.getElementsByClassName("circle");
-  const leftArrow = document.getElementById("leftArrow");
-  const rightArrow = document.getElementById("rightArrow");
+function initializeCarousel(restaurant) {
+  const carouselContainer = document.getElementById("carouselContainer");
+  if (!carouselContainer || !Array.isArray(restaurant.carousel)) return;
 
-  if (!imageSlides.length || !circles.length || !leftArrow || !rightArrow) {
-    setTimeout(initializeCarousel, 100);
-    return;
-  }
-
-  let counter = 0;
-  let imageSlideshowInterval;
-
-  function hideImages() {
-    for (let i = 0; i < imageSlides.length; i++) {
-      imageSlides[i].classList.remove("visible");
-    }
-  }
-
-  function removeDots() {
-    for (let i = 0; i < circles.length; i++) {
-      circles[i].classList.remove("dot");
-    }
-  }
-
-  function imageLoop() {
-    const currentImage = imageSlides[counter];
-    const currentDot = circles[counter];
-    currentImage.classList.add("visible");
-    removeDots();
-    currentDot.classList.add("dot");
-    counter++;
-  }
-
-  function arrowClick(e) {
-    const target = e.target;
-    if (target === leftArrow) {
-      clearInterval(imageSlideshowInterval);
-      hideImages();
-      removeDots();
-      if (counter === 1) {
-        counter = imageSlides.length - 1;
-        imageLoop();
-        imageSlideshowInterval = setInterval(slideshow, 10000);
-      } else {
-        counter--;
-        counter--;
-        imageLoop();
-        imageSlideshowInterval = setInterval(slideshow, 10000);
-      }
-    } else if (target === rightArrow) {
-      clearInterval(imageSlideshowInterval);
-      hideImages();
-      removeDots();
-      if (counter === imageSlides.length) {
-        counter = 0;
-        imageLoop();
-        imageSlideshowInterval = setInterval(slideshow, 10000);
-      } else {
-        imageLoop();
-        imageSlideshowInterval = setInterval(slideshow, 10000);
-      }
-    }
-  }
-
-  leftArrow.addEventListener("click", arrowClick);
-  rightArrow.addEventListener("click", arrowClick);
-
-  function slideshow() {
-    if (counter < imageSlides.length) {
-      imageLoop();
-    } else {
-      counter = 0;
-      hideImages();
-      imageLoop();
-    }
-  }
-
-  setTimeout(slideshow, 1000);
-  imageSlideshowInterval = setInterval(slideshow, 10000);
-}
-
-// ========== UTILITY FUNCTIONS ==========
-function generateMenuItems(items) {
-  let pricesColumn1 = "";
-  let itemsColumn1 = "";
-  let pricesColumn2 = "";
-  let itemsColumn2 = "";
-
-  const halfLength = Math.ceil(items.length / 2);
-
-  for (let i = 0; i < halfLength; i++) {
-    const item = items[i];
-    pricesColumn1 += item.price + "<br>";
-    itemsColumn1 += item.name;
-    if (item.description) {
-      itemsColumn1 += `<br><span>&nbsp;&nbsp;&nbsp;&nbsp;${item.description}</span>`;
-    }
-    itemsColumn1 += "<br>";
-  }
-
-  for (let i = halfLength; i < items.length; i++) {
-    const item = items[i];
-    pricesColumn2 += item.price + "<br>";
-    itemsColumn2 += item.name;
-    if (item.description) {
-      itemsColumn2 += `<br><span>&nbsp;&nbsp;&nbsp;&nbsp;${item.description}</span>`;
-    }
-    itemsColumn2 += "<br>";
-  }
-
-  return { pricesColumn1, itemsColumn1, pricesColumn2, itemsColumn2 };
-}
-
-function generateReviews(reviews) {
-  return reviews
+  carouselContainer.innerHTML = restaurant.carousel
     .map(
-      (review) => `
-    <div class="cardComment">
-      <p>"${review.text}"</p>
-      <div class="avatarComment">
-        <img src="${review.avatar}" alt="Avatar">
-        <p>${review.author}</p>
-      </div>
-    </div>
-  `
+      (img, i) =>
+        `<img class="imageSlides${i === 0 ? " visible" : ""}" src="${img}" alt="Image ${i + 1}" />`
     )
-    .join("");
-}
+    .join("") +
+    `
+    <span id="leftArrow" class="slideshowArrow">&#8249;</span>
+    <span id="rightArrow" class="slideshowArrow">&#8250;</span>
+    <div class="slideshowCircles">
+      ${restaurant.carousel
+        .map(
+          (_, i) =>
+            `<span class="circle${i === 0 ? " dot" : ""}" data-index="${i}"></span>`
+        )
+        .join("")}
+    </div>
+    `;
 
-// ========== MAIN RESTAURANT DATA MAPPING ==========
-function initializeRestaurantData() {
-  console.log("Initialisation des données restaurant...");
+  const images = Array.from(carouselContainer.querySelectorAll(".imageSlides"));
+  const leftArrow = carouselContainer.querySelector("#leftArrow");
+  const rightArrow = carouselContainer.querySelector("#rightArrow");
+  const circles = Array.from(carouselContainer.querySelectorAll(".circle"));
 
-  const params = new URLSearchParams(window.location.search);
-  const restaurantId = params.get("id") || "chezVincent";
+  let slide = 0;
+  showSlide(slide, images);
+  updateCircles(slide, circles);
 
-  console.log("ID restaurant recherché:", restaurantId);
-
-  const restaurant = restaurants.find((r) => r.id === restaurantId);
-
-  if (!restaurant) {
-    console.error("Restaurant non trouvé:", restaurantId);
-    return;
+  function updateCircles(idx, circles) {
+    circles.forEach((c, i) =>
+      c.classList.toggle("dot", i === idx)
+    );
   }
 
-  console.log("Restaurant trouvé:", restaurant.name);
+  function goToSlide(idx) {
+    slide = (idx + images.length) % images.length;
+    showSlide(slide, images);
+    updateCircles(slide, circles);
+  }
 
-  // ===== CAROUSEL IMAGES =====
-  const carouselImages = document.querySelectorAll(".imageSlides");
-  restaurant.carousel.forEach((imageSrc, index) => {
-    if (carouselImages[index]) {
-      carouselImages[index].src = imageSrc;
-      console.log(`Image carousel ${index} mise à jour:`, imageSrc);
-    }
+  // Auto défilement
+  function startAutoSlide() {
+    stopAutoSlide();
+    autoSlideInterval = setInterval(() => {
+      goToSlide(slide + 1);
+    }, 4000); // 4 secondes
+  }
+  function stopAutoSlide() {
+    if (autoSlideInterval) clearInterval(autoSlideInterval);
+  }
+
+  if (leftArrow) leftArrow.onclick = () => { goToSlide(slide - 1); startAutoSlide(); };
+  if (rightArrow) rightArrow.onclick = () => { goToSlide(slide + 1); startAutoSlide(); };
+  circles.forEach((circle, i) => {
+    circle.onclick = () => { goToSlide(i); startAutoSlide(); };
   });
+
+  // Pause auto-défilement au survol
+  carouselContainer.onmouseenter = stopAutoSlide;
+  carouselContainer.onmouseleave = startAutoSlide;
+
+  startAutoSlide();
+}
+
+function initializeRestaurantData() {
+  const params = new URLSearchParams(window.location.search);
+  const restaurantId = params.get("id") || "1";
+  let restaurantIdNum = Number(restaurantId);
+  if (isNaN(restaurantIdNum)) restaurantIdNum = 1;
+
+  const restaurant = restaurants.find((r) => r.id === restaurantIdNum);
+  if (!restaurant) return;
+  renderMoreInfo(restaurant.moreInfo);
+
+  // ===== CAROUSEL DYNAMIQUE =====
+  initializeCarousel(restaurant);
 
   // ===== LOGOS =====
-  const logoElements = [
-    document.querySelector("#logo img"),
-    document.querySelector(".adress img"),
-  ];
-  logoElements.forEach((logo) => {
-    if (logo) {
-      logo.src = restaurant.logo;
-      console.log("Logo mis à jour:", restaurant.logo);
-    }
-  });
+  const logoImg = document.getElementById("logoImg");
+  if (logoImg) logoImg.src = restaurant.logo;
 
-  // ===== PRESENTATION =====
-  const presentationTitle = document.querySelector(".sectBookingVisi h1");
-  const presentationDesc = document.querySelector(".sectBookingVisi p");
+  const logoSiteImg = document.getElementById("logoSiteImg");
+  if (logoSiteImg) logoSiteImg.src = "/images/general/logoSite.png";
 
-  if (presentationTitle) {
-    presentationTitle.textContent = restaurant.presentation.title;
-    console.log("Titre présentation mis à jour");
-  }
+  // ===== PRÉSENTATION =====
+  const nameSpan = document.getElementById("restaurantName");
+  if (nameSpan) nameSpan.textContent = restaurant.name;
 
-  if (presentationDesc) {
-    presentationDesc.textContent = restaurant.presentation.description;
-    console.log("Description présentation mise à jour");
-  }
+  const descP = document.getElementById("restaurantDescription");
+  if (descP) descP.textContent = restaurant.description;
 
   // ===== POPUP CONTACT =====
-  const popupInfo = document.querySelector("#info");
-  if (popupInfo) {
-    popupInfo.innerHTML = `
-      <h1>Informations de réservation</h1>
-      <p>Pour réserver une table, veuillez nous contacter au :</p>
-      <p><strong>${restaurant.contact.phone}</strong></p>
-      <p>${restaurant.contact.openingHours}</p>
-      <label for="close"><i class="fa fa-times-circle fa-lg"></i></label>
-    `;
-    console.log("Popup contact mis à jour");
-  }
+  const phoneStrong = document.getElementById("contactPhone");
+  if (phoneStrong) phoneStrong.textContent = restaurant.contact?.phone || "";
 
-  // ===== MENU CATEGORIES ET DETAILS =====
-  const allCategoryElements = document.querySelectorAll(".menuCategory");
-  const allDetailElements = document.querySelectorAll(".menuCategoryDetails");
+  const openingP = document.getElementById("contactOpening");
+  if (openingP) openingP.textContent = restaurant.contact?.openingHours || "";
 
-  console.log(
-    `Trouvé ${allCategoryElements.length} catégories et ${allDetailElements.length} sections détails`
-  );
+  // ===== MENU CATÉGORIES DYNAMIQUES =====
+ // ===== MENU CATÉGORIES DYNAMIQUES =====
+  const menuCategories = document.getElementById("menuCategories");
+  const menuDetails = document.getElementById("menuDetails");
+  if (menuCategories && Array.isArray(restaurant.menu)) {
+    // Génère les catégories
+    menuCategories.innerHTML = restaurant.menu
+      .map(
+        (cat, i) => `
+        <div class="menuCategory${i === 0 ? " active" : ""}" data-index="${i}">
+          <img src="${cat.image || ""}" alt="${cat.name || ""}" />
+          <h2>${cat.name || ""}</h2>
+        </div>
+      `
+      )
+      .join("");
 
-  restaurant.menu.forEach((category, index) => {
-    // Boutons des catégories
-    if (allCategoryElements[index]) {
-      const categoryElement = allCategoryElements[index];
-      const img = categoryElement.querySelector("img");
-      const h2 = categoryElement.querySelector("h2");
-
-      if (img) {
-        img.src = category.image;
-        img.alt = category.name;
-        if (index === 0) img.classList.add("selected");
-        console.log(`✅ Image catégorie ${index} mise à jour:`, category.image);
-      }
-
-      if (h2) {
-        h2.textContent = category.name;
-        console.log(`✅ Nom catégorie ${index} mis à jour:`, category.name);
-      }
+    // Génère les détails (un seul affiché)
+    function renderMenuDetails(activeIdx) {
+      menuDetails.innerHTML = `
+        <div class="menuCategoryDetails active">
+          <h1>${restaurant.menu[activeIdx].name || ""}</h1>
+          <div class="menu-items">
+            ${
+              Array.isArray(restaurant.menu[activeIdx].items)
+                ? restaurant.menu[activeIdx].items
+                    .map(
+                      (item) =>
+                        `<div class="menu-item"><span>${item.name || ""}</span> <span>${item.price ? item.price + "€" : ""}</span></div>`
+                    )
+                    .join("")
+                : ""
+            }
+          </div>
+        </div>
+      `;
     }
 
-    // Sections de détails
-    if (allDetailElements[index]) {
-      const detailElement = allDetailElements[index];
-      const title = detailElement.querySelector("h1");
+    // Affiche la première catégorie par défaut
+    let activeMenuIdx = 0;
+    renderMenuDetails(activeMenuIdx);
 
-      if (title) {
-        title.textContent = category.name;
-        console.log(`✅ Titre détail ${index} mis à jour:`, category.name);
-      }
-
-      const menuItems = generateMenuItems(category.items);
-      const menuContainer = detailElement.querySelector("div");
-
-      if (menuContainer) {
-        menuContainer.innerHTML = `
-          <p>${menuItems.pricesColumn1}</p>
-          <p>${menuItems.itemsColumn1}</p>
-          <p>${menuItems.pricesColumn2}</p>
-          <p>${menuItems.itemsColumn2}</p>
-        `;
-        console.log(`✅ Menu détaillé catégorie ${index} mis à jour`);
-      }
-
-      // Afficher seulement la première catégorie
-      detailElement.style.display = index === 0 ? "flex" : "none";
-    }
-  });
-
-  // ===== MORE INFO SECTIONS =====
-  const moreInfoPart1 = document.querySelector(".moreInfoPart1");
-  if (moreInfoPart1) {
-    const p = moreInfoPart1.querySelector("p");
-    const img = moreInfoPart1.querySelector("img");
-    if (p) p.innerHTML = restaurant.moreInfo.traiteur.text;
-    if (img) img.src = restaurant.moreInfo.traiteur.image;
-    console.log("Section traiteur mise à jour");
+    // Ajoute les listeners pour le clic sur chaque catégorie
+    Array.from(menuCategories.children).forEach((catDiv, i) => {
+      catDiv.addEventListener("click", () => {
+        // Change l'état actif visuel
+        Array.from(menuCategories.children).forEach((el) =>
+          el.classList.remove("active")
+        );
+        catDiv.classList.add("active");
+        // Affiche le détail correspondant
+        renderMenuDetails(i);
+        activeMenuIdx = i;
+      });
+    });
   }
 
-  const moreInfoPart2 = document.querySelector(".moreInfoPart2");
-  if (moreInfoPart2) {
-    const p = moreInfoPart2.querySelector("p");
-    const img = moreInfoPart2.querySelector("img");
-    if (p) p.innerHTML = restaurant.moreInfo.vins.text;
-    if (img) img.src = restaurant.moreInfo.vins.image;
-    console.log("Section vins mise à jour");
-  }
 
-  // ===== REVIEWS =====
+ 
+
+  // ===== MORE INFO =====
+function renderMoreInfo(moreInfo) {
+  const moreInfoSection = document.getElementById("moreInfoSection");
+  if (!moreInfoSection || !moreInfo || typeof moreInfo !== "object") return;
+
+  // Génère dynamiquement chaque bloc
+  moreInfoSection.innerHTML = Object.entries(moreInfo)
+    .map(([key, part]) => `
+      <div class="moreInfoPart">
+        <h3>${part.label || key}</h3>
+        <p>${part.text || ""}</p>
+        ${part.image ? `<img src="${part.image}" alt="${part.label || key}">` : ""}
+      </div>
+    `)
+    .join("");
+}
+  // ===== AVIS =====
   const commentsContainer = document.querySelector(".comments");
-  if (commentsContainer) {
-    commentsContainer.innerHTML = generateReviews(restaurant.reviews);
-    console.log("Avis clients mis à jour");
+  if (commentsContainer && restaurant.testimonials) {
+    commentsContainer.innerHTML = restaurant.testimonials
+      .map(
+        (review) => `
+      <div class="cardComment">
+        <p>"${review.text || ""}"</p>
+        <div class="avatarComment">
+          <img src="${review.avatar || ""}" alt="Avatar">
+          <p>${review.author || ""}</p>
+        </div>
+      </div>
+    `
+      )
+      .join("");
   }
 
-  // ===== MAP AND ADDRESS =====
-  const iframe = document.querySelector(".sectMaps iframe");
-  if (iframe) {
-    iframe.src = restaurant.contact.mapUrl;
-    console.log("Carte mise à jour");
-  }
+  // ===== MAP ET ADRESSE =====
+  const mapIframe = document.getElementById("mapIframe");
+  if (mapIframe) mapIframe.src = restaurant.contact?.mapUrl || "";
 
-  const addressP = document.querySelector(".adress p");
-  if (addressP) {
-    addressP.innerHTML = `${restaurant.contact.address}<br>${restaurant.contact.city}<br><br>${restaurant.contact.phone}`;
-    console.log("Adresse mise à jour");
-  }
+  const logoMapImg = document.getElementById("logoMapImg");
+  if (logoMapImg) logoMapImg.src = restaurant.logo;
 
-  console.log("✅ Initialisation des données restaurant terminée");
+  const addressBlock = document.getElementById("addressBlock");
+  if (addressBlock) {
+    addressBlock.innerHTML = `${restaurant.contact?.address || ""}<br />${restaurant.contact?.city || ""}<br /><br />${restaurant.contact?.phone || ""}`;
+  }
 }
 
-// ========== MENU CATEGORIES INTERACTION ==========
-function initializeMenuCategories() {
-  console.log("Initialisation des catégories de menu...");
-
-  const categoryElements = document.querySelectorAll(".menuCategory");
-  const detailElements = document.querySelectorAll(".menuCategoryDetails");
-
-  categoryElements.forEach((categoryElement, index) => {
-    categoryElement.addEventListener("click", function () {
-      console.log(`Catégorie ${index} cliquée`);
-
-      // Cacher toutes les sections
-      detailElements.forEach((div) => {
-        div.style.display = "none";
-      });
-
-      // Afficher la section sélectionnée
-      if (detailElements[index]) {
-        detailElements[index].style.display = "flex";
-        console.log(`✅ Section ${index} affichée`);
-      }
-
-      // Gérer les classes selected
-      document.querySelectorAll(".menuCategory img").forEach((img) => {
-        img.classList.remove("selected");
-      });
-
-      const clickedImg = this.querySelector("img");
-      if (clickedImg) {
-        clickedImg.classList.add("selected");
-        console.log(`✅ Image ${index} sélectionnée`);
-      }
-    });
-  });
-
-  console.log(`✅ ${categoryElements.length} catégories de menu initialisées`);
-}
-
-// ========== MAIN INITIALIZATION ==========
+// ========== INITIALISATION ==========
 function initializeAllFeatures() {
-  console.log("🚀 Démarrage de l'initialisation complète...");
-
-  // D'abord charger les données restaurants, puis initialiser
-  loadRestaurantsData()
-    .then(() => {
-      console.log("📊 Données chargées, initialisation des fonctionnalités...");
-      setTimeout(() => {
-        initializeRestaurantData();
-        initializeCarousel();
-        initializeMenuCategories();
-        console.log("✅ Initialisation complète terminée");
-      }, 100);
-    })
-    .catch((error) => {
-      console.error("❌ Erreur lors du chargement des données:", error);
-      console.log(
-        "💡 Vérifiez que le fichier restaurants.js existe dans /pages/details/"
-      );
-    });
+  loadRestaurantsData().then(() => {
+    initializeRestaurantData();
+  });
 }
 
-// ========== INTEGRATION WITH LAYOUT SYSTEM ==========
-window.initializePage = function (page) {
-  console.log("initializePage appelée pour:", page);
-  if (page === "details") {
-    initializeAllFeatures();
-  }
-};
-
-// Fallback pour le chargement direct
 if (document.readyState === "loading") {
   document.addEventListener("DOMContentLoaded", initializeAllFeatures);
 } else {

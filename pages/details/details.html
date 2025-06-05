@@ -1,45 +1,23 @@
+<head>
+  <meta charset="UTF-8">
+  <title>Détails du restaurant</title>
+  <link rel="stylesheet" href="/pages/details/details.css">
+</head>
+
 <header>
-  <div class="slideshowContainer">
-    <img class="imageSlides" src="/images/chezVincent/carrousel1.png" alt="" />
-    <img class="imageSlides" src="/images/chezVincent/carrousel2.png" alt="" />
-    <img class="imageSlides" src="/images/chezVincent/carrousel3.png" alt="" />
-
-    <span id="leftArrow" class="slideshowArrow">&#8249;</span>
-    <span id="rightArrow" class="slideshowArrow">&#8250;</span>
-
-    <div class="slideshowCircles">
-      <span class="circle dot"></span>
-      <span class="circle"></span>
-      <span class="circle"></span>
-    </div>
-  </div>
+<div class="slideshowContainer" id="carouselContainer"></div>
 
   <div id="logo">
-    <img src="/images/chezVincent/logoAlpha.png" alt="Logo restaurant" />
-  </div>
-
-  <div id="title">
-    <img src="/images/general/Page Title.png" alt="Titre page" />
+    <img id="logoImg" src="" alt="Logo restaurant" />
   </div>
 </header>
 
 <main>
-  <!-- Section Réservation -->
+  <!-- Modal de Réservation -->
   <section class="sectBooking">
     <div class="sectBookingVisi">
-      <h1>Découvrir le restaurant Chez Vincent</h1>
-      <p>
-        Situé à Bègles, près de Bordeaux, « Chez Vincent » offre un cadre
-        chaleureux pour savourer une cuisine traditionnelle faite de produits
-        frais. Profitez d'un repas agréable au coin de la cheminée ou sur la
-        terrasse ombragée. Chez Vincent offre une variété de vins, spiritueux et
-        alcools de qualité pour accompagner vos repas ou enrichir votre soirée.
-        La sélection inclut des vins régionaux, grands crus et champagnes. Idéal
-        pour une expérience culinaire mémorable, que ce soit pour un dîner
-        intime, une célébration entre amis ou un évènement professionnel. Un
-        parcours culinaire autour des meilleures saveurs du Sud-Ouest.
-      </p>
-
+      <h2>Découvrir le restaurant <span id="restaurantName"></span></h2>
+      <p id="restaurantDescription"></p>
       <div id="wrapper">
         <input type="radio" id="open" name="popup" />
         <input type="radio" id="close" name="popup" />
@@ -50,13 +28,11 @@
         </div>
         <div id="overlay"></div>
         <div id="info">
-          <h1>Informations de réservation</h1>
-          <p>Pour réserver une table, veuillez nous contacter au :</p>
-          <p><strong>05 56 49 01 45</strong></p>
-          <p>
-            Nous sommes ouverts du mardi au samedi de 12h à 14h et de 19h à 22h.
-          </p>
+          <h3>Informations de réservation</h3>
           <label for="close"><i class="fa fa-times-circle fa-lg"></i></label>
+          <p>Pour réserver une table, veuillez nous contacter au :</p>
+          <p><strong id="contactPhone"></strong></p>
+          <p id="contactOpening"></p>
         </div>
       </div>
     </div>
@@ -64,95 +40,42 @@
 
   <!-- Section Menu -->
   <section class="sectMenu">
-    <h1>Menu</h1>
+    <h2>Menu</h2>
 
-    <div class="optionDisplayMenu">
-      <div class="menuCategory" id="menuCategory1">
-        <img
-          src="/images/chezVincent/category1.png"
-          alt="Entrées"
-          class="selected"
-        />
-        <h2>Entrées</h2>
-      </div>
-      <div class="menuCategory" id="menuCategory2">
-        <img src="/images/chezVincent/category2.png" alt="Côté Mer" />
-        <h2>Côté "Mer"</h2>
-      </div>
-      <div class="menuCategory" id="menuCategory3">
-        <img src="/images/chezVincent/category3.png" alt="Côté Terre" />
-        <h2>Côté "Terre"</h2>
-      </div>
-      <div class="menuCategory" id="menuCategory4">
-        <img src="/images/chezVincent/category4.png" alt="Desserts" />
-        <h2>Desserts</h2>
-      </div>
-    </div>
+  <div class="optionDisplayMenu" id="menuCategories"></div>
+<div id="menuDetails"></div>
 
-    <!-- Menu détaillé -->
-    <div class="menuCategoryDetails" id="menuDetailsCat0">
-      <h1>Entrées</h1>
-      <div class="menu-items"></div>
-    </div>
-    <div class="menuCategoryDetails" id="menuDetailsCat1" style="display: none">
-      <h1>Côté "Mer"</h1>
-      <div class="menu-items"></div>
-    </div>
-    <div class="menuCategoryDetails" id="menuDetailsCat2" style="display: none">
-      <h1>Côté "Terre"</h1>
-      <div class="menu-items"></div>
-    </div>
-    <div class="menuCategoryDetails" id="menuDetailsCat3" style="display: none">
-      <h1>Desserts</h1>
-      <div class="menu-items"></div>
-    </div>
-  </section>
+
 
   <!-- Section Informations Supplémentaires -->
-  <section class="sectMoreInfo">
-    <div class="moreInfoPart1">
-      <p>
-        Besoin d'un traiteur pour une occasion spéciale ?<br />Notre service
-        traiteur saura vous satisfaire à vos besoins !<br />Devis sur demande
-      </p>
-      <img src="/images/chezVincent/moreInfo1.png" alt="Service traiteur" />
-    </div>
-    <div class="moreInfoPart2">
-      <img src="/images/chezVincent/moreInfo2.png" alt="Cave à vins" />
-      <p>
-        La sélection inclut des vins régionaux, grands crus et champagnes.<br />Idéal
-        pour une expérience culinaire mémorable, que ce soit pour un dîner
-        intime, une célébration entre amis ou un évènement professionnel.
-      </p>
-    </div>
-  </section>
+<section class="sectMoreInfo" id="moreInfoSection"></section>
 
   <!-- Section Avis -->
   <section class="sectComments">
-    <h1>Vous avez aimé, et vous en parlez !</h1>
+    <h2>Vous avez aimé, et vous en parlez !</h2>
     <div class="comments"></div>
   </section>
 
   <!-- Section Localisation -->
   <section class="sectMaps">
     <div>
-      <h1>Vous y rendre</h1>
+      <h2>Vous y rendre</h2>
       <iframe
-        src="https://maps.google.com/maps?width=600&height=450&hl=fr&q=Chez%20Vincent%2C%2038%20rue%20Vincent%20Gonzales%2C%2033130%20Bègles%2C%20France&ie=UTF8&t=&z=15&iwloc=B&output=embed"
+        id="mapIframe"
+        src=""
         width="600"
         height="450"
         style="border: 0"
         allowfullscreen=""
         loading="lazy"
-        referrerpolicy="no-referrer-when-downgrade"
-      >
+        referrerpolicy="no-referrer-when-downgrade">
       </iframe>
     </div>
+
+    <!-- Section Contact et réseaux -->
     <div class="adress">
-      <img src="/images/chezVincent/logoAlpha.png" alt="Logo restaurant" />
-      <p>
-        38 rue Vincent Gonzales<br />33130 - Bègles<br /><br />05 56 49 01 45
-      </p>
+      <img id="logoMapImg" src="" alt="Logo restaurant" />
+      <p id="addressBlock"></p>
       <div class="reseaux">
         <img src="/images/general/iconFacebook.png" alt="Facebook" />
         <img src="/images/general/iconInstagram.png" alt="Instagram" />
