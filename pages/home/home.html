@@ -1,5 +1,5 @@
-<!-- HOME -->
-<section>
+<!-- HOME ANCIENNE VERSION -->
+<!-- <section>
   <div class="divCards">
       <div class="card">
         <img class="restaurant-image" src="{image}" alt="{name}" />
@@ -10,6 +10,40 @@
         <p class="specialty">{specialty}</p><br>
         <p class="address">{address}</p><br>
         <div class="stars">{stars}</div>
+<<<<<<< Updated upstream
       </div>
     </div>
 </section>
+=======
+        <div class="btn-favorites">
+            <button type="button" id="btn-fav" data-id="{id}"><i class="fa-solid fa-arrow-right"></i></button>
+          </div>
+      </div>
+    </div>
+</section> -->
+
+<!--  HOME CARDS MODIFIEES RACCORD SELON PAGE FAVORIS -->
+
+<section>
+  <div class="divCards">
+    <div class="card">
+      <img class="restaurant-image" src="{image}" alt="{name}" />
+      <button class="button">
+        <i class="fa-solid fa-heart" id="fav{id}"></i>
+      </button>
+      <h2 class="restaurant-name">{name}</h2>
+      <p class="specialty">{specialty}</p>
+      <br />
+      <p class="address">{address}</p>
+      <br />
+      <div class="stars">{stars}</div>
+      <br /><br />
+      <div class="btn-favorites">
+        <button type="button" id="btn-fav" data-id="{id}">
+          <i class="fa-solid fa-arrow-right"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+>>>>>>> Stashed changes
