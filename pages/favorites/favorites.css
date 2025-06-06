@@ -44,8 +44,10 @@
   /* Modif height card 320px au lieu de 400 et box shadow 0.4 au lieu de 0.2 */
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4);
   max-width: 250px;
-  max-height: 320px;
+  /* max-height: 320px; */
+  max-height: 850px;
   margin: 2%;
+  margin: 3%;
   margin: 0 auto;
   margin-bottom: 2%;
   text-align: center;
@@ -75,10 +77,37 @@
   margin: 1%;
 }
 
+.btn-favorites{
+padding: 10%;
+}
+
+#btn-fav{
+color: black;
+font-size: 20px;
+position: absolute;
+top: 94%;
+left: 16px;
+}
+
+.details{
+font-size: 15px;
+font-weight: 200px;
+margin-bottom: 2%;
+}
+
+.fa-solid{
+    /* width: 60px; */
+    /* padding-bottom: 2%; */
+}
+/* 
+.fa-arrow-right{
+    padding-bottom: 5%;
+} */
+
 .card:hover {
   transform: scale(1.05);
   transition: transform .5s;
-  overflow: hidden;
+  /* overflow: hidden; */
 }
 
 .card button {
