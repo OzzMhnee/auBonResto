@@ -1,3 +1,298 @@
-.login-container {
-    background-color: aqua;
+/* ========================= */
+/*       GENERALITES         */
+/* ========================= */
+/* #region Généralités */
+* {
+  box-sizing: border-box;
 }
+main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #ffffff 0%, #8a8a8a 100%);
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 10%;
+  box-shadow: 0px 1px 80px #111;
+}
+/* #endregion */
+
+/* ========================= */
+/*       FORMULAIRE          */
+/* ========================= */
+/*    #region FORMULAIRE     */
+
+.contact-form1 {
+  margin-top: 50px;
+  background: #fff;
+  padding: 2.5rem 3rem;
+  border-bottom-right-radius: 50px;
+  border-top-right-radius: 50px;
+  box-shadow: 0 8px 20px #111;
+  width: 450px;
+  transition: transform 1s ease;
+}
+.contact-form2 {
+  margin-top: 50px;
+  background: #fff;
+  padding: 2.5rem 3rem;
+  border-bottom-left-radius: 50px;
+  border-top-left-radius: 50px;
+  box-shadow: 0 8px 20px #111;
+  width: 450px;
+  transition: transform 1s ease;
+}
+.contact-form1:hover, .contact-form2:hover {
+  transform: scale(1.2);
+  box-shadow: 0 15px 30px #111;
+}
+.contact-form1 > h2, .contact-form2 > h2  {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: #8a8a8a;
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+}
+.form-group {
+  position: relative;
+  margin-bottom: 1.8rem;
+}
+.toggle-password {
+  position: absolute;
+  top: 50%;
+  right: 18px;
+  transform: translateY(-50%);
+  cursor: pointer;
+  font-size: 1.2em;
+  color: #999;
+  user-select: none;
+  z-index: 2;
+}
+.toggle-password:hover {
+  color: #111;
+}
+label {
+  position: absolute;
+  top: 14px;
+  left: 15px;
+  ;
+  padding: 0 6px;
+  color: #999;
+  font-size: 0.9rem;
+  pointer-events: none;
+  transition: 0.3s ease all;
+  border-radius: 4px;
+}
+input[type="text"],
+input[type="email"],
+input[list],
+textarea {
+  width: 100%;
+  padding: 14px 15px;
+  font-size: 1rem;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  outline: none;
+  transition: border-color 0.3s ease;
+  resize: vertical;
+  min-height: 45px;
+  background: #fafafa;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[list]:focus,
+textarea:focus {
+  border-color: #5f574d;
+  background: #fff;
+}
+
+input[type="text"]:focus + label,
+input[type="text"]:valid + label,
+input[type="email"]:focus + label,
+input[type="email"]:valid + label,
+input[list]:focus + label,
+input[list]:valid + label,
+textarea:focus + label,
+textarea:valid + label {
+  top: -8px;
+  left: 12px;
+  font-size: 0.75rem;
+  color: #3f3f3f;
+  font-weight: 600;
+  background: #fff
+}
+button:hover {
+  background: #111;
+  box-shadow: 0 8px 20px #111;
+}
+  @media (max-width: 480px) {
+  .contact-form {
+    width: 320px;
+    padding: 2rem 1.5rem;
+  }
+} */
+#form-container {
+  background: whitesmoke;
+  padding: 2.5rem 3rem;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+  width: 100%;
+  max-width: 400px;
+  transition: transform 0.3s ease;
+}
+
+.tab-header {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+.tab {
+  background: #8a8a8a;
+  border: none;
+  font-size: 1.1rem;
+  font-weight: 600;
+  padding: 0.8rem 2rem;
+  cursor: pointer;
+  color: whitesmoke;
+  border-bottom: 2px solid transparent;
+  transition: border-color 0.2s, color 0.2s;
+  box-shadow: 0 6px 15px #8a8a8a;
+}
+
+.tab.active {
+  background: whitesmoke;
+  color: #111;
+  border: 5px solid #111; 
+}
+.form-group {
+  position: relative;
+  margin-bottom: 1.8rem;
+}
+label {
+  position: absolute;
+  top: 14px;
+  left: 15px;
+  padding: 0 6px;
+  color: #999;
+  font-size: 0.9rem;
+  pointer-events: none;
+  transition: 0.3s ease all;
+  border-radius: 4px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+  width: 100%;
+  padding: 14px 15px;
+  font-size: 1rem;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  outline: none;
+  transition: border-color 0.3s ease;
+  background: #fafafa;
+  min-height: 45px;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus {
+  border-color: #111;
+  background: #fff;
+}
+
+input[type="text"]:focus + label,
+input[type="text"]:valid + label,
+input[type="email"]:focus + label,
+input[type="email"]:valid + label,
+input[type="password"]:focus + label,
+input[type="password"]:valid + label {
+  top: -8px;
+  left: 12px;
+  font-size: 0.75rem;
+  color: #111;
+  font-weight: 600;
+  background: #fff
+}
+
+button[type="submit"] {
+  width: 100%;
+  padding: 14px 0;
+  background: #111;
+  border: none;
+  border-radius: 8px;
+  color: whitesmoke;
+  font-size: 1.1rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  cursor: pointer;
+  box-shadow: 0 0px 20px #111;
+  transition: background 1.5s ease, box-shadow 1s ease;
+}
+
+button[type="submit"]:hover {
+  background: whitesmoke;
+  color: #111;
+  border: 5px solid #111; 
+  box-shadow: 0 8px 40px #111;
+}
+
+
+#loginTab {
+  border-bottom-right-radius: 30px;
+  border-top-right-radius: 30px;
+}
+#registerTab {
+  border-bottom-left-radius: 30px;
+  border-top-left-radius: 30px;
+}
+
+.form-links {
+  text-align: right;
+  margin-bottom: 1rem;
+}
+
+.form-links a {
+  color: #2575fc;
+  text-decoration: none;
+  font-size: 0.95rem;
+  transition: color 0.2s;
+}
+.form-links a:hover {
+  color: #6a11cb;
+  text-decoration: underline;
+}
+
+.confirmation-message {
+  background: whitesmoke;
+  padding: 2.5rem 3rem;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px #111;
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+  animation: fadeIn 0.7s;
+}
+.confirmation-message h2 {
+  color: #111;
+  margin-bottom: 1rem;
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(30px);}
+  to { opacity: 1; transform: translateY(0);}
+}
+@media (max-width: 480px) {
+  #form-container, .confirmation-message {
+    padding: 2rem 1.2rem;
+    width: 350px;
+  }
+  .contact-form1, .contact-form2 {
+    width: 100%;
+  }
+}
+/* #endregion */
