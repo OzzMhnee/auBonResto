@@ -16,7 +16,7 @@
   </head>
   <body>
     <!SUPP -->
-    <!-- <section>
+<!-- <section>
       <div class="favorites-container">
         <div class="title">
           <h1 class="titleFavoris">Vos favoris</h1>
@@ -130,25 +130,29 @@
       </div>
     </section>  -->
 
-    <!-- SUPPRIMER -->
+<!-- FAVORITES -->
 
-
-    <section>
+<section>
   <div class="divCards">
-      <div class="card">
-        <img class="restaurant-image" src="{image}" alt="{name}" />
-        <button class="btn-heart">
-          <i class="fa-solid fa-heart" id="fav{id}"></i>
+    <div class="card">
+      <img class="restaurant-image" src="{image}" alt="{name}" />
+      <button class="button">
+        <i class="fa-solid fa-heart" id="fav{id}"></i>
+      </button>
+      <h2 class="restaurant-name">{name}</h2>
+      <p class="specialty">{specialty}</p>
+      <br />
+      <p class="address">{address}</p>
+      <br />
+      <div class="stars">{stars}</div>
+      <br /><br />
+      <div class="btn-favorites">
+        <button type="button" id="btn-fav" data-id="{id}">
+          <i class="fa-solid fa-arrow-right"></i>
         </button>
-        <h2 class="restaurant-name">{name}</h2>
-        <p class="specialty">{specialty}</p><br>
-        <p class="address">{address}</p><br>
-        <div class="stars">{stars}</div><br><br>
-        <div class="btn-favorites">
-            <button type="button" id="btn-fav" data-id="{id}"><i class="fa-solid fa-arrow-right"></i></button>
-          </div>
       </div>
     </div>
+  </div>
 </section>
 
 <!-- SUPPR
