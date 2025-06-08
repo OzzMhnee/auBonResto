@@ -1,6 +1,20 @@
 /* ========================= */
-/*       LOGIN SPECIFIC      */
+/*       GENERALITES         */
 /* ========================= */
+/* #region Généralités */
+
+#form-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+/* #endregion */
+
+.login-container{
+  background-color: rgba(255, 255, 255, 0.755);
+}
 
 /* ========================= */
 /*       FORMULAIRE          */
@@ -8,36 +22,34 @@
 /*    #region FORMULAIRE     */
 
 .contact-form1 {
+  margin-top: 50px;
   background: #fff;
   padding: 2.5rem 3rem;
   border-bottom-right-radius: 50px;
   border-top-right-radius: 50px;
   box-shadow: 0 8px 20px #111;
-  width: 100%;
-  max-width: 500px; /* Largeur maximum du formulaire */
+  width: 450px;
   transition: transform 1s ease;
 }
 .contact-form2 {
+  margin-top: 50px;
   background: #fff;
   padding: 2.5rem 3rem;
   border-bottom-left-radius: 50px;
   border-top-left-radius: 50px;
   box-shadow: 0 8px 20px #111;
-  width: 100%;
-  max-width: 500px; /* Largeur maximum du formulaire */
+  width: 450px;
   transition: transform 1s ease;
 }
-.contact-form1:hover,
-.contact-form2:hover {
+.contact-form1:hover, .contact-form2:hover {
   transform: scale(1.2);
   box-shadow: 0 15px 30px #111;
 }
-.contact-form1 > h2,
-.contact-form2 > h2 {
+.contact-form1 > h2, .contact-form2 > h2  {
   text-align: center;
   margin-bottom: 1.5rem;
   color: #8a8a8a;
-  font-size: 1.8rem;
+font-size: 1.8rem;
   font-weight: 700;
   letter-spacing: 1.2px;
 }
@@ -63,6 +75,7 @@ label {
   position: absolute;
   top: 14px;
   left: 15px;
+  ;
   padding: 0 6px;
   color: #999;
   font-size: 0.9rem;
@@ -107,11 +120,26 @@ textarea:valid + label {
   font-size: 0.75rem;
   color: #3f3f3f;
   font-weight: 600;
-  background: #fff;
+  background: #fff
 }
 button:hover {
   background: #111;
   box-shadow: 0 8px 20px #111;
+}
+  @media (max-width: 480px) {
+  .contact-form {
+    width: 320px;
+    padding: 2rem 1.5rem;
+  }
+} */
+#form-container {
+  background: whitesmoke;
+  padding: 2.5rem 3rem;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+  width: 100%;
+  max-width: 400px;
+  transition: transform 0.3s ease;
 }
 
 .tab-header {
@@ -138,7 +166,7 @@ button:hover {
 .tab.active {
   background: whitesmoke;
   color: #111;
-  border: 5px solid #111;
+  border: 5px solid #111; 
 }
 .form-group {
   position: relative;
@@ -188,7 +216,7 @@ input[type="password"]:valid + label {
   font-size: 0.75rem;
   color: #111;
   font-weight: 600;
-  background: #fff;
+  background: #fff
 }
 
 button[type="submit"] {
@@ -209,9 +237,10 @@ button[type="submit"] {
 button[type="submit"]:hover {
   background: whitesmoke;
   color: #111;
-  border: 5px solid #111;
+  border: 5px solid #111; 
   box-shadow: 0 8px 40px #111;
 }
+
 
 #loginTab {
   border-bottom-right-radius: 30px;
@@ -244,7 +273,7 @@ button[type="submit"]:hover {
   border-radius: 12px;
   box-shadow: 0 8px 20px #111;
   width: 100%;
-  max-width: 500px; /* Même largeur que les formulaires */
+  max-width: 400px;
   text-align: center;
   animation: fadeIn 0.7s;
 }
@@ -253,23 +282,16 @@ button[type="submit"]:hover {
   margin-bottom: 1rem;
 }
 @keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(30px);}
+  to { opacity: 1; transform: translateY(0);}
 }
-/* Responsive spécifique au login */
 @media (max-width: 480px) {
-  .contact-form1,
-  .contact-form2,
-  .confirmation-message {
+  #form-container, .confirmation-message {
+    padding: 2rem 1.2rem;
+    width: 350px;
+  }
+  .contact-form1, .contact-form2 {
     width: 100%;
-    max-width: none; /* Permettre aux formulaires de prendre toute la largeur sur mobile */
-    padding: 2rem 1.5rem;
   }
 }
 /* #endregion */

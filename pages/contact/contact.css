@@ -1,20 +1,27 @@
 /* ========================= */
-/*       CONTACT SPECIFIC    */
+/*       GENERALITES         */
 /* ========================= */
+
+#form-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  width: 100%;
+}
 
 /* ========================= */
 /*       FORMULAIRE          */
 /* ========================= */
-#confirmation-message {
-  display: none;
+#confirmation-message { 
+  display: none; 
 }
 .contact-form {
   background: #fff;
   padding: 2.5rem 3rem;
   border-radius: 12px;
   box-shadow: 0 8px 20px #111;
-  width: 100%;
-  max-width: 500px; /* Largeur maximum du formulaire */
+  width: 450px;
   transition: transform 0.3s ease;
 }
 .contact-form:hover {
@@ -109,8 +116,7 @@ button:hover {
   padding: 2.5rem 3rem;
   text-align: center;
   margin: 0 auto;
-  width: 100%;
-  max-width: 500px; /* Même largeur que le formulaire */
+  max-width: 450px;
 }
 #confirmation-message h2 {
   color: #8a8a8a;
@@ -120,12 +126,10 @@ button:hover {
   color: #333;
   margin-bottom: 2rem;
 }
-/* Responsive spécifique au contact */
+/* Responsive */
 @media (max-width: 480px) {
-  .contact-form,
-  #confirmation-message {
-    width: 100%;
-    max-width: none; /* Permettre au formulaire de prendre toute la largeur sur mobile */
+  .contact-form, #confirmation-message {
+    width: 95vw;
     padding: 2rem 1.5rem;
   }
 }
