@@ -18,9 +18,12 @@ async function loadAndRenderFavorites() {
 
     restaurants = await response.json();
     // Filtrer uniquement les restaurants favoris
-    const favoriteRestaurants = restaurants.filter(r => favorites.includes(r.id));
+    const favoriteRestaurants = restaurants.filter((r) =>
+      favorites.includes(r.id)
+    );
     renderFavorites(favoriteRestaurants);
     initFavorites();
+    initDetailButtons(); // Ajouter cette ligne
   } catch (error) {
     console.error("Erreur:", error);
   }
@@ -33,6 +36,18 @@ function renderFavorites(favoriteRestaurants) {
 
   if (!container || !templateCard) {
     console.error("Container ou template non trouvé");
+    return;
+  }
+
+  // Si aucun favori, afficher un message
+  if (favoriteRestaurants.length === 0) {
+    container.innerHTML = `
+      <div style="text-align: center; width: 100%; padding: 50px;">
+        <h3>Aucun restaurant en favoris</h3>
+        <p>Ajoutez des restaurants à vos favoris depuis la page d'accueil !</p>
+        <a href="/index.html?page=home" style="color: #111; font-weight: bold;">← Retour à l'accueil</a>
+      </div>
+    `;
     return;
   }
 
@@ -53,6 +68,14 @@ function renderFavorites(favoriteRestaurants) {
   container.innerHTML = html;
 }
 
+// Génération des étoiles (fonction ajoutée)
+function generateStars(rating) {
+  return Array.from(
+    { length: 5 },
+    (_, i) => `<i class="fa-${i < rating ? "solid" : "regular"} fa-star"></i>`
+  ).join("");
+}
+
 // Initialisation des favoris (pour permettre de retirer un favori)
 function initFavorites() {
   document.querySelectorAll(".fa-heart").forEach((heart) => {
@@ -64,8 +87,20 @@ function initFavorites() {
       e.preventDefault();
       e.stopPropagation();
       toggleFavorite(id, heart);
-      loadAndRenderFavorites();
+      // Recharger la page des favoris après suppression
+      setTimeout(() => loadAndRenderFavorites(), 100);
     };
+  });
+}
+
+// Initialisation des boutons de détail
+function initDetailButtons() {
+  document.querySelectorAll("#btn-fav[data-id]").forEach((btn) => {
+    btn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      const id = btn.getAttribute("data-id");
+      window.location.href = `/index.html?page=details&id=${id}`;
+    });
   });
 }
 

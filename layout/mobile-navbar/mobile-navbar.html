@@ -1,28 +1,44 @@
-<header>
+<nav>
+  <!-- Overlay de fond -->
   <div class="mobile-navbar" id="mobile-navbar"></div>
 
-  <div
-    class="burger"
-    id="burger-menu"
-    role="button"
->
-    <span></span>
-    <span></span>
-    <span></span>
+  <!-- Bouton burger -->
+  <div class="burger" id="burger-menu" role="button">
+    <i class="fas fa-bars"></i>
   </div>
 
-  <nav class="mobile-nav-section" id="mobile-nav">
+  <!-- Menu mobile -->
+  <div class="mobile-nav-section" id="mobile-nav">
+    <!-- Croix de fermeture à droite -->
+    <div class="close-cross" id="close-cross">
+      <i class="fas fa-times"></i>
+    </div>
+
     <ul>
-      <li class="mobile-nav-btn"><a href="/index.html?page=home">Accueil</a></li>
       <li class="mobile-nav-btn">
-     <a href="/index.html?page=favorites">Favoris</a>
+        <a href="/index.html?page=home">
+          <i class="fas fa-home"></i>
+          <span>Accueil</span>
+        </a>
       </li>
       <li class="mobile-nav-btn">
-<a href="/index.html?page=contact">Contact</a>
+        <a href="/index.html?page=favorites">
+          <i class="fas fa-heart"></i>
+          <span>Favoris</span>
+        </a>
+      </li>
+      <li class="mobile-nav-btn">
+        <a href="/index.html?page=contact">
+          <i class="fas fa-envelope"></i>
+          <span>Contact</span>
+        </a>
       </li>
       <li id="mobile-cta-login">
-<a href="/index.html?page=login">Connexion</a>
+        <a href="/index.html?page=login">
+          <i class="fas fa-user"></i>
+          <span>Connexion</span>
+        </a>
       </li>
     </ul>
-  </nav>
-</header>
+  </div>
+</nav>

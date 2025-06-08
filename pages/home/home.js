@@ -1,4 +1,4 @@
-// Variables déclaractives intiales
+// Variables déclaratives initiales
 let restaurants = [];
 let favorites = JSON.parse(localStorage.getItem("restaurantFavorites") || "[]");
 
@@ -14,11 +14,12 @@ async function loadAndRender() {
   try {
     const response = await fetch("/data/restaurants.json");
     if (!response.ok)
-      throw new Error("Erreur lords de la récupération des données");
+      throw new Error("Erreur lors de la récupération des données");
 
     restaurants = await response.json();
     render();
     initFavorites();
+    initDetailButtons();
   } catch (error) {
     console.error("Erreur:", error);
   }
@@ -51,16 +52,6 @@ function render() {
     .join("");
 
   container.innerHTML = html;
-  initFavorites();
-
-  // Redirection dynamique sur chaque bouton "Voir le détail"
-  container.querySelectorAll(".btn-detail").forEach((btn) => {
-    btn.addEventListener("click", (e) => {
-      e.stopPropagation();
-      const id = btn.getAttribute("data-id");
-      window.location.href = `index.html?page=details&id=${id}`;
-    });
-  });
 }
 
 // Génération des étoiles (selon rating du fichier restaurants.json)
@@ -83,6 +74,17 @@ function initFavorites() {
       e.stopPropagation();
       toggleFavorite(id, heart);
     };
+  });
+}
+
+// Initialisation des boutons de détail
+function initDetailButtons() {
+  document.querySelectorAll("#btn-fav[data-id]").forEach((btn) => {
+    btn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      const id = btn.getAttribute("data-id");
+      window.location.href = `/index.html?page=details&id=${id}`;
+    });
   });
 }
 

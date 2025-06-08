@@ -1,67 +1,164 @@
-ul,
-li {
+/* Import de la police Inspiration si nécessaire */
+@import url('https://fonts.googleapis.com/css2?family=Inspiration&display=swap');
+
+/* Reset */
+ul, li {
   list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
+/* Navbar principale */
 .navbar {
   position: fixed;
   top: 0;
+  left: 0;
   width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-    box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.4);
-  -webkit-box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.4);
-  -moz-box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.4);
-  z-index: 8;
-  background: white;
+  height: 80px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
 }
 
-.btn-logo a {
-  font-family: "Inspiration", cursive;
-  font-size: 2rem;
-}
-
-.nav-section {
+/* Container */
+.navbar-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  height: 100%;
   display: flex;
   align-items: center;
-  gap: 24px;
-  padding: 24px;
-  border-radius: 12px;
-
+  justify-content: space-between;
+  padding: 0 2rem;
 }
 
-.nav-btn > img {
-  width: 100px;
-  filter: invert(1);
-  
+/* Logo Section */
+.navbar-logo {
+  flex-shrink: 0;
 }
 
-.nav-btn a,
-#cta-login a {
+.logo-link {
+  display: flex;
+  align-items: center;
   text-decoration: none;
-  font-weight: 700;
+  color: black;
+  font-family: "Inspiration", "Parisienne", cursive, serif !important;
+  font-size: 2.5rem;
+  font-weight: 900;
   transition: color 0.3s ease;
 }
 
-.nav-btn a {
+.logo-text {
   color: black;
   text-shadow: 2px 2px whitesmoke;
+  font-family: "Inspiration", "Parisienne", cursive, serif !important;
 }
 
-.nav-btn a:hover {
-  color: orange;
+.logo-link:hover {
+  color: #666;
+}
+
+/* Menu de navigation */
+.navbar-menu {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  margin: 0 auto;
+}
+
+.navbar-item {
+  position: relative;
+}
+
+.navbar-link {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  text-decoration: none;
+  color: gray;
+  font-weight: 500;
+  font-size: 0.95rem;
+  transition: color 0.3s ease;
+  position: relative;
+}
+
+/* Effet de soulignement au hover */
+.navbar-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: gray;
+  transform: translateX(-50%);
+  transition: width 0.3s ease;
+}
+
+.navbar-link:hover {
+  color: #000;
+}
+
+.navbar-link:hover::after {
+  width: 80%;
+}
+
+.navbar-link i {
+  font-size: 1rem;
+  color: inherit;
+}
+
+.navbar-link[data-page="favorites"] i.fa-heart {
+  color: gray !important;
+}
+
+.navbar-link[data-page="favorites"]:hover i.fa-heart {
+  color: #000 !important;
+}
+
+.navbar-link[data-page="favorites"].active i.fa-heart {
+  color: #000 !important;
 }
 
 
-
-#cta-login a {
-  background-color: black;
-  color: whitesmoke;
-  padding: 8px 16px;
-  border-radius: 4px;
+/* État actif */
+.navbar-link.active {
+  color: #000;
+  font-weight: 600;
 }
 
-#cta-login a:hover {
-  color: orange;
+.navbar-link.active::after {
+  width: 80%;
+  background: orange;
+}
+
+/* Bouton CTA */
+.navbar-cta {
+  flex-shrink: 0;
+}
+
+.cta-button {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  background: #000;
+  color: white;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 0.95rem;
+  border-radius: 6px;
+  transition: background-color 0.3s ease;
+}
+
+.cta-button:hover {
+  background: orange;
+  color: black;
+}
+
+.cta-button i {
+  font-size: 1rem;
 }

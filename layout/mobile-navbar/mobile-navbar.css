@@ -20,34 +20,30 @@
   top: 20px;
   left: 20px;
   width: 40px;
-  height: 25px;
+  height: 40px;
   cursor: pointer;
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  align-items: center;
+  justify-content: center;
   z-index: 10;
+  border-radius: 8px;
+  transition: background-color 0.3s ease, opacity 0.3s ease;
 }
 
-.burger span {
-  height: 3px;
-  width: 100%;
-  background: black;
-  border-radius: 2px;
-  transition: all 0.4s ease;
+.burger i {
+  font-size: 24px;
+  color: black;
+  transition: color 0.3s ease;
 }
 
-.burger.active span:nth-child(1) {
-  background-color: orange;
-  transform: rotate(45deg) translate(15px);
+.burger:hover {
+  background-color: rgba(0, 0, 0, 0.1);
 }
 
-.burger.active span:nth-child(2) {
+/* Faire disparaître le burger quand le menu est ouvert */
+.burger.active {
   opacity: 0;
-}
-
-.burger.active span:nth-child(3) {
-  background-color: green;
-  transform: rotate(-45deg) translate(15px);
+  pointer-events: none;
 }
 
 .mobile-nav-section {
@@ -73,22 +69,80 @@
   transform: translateX(0);
 }
 
+/* Croix de fermeture à droite */
+.close-cross {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease, background-color 0.3s ease;
+  border-radius: 8px;
+}
+
+.mobile-nav-section.open .close-cross {
+  opacity: 1;
+}
+
+.close-cross i {
+  font-size: 20px;
+  color: #666;
+  transition: color 0.3s ease;
+}
+
+.close-cross:hover {
+  background-color: rgba(255, 165, 0, 0.1);
+}
+
+.close-cross:hover i {
+  color: orange;
+}
+
+/* Styles des liens avec icônes */
 .mobile-nav-btn {
   border-bottom: 1px solid #eee;
   padding: 15px 10px;
   font-weight: 600;
+  transition: background-color 0.3s ease;
+}
+
+.mobile-nav-btn:hover {
+  background-color: #f8f8f8;
 }
 
 .mobile-nav-btn a {
   text-decoration: none;
   color: #333;
   font-size: 1.1rem;
-  display: block;
+  display: flex;
+  align-items: center;
+  gap: 12px;
   transition: color 0.3s ease;
 }
 
 .mobile-nav-btn a:hover {
   color: orange;
+}
+
+.mobile-nav-btn i {
+  font-size: 1.2rem;
+  width: 20px;
+  text-align: center;
+  color: inherit;
+}
+
+/* Correction pour l'icône cœur */
+.mobile-nav-btn a[href*="favorites"] i.fa-heart {
+  color: #333 !important;
+}
+
+.mobile-nav-btn a[href*="favorites"]:hover i.fa-heart {
+  color: orange !important;
 }
 
 #mobile-cta-login {
@@ -97,6 +151,7 @@
   padding: 12px 20px;
   border-radius: 8px;
   text-align: center;
+  transition: background-color 0.3s ease;
 }
 
 #mobile-cta-login a {
@@ -104,12 +159,24 @@
   text-decoration: none;
   font-weight: 700;
   font-size: 1.1rem;
-  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  transition: color 0.3s ease;
 }
 
 #mobile-cta-login:hover {
   background-color: orange;
   cursor: pointer;
+}
+
+#mobile-cta-login:hover a {
+  color: black;
+}
+
+#mobile-cta-login i {
+  font-size: 1.2rem;
 }
 
 ul,
