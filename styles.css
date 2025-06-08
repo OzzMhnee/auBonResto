@@ -4,6 +4,7 @@
   --font-family-tertiary: "Inspiration", cursive;
   --color-bg-primary: ;
   --color-text-primary: ;
+  --opacity-overlay: rgba(255, 255, 255, 0.755);
 }
 
 * {
@@ -11,17 +12,6 @@
   padding: 0;
   box-sizing: border-box;
   font-family: var(--font-family-primary);
-}
-
-
-h1, h2, h3, h4, h5, h6{
-    font-family: var(--font-family-secondary);
-}
-
-.bg-texture {
- background-image: url("/images/general/texture-marble.jpg");
- background-repeat: no-repeat;
- background-size: cover;
 }
 
 h1,
@@ -33,3 +23,14 @@ h6 {
   font-family: var(--font-family-secondary);
 }
 
+.bg-texture {
+  background-image: url("/images/general/texture-marble.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+section {
+  background-color: var(--opacity-overlay);
+  width: 100%;
+  min-height: 100vh;
+}
