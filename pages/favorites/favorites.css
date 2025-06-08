@@ -4,7 +4,8 @@
      font-family: roboto;
 }
 
-.section{
+
+section{
     top: 0%;
     left: 0%;
     z-index: -1;
@@ -42,8 +43,8 @@
   /* Modif height card 320px au lieu de 400 et box shadow 0.4 au lieu de 0.2 */
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4);
   max-width: 250px;
-  /* max-height: 320px; */
-  max-height: 850px;
+  max-height: 390px;
+  /* max-height: 850px; */
   margin: 2%;
   margin: 3%;
   margin: 0 auto;
@@ -80,11 +81,21 @@ padding: 10%;
 }
 
 #btn-fav{
-color: black;
+color: #111;
 font-size: 20px;
 position: absolute;
-top: 94%;
+top: 92%;
 left: 16px;
+}
+
+
+ 
+#btn-fav:hover{
+transform: scale(1.6);
+background-color: transparent;
+ transition: transform 0.5s ease;
+  cursor: pointer;
+transition-delay: 0.1s;
 }
 
 .details{
@@ -92,15 +103,6 @@ font-size: 15px;
 font-weight: 200px;
 margin-bottom: 2%;
 }
-
-.fa-solid{
-    /* width: 60px; */
-    /* padding-bottom: 2%; */
-}
-/* 
-.fa-arrow-right{
-    padding-bottom: 5%;
-} */
 
 .card:hover {
   transform: scale(1.05);
