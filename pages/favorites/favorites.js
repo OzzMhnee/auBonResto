@@ -1,31 +1,33 @@
-// Variables déclaractives intiales
+// Variables initiales
 let restaurants = [];
 let favorites = JSON.parse(localStorage.getItem("restaurantFavorites") || "[]");
 
-// Initialisation
+// Initialisation de la page Favoris
 window.initializePage = function (page) {
-  if (page === "home") {
-    loadAndRender();
+  if (page === "favorites") {
+    loadAndRenderFavorites();
   }
 };
 
-// Chargement des données
-async function loadAndRender() {
+// Chargement et affichage des favoris
+async function loadAndRenderFavorites() {
   try {
     const response = await fetch("/data/restaurants.json");
     if (!response.ok)
-      throw new Error("Erreur lords de la récupération des données");
+      throw new Error("Erreur lors de la récupération des données");
 
     restaurants = await response.json();
-    render();
+    // Filtrer uniquement les restaurants favoris
+    const favoriteRestaurants = restaurants.filter(r => favorites.includes(r.id));
+    renderFavorites(favoriteRestaurants);
     initFavorites();
   } catch (error) {
     console.error("Erreur:", error);
   }
 }
 
-// Affichage des cards
-function render() {
+// Affichage des cartes favoris
+function renderFavorites(favoriteRestaurants) {
   const container = document.querySelector(".divCards");
   const templateCard = container.querySelector(".card");
 
@@ -34,11 +36,9 @@ function render() {
     return;
   }
 
-  // Sauvegarde du template
   const template = templateCard.outerHTML;
 
-  // Génération des cartes
-  const html = restaurants
+  const html = favoriteRestaurants
     .map((restaurant) =>
       template
         .replace(/{id}/g, restaurant.id)
@@ -51,27 +51,9 @@ function render() {
     .join("");
 
   container.innerHTML = html;
-  initFavorites();
-
-  // Redirection dynamique sur chaque bouton "Voir le détail"
-  container.querySelectorAll(".btn-detail").forEach((btn) => {
-    btn.addEventListener("click", (e) => {
-      e.stopPropagation();
-      const id = btn.getAttribute("data-id");
-      window.location.href = `index.html?page=details&id=${id}`;
-    });
-  });
 }
 
-// Génération des étoiles (selon rating du fichier restaurants.json)
-function generateStars(rating) {
-  return Array.from(
-    { length: 5 },
-    (_, i) => `<i class="fa-${i < rating ? "solid" : "regular"} fa-star"></i>`
-  ).join("");
-}
-
-// Initialisation des favoris
+// Initialisation des favoris (pour permettre de retirer un favori)
 function initFavorites() {
   document.querySelectorAll(".fa-heart").forEach((heart) => {
     const id = parseInt(heart.id.replace("fav", ""));
@@ -82,11 +64,12 @@ function initFavorites() {
       e.preventDefault();
       e.stopPropagation();
       toggleFavorite(id, heart);
+      loadAndRenderFavorites();
     };
   });
 }
 
-// Toggle "ajouter/supprimer" favoris
+// Toggle favoris
 function toggleFavorite(id, heart) {
   if (favorites.includes(id)) {
     favorites = favorites.filter((fav) => fav !== id);
@@ -95,7 +78,5 @@ function toggleFavorite(id, heart) {
     favorites.push(id);
     heart.className = "fa-solid fa-heart active";
   }
-
-  // Sauvegarde dans localStorage
   localStorage.setItem("restaurantFavorites", JSON.stringify(favorites));
 }

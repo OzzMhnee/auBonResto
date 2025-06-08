@@ -10,12 +10,12 @@
 
 .card {
   position: relative;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4);
   max-width: 250px;
-  max-height: 400px;
+  max-height: 320px;
   margin: 2%;
   margin: 0 auto;
-  margin-bottom: 2%;
+  margin-bottom: 3%;
   text-align: center;
   border-radius: 4%;
 }
@@ -48,7 +48,7 @@
   overflow: hidden;
 }
 
-.card button {
+.btn-heart {
   position: absolute;
   background-color: transparent;
   top: 3%;
@@ -76,8 +76,6 @@
   width: 7%;
   margin: 1%;
 }
-<<<<<<< Updated upstream
-=======
 
 .btn-detail {
   color: white
@@ -229,4 +227,8 @@ margin-bottom: 2%;
   width: 7%;
   margin: 1%;
 }
->>>>>>> Stashed changes
+
+.btn-detail {
+  color: white
+}
+

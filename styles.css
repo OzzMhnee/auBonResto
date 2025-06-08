@@ -1,6 +1,7 @@
 :root {
   --font-family-primary: "Roboto", sans-serif;
-  --font-family-secondary: "parisienne", cursive;
+  --font-family-secondary: "Parisienne", cursive;
+  --font-family-tertiary: "Inspiration", cursive;
   --color-bg-primary: ;
   --color-text-primary: ;
 }
@@ -11,3 +12,25 @@
   box-sizing: border-box;
   font-family: var(--font-family-primary);
 }
+
+
+.bg-texture {
+ background-image: url("/images/general/texture-marble.jpg");
+ background-repeat: no-repeat;
+ background-size: cover;
+}
+
+.bg-container {
+
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-family-secondary);
+}
+
