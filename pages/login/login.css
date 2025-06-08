@@ -3,11 +3,12 @@
 /* ========================= */
 /* #region Généralités */
 
-main {
+#form-container {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 10%;
+  min-height: 100vh;
 }
 /* #endregion */
 

@@ -1,51 +1,83 @@
-  <section>
-    <div class="login-container" id="form-container">
-      <div class="tab-header">
-        <button id="loginTab" class="tab active" >Connexion</button>
-        <button id="registerTab" class="tab" >Inscription</button>
-      </div>
-
-      <!-- Formulaire de Connexion -->
-      <form class="contact-form1" id="loginForm" autocomplete="on">
-        <h2>Connexion</h2>
-        <div class="form-group">
-          <input type="email" id="login-email" name="login-email" required />
-          <label for="login-email">Adresse e-mail</label>
-        </div>
-        <div class="form-group">
-          <input type="password" id="login-password" name="login-password" required />
-          <label for="login-password">Mot de passe</label>
-          <span class="toggle-password" data-target="login-password">&#128065;</span>
-        </div>
-        <div class="form-links">
-          <a href="#" id="forgot-password">Mot de passe oublié&nbsp;?</a>
-        </div>
-        <button type="submit">Se connecter</button>
-      </form>
-
-      <!-- Formulaire d'Inscription -->
-      <form class="contact-form2" id="registerForm" style="display:none;" autocomplete="on">
-        <h2>Inscription</h2>
-        <div class="form-group">
-          <input type="text" id="register-name" name="register-name" required />
-          <label for="register-name">Nom complet</label>
-        </div>
-        <div class="form-group">
-          <input type="email" id="register-email" name="register-email" required />
-          <label for="register-email">Adresse e-mail</label>
-        </div>
-        <div class="form-group">
-          <input type="password" id="register-password" name="register-password" required minlength="6" />
-          <label for="register-password">Mot de passe</label>
-          <span class="toggle-password" data-target="register-password">&#128065;</span>
-        </div>
-        <div class="form-group">
-          <input type="password" id="register-confirm" name="register-confirm" required minlength="6" />
-          <label for="register-confirm">Confirmer le mot de passe</label>
-          <span class="toggle-password" data-target="register-confirm">&#128065;</span>
-        </div>
-        <button type="submit">S'inscrire</button>
-      </form>
+<section>
+  <div id="form-container">
+    <div class="tab-header">
+      <button id="loginTab" class="tab active">Connexion</button>
+      <button id="registerTab" class="tab">Inscription</button>
     </div>
-  </section>
 
+    <!-- Formulaire de Connexion -->
+    <form class="contact-form1" id="loginForm" autocomplete="on">
+      <h2>Connexion</h2>
+      <div class="form-group">
+        <input type="email" id="login-email" name="login-email" required />
+        <label for="login-email">Adresse e-mail</label>
+      </div>
+      <div class="form-group">
+        <input
+          type="password"
+          id="login-password"
+          name="login-password"
+          required
+        />
+        <label for="login-password">Mot de passe</label>
+        <span class="toggle-password" data-target="login-password"
+          >&#128065;</span
+        >
+      </div>
+      <div class="form-links">
+        <a href="#" id="forgot-password">Mot de passe oublié&nbsp;?</a>
+      </div>
+      <button type="submit">Se connecter</button>
+    </form>
+
+    <!-- Formulaire d'Inscription -->
+    <form
+      class="contact-form2"
+      id="registerForm"
+      style="display: none"
+      autocomplete="on"
+    >
+      <h2>Inscription</h2>
+      <div class="form-group">
+        <input type="text" id="register-name" name="register-name" required />
+        <label for="register-name">Nom complet</label>
+      </div>
+      <div class="form-group">
+        <input
+          type="email"
+          id="register-email"
+          name="register-email"
+          required
+        />
+        <label for="register-email">Adresse e-mail</label>
+      </div>
+      <div class="form-group">
+        <input
+          type="password"
+          id="register-password"
+          name="register-password"
+          required
+          minlength="6"
+        />
+        <label for="register-password">Mot de passe</label>
+        <span class="toggle-password" data-target="register-password"
+          >&#128065;</span
+        >
+      </div>
+      <div class="form-group">
+        <input
+          type="password"
+          id="register-confirm"
+          name="register-confirm"
+          required
+          minlength="6"
+        />
+        <label for="register-confirm">Confirmer le mot de passe</label>
+        <span class="toggle-password" data-target="register-confirm"
+          >&#128065;</span
+        >
+      </div>
+      <button type="submit">S'inscrire</button>
+    </form>
+  </div>
+</section>
