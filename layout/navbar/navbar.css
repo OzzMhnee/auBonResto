@@ -1,14 +1,3 @@
-/* Import de la police Inspiration si nécessaire */
-@import url('https://fonts.googleapis.com/css2?family=Inspiration&display=swap');
-
-/* Reset */
-ul, li {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-/* Navbar principale */
 .navbar {
   position: fixed;
   top: 0;
@@ -20,10 +9,9 @@ ul, li {
   -webkit-backdrop-filter: blur(10px);
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  z-index: 1000;
+  z-index: 99;
 }
 
-/* Container */
 .navbar-container {
   max-width: 1400px;
   margin: 0 auto;
@@ -34,7 +22,6 @@ ul, li {
   padding: 0 2rem;
 }
 
-/* Logo Section */
 .navbar-logo {
   flex-shrink: 0;
 }
@@ -43,8 +30,6 @@ ul, li {
   display: flex;
   align-items: center;
   text-decoration: none;
-  color: black;
-  font-family: "Inspiration", "Parisienne", cursive, serif !important;
   font-size: 2.5rem;
   font-weight: 900;
   transition: color 0.3s ease;
@@ -53,14 +38,13 @@ ul, li {
 .logo-text {
   color: black;
   text-shadow: 2px 2px whitesmoke;
-  font-family: "Inspiration", "Parisienne", cursive, serif !important;
+  font-family: var(--font-family-tertiary);
 }
 
 .logo-link:hover {
   color: #666;
 }
 
-/* Menu de navigation */
 .navbar-menu {
   display: flex;
   align-items: center;
@@ -85,7 +69,6 @@ ul, li {
   position: relative;
 }
 
-/* Effet de soulignement au hover */
 .navbar-link::after {
   content: '';
   position: absolute;
@@ -124,7 +107,6 @@ ul, li {
 }
 
 
-/* État actif */
 .navbar-link.active {
   color: #000;
   font-weight: 600;
@@ -135,7 +117,6 @@ ul, li {
   background: orange;
 }
 
-/* Bouton CTA */
 .navbar-cta {
   flex-shrink: 0;
 }
