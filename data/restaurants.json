@@ -427,13 +427,13 @@
     "image_main": "/images/chezVincent/category3.png",
     "logo": "/images/chezVincent/logoAlpha.png",
     "specialty": "Cuisine italienne",
-    "description": "Situé à Bègles, près de Bordeaux, « Chez Vincent » offre un cadre chaleureux pour savourer une cuisine traditionnelle faite de produits frais. Profitez d'un repas agréable au coin de la cheminée ou sur la terrasse ombragée. Chez Vincent offre une variété de vins, spiritueux et alcools de qualité pour accompagner vos repas ou enrichir votre soirée. La sélection inclut des vins régionaux, grands crus et champagnes. Idéal pour une expérience culinaire mémorable, que ce soit pour un dîner intime, une célébration entre amis ou un évènement professionnel. Un parcours culinaire autour des meilleures saveurs du Sud-Ouest.",
+    "description": "Situé à Blois",
     "rating": 0,
     "contact": {
       "address": "rue du pays imaginaire",
       "city": "33130 - Bègles",
-      "phone": "05 56 49 01 45",
-      "openingHours": "Nous sommes ouverts du mardi au samedi de 12h à 14h et de 19h à 22h.",
+      "phone": "06 06 06 06 06",
+      "openingHours": "Nous sommes ouverts du mardi au samedi de 13h à 14h et de 19h à 22h.",
       "mapUrl": "https://maps.google.com/maps?width=600&height=450&hl=fr&q=Chez%20Vincent%2C%2038%20rue%20Vincent%20Gonzales%2C%2033130%20Bègles%2C%20France&ie=UTF8&t=&z=15&iwloc=B&output=embed"
     },
     "carousel": [
