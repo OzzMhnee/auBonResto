@@ -1,0 +1,28 @@
+.back-to-top {
+  position: fixed;
+  bottom: 20px;
+  /* bottom: 25px; */
+  right: 20px;
+  background-color: #333;
+  color: white;
+  padding: 10px;
+  border-radius: 50%;
+  text-decoration: none;
+  font-size: 18px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
+  /* z-index: 3; */
+}
+
+.back-to-top:hover {
+  opacity: 1;
+  transform: translateY(-3px);
+}
+
+.back-to-top.show {
+  opacity: 0.9;
+  visibility: visible;
+}
+
+
