@@ -1,96 +1,107 @@
 <section>
-  <div>
-    <!-- Carousel -->
-    <div class="slideshowContainer" id="carouselContainer"></div>
+  <!-- Carousel -->
+  <div class="carousel-container" id="carouselContainer"></div>
 
-    <!-- Section Présentation et Réservation -->
-    <div class="sectBooking">
-      <div class="sectBookingVisi">
-        <h2>Découvrir le restaurant : <span id="restaurantName"></span></h2>
-        <p id="restaurantDescription"></p>
-        <button class="reservation-btn" id="openReservationModal">
-          Pour réserver une table, c'est ici !
-        </button>
-      </div>
+  <!-- Section Présentation et Réservation -->
+  <div class="booking-container">
+    <h2>Découvrir le restaurant : <span id="restaurantName"></span></h2>
+    <p id="restaurantDescription"></p>
+    <button class="reservation-btn" id="openReservationModal">
+      Pour réserver une table, c'est ici !
+    </button>
+  </div>
+
+  <!-- Section Menu -->
+  <div class="menu-container">
+    <h2>Menu</h2>
+    <div class="menu-categories" id="menuCategories"></div>
+    <div id="menuDetails"></div>
+  </div>
+
+  <!-- Section Services -->
+  <div class="services-container" id="servicesSection">
+    <div class="section-header">
+      <h2>Nos Services</h2>
+      <p class="section-subtitle">
+        Une expérience complète pour tous vos besoins
+      </p>
     </div>
+    <div class="services-grid"></div>
+  </div>
 
-    <!-- Section Menu -->
-    <div class="sectMenu">
-      <h2>Menu</h2>
-      <div class="optionDisplayMenu" id="menuCategories"></div>
-      <div id="menuDetails"></div>
+  <!-- Section Avis -->
+  <div class="comments-container">
+    <div class="section-header">
+      <h2>Vous avez aimé, et vous en parlez !</h2>
+      <p class="section-subtitle">L'avis de nos clients compte</p>
     </div>
+    <div class="comments"></div>
+  </div>
 
-    <!-- Section Services -->
-    <div class="sectServices" id="moreInfoSection">
-      <div class="section-header">
-        <h2>Nos Services</h2>
-        <p class="section-subtitle">Une expérience complète pour tous vos besoins</p>
-      </div>
-      <div class="services-container">
-        <div class="services-grid"></div>
-      </div>
+  <!-- Section Localisation -->
+  <div class="map-container">
+    <div class="section-header">
+      <h2>Vous y rendre</h2>
+      <p class="section-subtitle">
+        Adresse, horaires et informations pratiques
+      </p>
     </div>
-
-    <!-- Section Avis -->
-    <div class="sectComments">
-      <div class="section-header">
-        <h2>Vous avez aimé, et vous en parlez !</h2>
-        <p class="section-subtitle">L'avis de nos clients compte</p>
+    <div class="map-content">
+      <div class="map-wrapper">
+        <iframe
+          id="mapIframe"
+          src=""
+          width="600"
+          height="450"
+          style="border: 0"
+          allowfullscreen
+          loading="lazy"
+        ></iframe>
       </div>
-      <div class="comments-container">
-        <div class="comments"></div>
-      </div>
-    </div>
-
-    <!-- Section Localisation -->
-    <div class="sectMaps">
-      <div class="section-header">
-        <h2>Vous y rendre</h2>
-        <p class="section-subtitle">Adresse, horaires et informations pratiques</p>
-      </div>
-      <div class="maps-content">
-        <div class="map-wrapper">
-          <iframe id="mapIframe" src="" width="600" height="450" style="border: 0" allowfullscreen loading="lazy"></iframe>
+      <div class="contact-card">
+        <div class="card-header">
+          <h3 id="restaurantNameMap"></h3>
         </div>
-        <div class="contact-card">
-          <div class="card-header">
-            <div class="restaurant-logo">
-              <img id="logoMapImg" src="" alt="Logo restaurant" />
+        <div class="contact-details">
+          <div class="detail-group">
+            <div class="detail-icon">
+              <i class="fas fa-map-marker-alt"></i>
             </div>
-            <h3 id="restaurantNameMap"></h3>
-          </div>
-          <div class="contact-details">
-            <div class="detail-group">
-              <div class="detail-icon"><i class="fas fa-map-marker-alt"></i></div>
-              <div class="detail-content">
-                <p>Adresse</p>
-                <small id="addressBlock"></small>
-              </div>
-            </div>
-            <div class="detail-group">
-              <div class="detail-icon"><i class="fas fa-phone"></i></div>
-              <div class="detail-content">
-                <p>Téléphone</p>
-                <small id="phoneNumber"></small>
-              </div>
-            </div>
-            <div class="detail-group">
-              <div class="detail-icon"><i class="fas fa-clock"></i></div>
-              <div class="detail-content">
-                <p>Horaires</p>
-                <small id="openingHours"></small>
-              </div>
+            <div class="detail-content">
+              <p>Adresse</p>
+              <small id="addressBlock"></small>
             </div>
           </div>
-          <div class="social-section">
-            <h4>Suivez-nous</h4>
-            <div class="reseaux">
-              <a href="#" class="social-icon facebook"><i class="fab fa-facebook-f"></i></a>
-              <a href="#" class="social-icon instagram"><i class="fab fa-instagram"></i></a>
-              <a href="#" class="social-icon linkedin"><i class="fab fa-linkedin-in"></i></a>
-              <a href="#" class="social-icon youtube"><i class="fab fa-youtube"></i></a>
+          <div class="detail-group">
+            <div class="detail-icon"><i class="fas fa-phone"></i></div>
+            <div class="detail-content">
+              <p>Téléphone</p>
+              <small id="phoneNumber"></small>
             </div>
+          </div>
+          <div class="detail-group">
+            <div class="detail-icon"><i class="fas fa-clock"></i></div>
+            <div class="detail-content">
+              <p>Horaires</p>
+              <small id="openingHours"></small>
+            </div>
+          </div>
+        </div>
+        <div class="social-section">
+          <h4>Suivez-nous</h4>
+          <div class="social-links">
+            <a href="#" class="social-icon facebook"
+              ><i class="fab fa-facebook-f"></i
+            ></a>
+            <a href="#" class="social-icon instagram"
+              ><i class="fab fa-instagram"></i
+            ></a>
+            <a href="#" class="social-icon linkedin"
+              ><i class="fab fa-linkedin-in"></i
+            ></a>
+            <a href="#" class="social-icon youtube"
+              ><i class="fab fa-youtube"></i
+            ></a>
           </div>
         </div>
       </div>
@@ -105,14 +116,13 @@
         <button class="modal-close" id="closeReservationModal">&times;</button>
       </div>
       <div class="modal-body">
-        <p class="modal-text">Pour réserver une table, nous vous invitons à nous contacter directement au : 
+        <p class="modal-text">
+          Pour réserver une table, nous vous invitons à nous contacter
+          directement au :
           <span id="contactPhone">05 05 05 05 05</span>
         </p>
-        <div class="modal-hours">
-          <div class="contact-item contact-hours" id="contactOpening">
-            <div class="contact-icon"><i class="fas fa-clock"></i></div>
-            <span></span>
-          </div>
+        <div class="modal-hours" id="contactOpening">
+          <span></span>
         </div>
       </div>
     </div>

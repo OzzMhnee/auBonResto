@@ -294,20 +294,20 @@ function renderMenuDetails(activeIdx) {
 
 // === SERVICES ===
 function renderServices() {
-  const moreInfoSection = document.getElementById("moreInfoSection");
+  const servicesSection = document.getElementById("servicesSection");
   if (
-    !moreInfoSection ||
+    !servicesSection ||
     !restaurant.moreInfo ||
     typeof restaurant.moreInfo !== "object"
   )
     return;
 
   // Trouve le conteneur des services dans la nouvelle structure
-  let servicesGrid = moreInfoSection.querySelector(".services-grid");
+  let servicesGrid = servicesSection.querySelector(".services-grid");
 
   // Si pas de structure moderne, crée la structure complète
   if (!servicesGrid) {
-    moreInfoSection.innerHTML = `
+    servicesSection.innerHTML = `
       <div class="section-header">
         <h2>Nos Services</h2>
         <p class="section-subtitle">Une expérience complète pour tous vos besoins</p>
@@ -318,7 +318,7 @@ function renderServices() {
         </div>
       </div>
     `;
-    servicesGrid = moreInfoSection.querySelector(".services-grid");
+    servicesGrid = servicesSection.querySelector(".services-grid");
   }
 
   // Génère les cartes de services
@@ -393,10 +393,6 @@ function renderContact() {
   // ===== MAP ET ADRESSE =====
   const mapIframe = document.getElementById("mapIframe");
   if (mapIframe) mapIframe.src = restaurant.contact?.mapUrl || "";
-
-  // Logo dans la carte de contact
-  const logoMapImg = document.getElementById("logoMapImg");
-  if (logoMapImg) logoMapImg.src = restaurant.logo;
 
   // Nom du restaurant dans la carte de contact
   const restaurantNameMap = document.getElementById("restaurantNameMap");
