@@ -1,87 +1,168 @@
 <section>
   <div>
-<div>
-<div class="slideshowContainer " id="carouselContainer"></div>
+    <!-- Carousel -->
+    <div class="slideshowContainer" id="carouselContainer"></div>
 
-  <div id="logo">
-    <img id="logoImg" src="" alt="Logo restaurant" />
-  </div>
-</div>
+    <!-- Section Présentation et Réservation -->
+    <div class="sectBooking">
+      <div class="sectBookingVisi">
+        <h2>Découvrir le restaurant : <span id="restaurantName"></span></h2>
+        <p id="restaurantDescription"></p>
+        <div id="wrapper">
+          <input type="radio" id="open" name="popup" />
+          <input type="radio" id="close" name="popup" />
+          <div id="popup">
+            <label class="reservation-btn" for="open">
+              <span>Pour réserver une table, c'est ici !</span>
+            </label>
+          </div>
+          <div class="modal-overlay" id="overlay"></div>
+          <div class="modal-content" id="info">
+            <div class="modal-header">
+              <h3 class="modal-title">Informations de réservation</h3>
+              <label class="modal-close" for="close">
+                <i class="fa fa-times"></i>
+              </label>
+            </div>
 
-<main>
-  <!-- Modal de Réservation -->
-  <section class="sectBooking">
-    <div class="sectBookingVisi">
-      <h2>Découvrir le restaurant <span id="restaurantName"></span></h2>
-      <p id="restaurantDescription"></p>
-      <div id="wrapper">
-        <input type="radio" id="open" name="popup" />
-        <input type="radio" id="close" name="popup" />
-        <div id="popup">
-          <label class="submit" for="open"
-            >Pour réserver une table, c'est ici !</label
+            <div class="modal-body">
+              <p class="modal-text">
+                Pour réserver une table, nous vous invitons à nous contacter
+                directement au : <span id="contactPhone">05 05 05 05 05</span>
+              </p>
+              
+              <div class="modal-hours">
+                <div class="contact-item contact-hours" id="contactOpening">
+                  <div class="contact-icon"></div>
+                </div>
+              </div>
+            </div>
+            </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section Menu -->
+    <div class="sectMenu">
+      <h2>Menu</h2>
+      <div class="optionDisplayMenu" id="menuCategories"></div>
+      <div id="menuDetails"></div>
+    </div>
+
+    <!-- Section Services améliorée -->
+    <div class="sectServices" id="moreInfoSection">
+      <div class="section-header">
+        <h2>Nos Services</h2>
+        <p class="section-subtitle">
+          Une expérience complète pour tous vos besoins
+        </p>
+      </div>
+
+      <div class="services-container">
+        <div class="services-grid">
+          <!-- Services générés dynamiquement par JavaScript -->
+        </div>
+      </div>
+    </div>
+
+    <!-- Section Avis -->
+    <div class="sectComments">
+      <div class="section-header">
+        <h2>Vous avez aimé, et vous en parlez !</h2>
+        <p class="section-subtitle">L'avis de nos clients compte</p>
+      </div>
+      <div class="comments-container">
+        <div class="comments"></div>
+      </div>
+    </div>
+
+    <!-- Section Localisation inspirée de l'original -->
+    <div class="sectMaps">
+      <div class="section-header">
+        <h2>Vous y rendre</h2>
+        <p class="section-subtitle">
+          Adresse, horaires et informations pratiques
+        </p>
+      </div>
+
+      <div class="maps-content">
+        <div class="map-wrapper">
+          <iframe
+            id="mapIframe"
+            src=""
+            width="600"
+            height="450"
+            style="border: 0"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
           >
+          </iframe>
         </div>
-        <div id="overlay"></div>
-        <div id="info">
-          <h3>Informations de réservation</h3>
-          <label for="close"><i class="fa fa-times-circle fa-lg"></i></label>
-          <p>Pour réserver une table, veuillez nous contacter au :</p>
-          <p><strong id="contactPhone"></strong></p>
-          <p id="contactOpening"></p>
+
+        <div class="contact-card">
+          <div class="card-header">
+            <div class="restaurant-logo">
+              <img id="logoMapImg" src="" alt="Logo restaurant" />
+            </div>
+            <h3 id="restaurantNameMap"></h3>
+          </div>
+
+          <div class="contact-details">
+            <div class="detail-group">
+              <div class="detail-icon">
+                <i class="fas fa-map-marker-alt"></i>
+              </div>
+              <div class="detail-content">
+                <p>Adresse</p>
+                <small id="addressBlock"></small>
+              </div>
+            </div>
+
+            <div class="detail-group">
+              <div class="detail-icon">
+                <i class="fas fa-phone"></i>
+              </div>
+              <div class="detail-content">
+                <p>Téléphone</p>
+                <small id="phoneNumber"></small>
+              </div>
+            </div>
+
+            <div class="detail-group">
+              <div class="detail-icon">
+                <i class="fas fa-clock"></i>
+              </div>
+              <div class="detail-content">
+                <p>Horaires</p>
+                <small id="openingHours"></small>
+              </div>
+            </div>
+          </div>
+
+          <div class="social-section">
+            <h4>Suivez-nous</h4>
+            <div class="reseaux">
+              <a href="#" class="social-icon facebook" title="Facebook">
+                <i class="fab fa-facebook-f"></i>
+              </a>
+              <a href="#" class="social-icon instagram" title="Instagram">
+                <i class="fab fa-instagram"></i>
+              </a>
+              <a href="#" class="social-icon linkedin" title="LinkedIn">
+                <i class="fab fa-linkedin-in"></i>
+              </a>
+              <a href="#" class="social-icon youtube" title="YouTube">
+                <i class="fab fa-youtube"></i>
+              </a>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-  </section>
+  </div>
 
-  <!-- Section Menu -->
-  <section class="sectMenu">
-    <h2>Menu</h2>
-
-  <div class="optionDisplayMenu" id="menuCategories"></div>
-<div id="menuDetails"></div>
-
-
-
-  <!-- Section Informations Supplémentaires -->
-<section class="sectMoreInfo" id="moreInfoSection"></section>
-
-  <!-- Section Avis -->
-  <section class="sectComments">
-    <h2>Vous avez aimé, et vous en parlez !</h2>
-    <div class="comments"></div>
-  </section>
-
-  <!-- Section Localisation -->
-  <section class="sectMaps">
-    <div>
-      <h2>Vous y rendre</h2>
-      <iframe
-        id="mapIframe"
-        src=""
-        width="600"
-        height="450"
-        style="border: 0"
-        allowfullscreen=""
-        loading="lazy"
-        referrerpolicy="no-referrer-when-downgrade">
-      </iframe>
-    </div>
-
-    <!-- Section Contact et réseaux -->
-    <div class="adress">
-      <img id="logoMapImg" src="" alt="Logo restaurant" />
-      <p id="addressBlock"></p>
-      <div class="reseaux">
-        <img src="/images/general/iconFacebook.png" alt="Facebook" />
-        <img src="/images/general/iconInstagram.png" alt="Instagram" />
-        <img src="/images/general/iconLinkedin.png" alt="LinkedIn" />
-        <img src="/images/general/iconYoutube.png" alt="YouTube" />
-      </div>
-    </div>
-  </section>
-</main>
-</div>
+  <script src="/pages/details/details.js"></script>
 </section>
-
-<script src="/pages/details/details.js"></script>
