@@ -14,3 +14,8 @@ POLICES :
 DISNEY paramètres écran Desktop:
     - max-width: 1600px;
     - margin: 0 auto;
+
+
+https://neumorphism.io/#e0e0e0
+
+https://cssgenerator.org/box-shadow-css-generator.html
