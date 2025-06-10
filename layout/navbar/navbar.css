@@ -7,9 +7,9 @@
   background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  box-shadow: 0px 0px 5px 3px rgba(0,0,0,0.5);
-  -webkit-box-shadow: 0px 0px 5px 3px rgba(0,0,0,0.5);
-  -moz-box-shadow: 0px 0px 5px 3px rgba(0,0,0,0.5);
+  box-shadow: 0px 0px 5px 3px rgba(105, 105, 105, 0.5);
+  -webkit-box-shadow: 0px 0px 5px 3px rgba(105, 105, 105, 0.5);
+  -moz-box-shadow: 0px 0px 5px 3px rgba(105, 105, 105, 0.5);
   z-index: 99;
 }
 
@@ -59,7 +59,7 @@
 
 .navbar-link {
   display: flex;
-  align-items: center;
+  align-items: baseline;
   gap: 0.5rem;
   padding: 0.75rem 1rem;
   text-decoration: none;
@@ -98,13 +98,21 @@
 .navbar-link[data-page="favorites"] i.fa-heart {
   color: gray !important;
 }
-
 .navbar-link[data-page="favorites"]:hover i.fa-heart {
   color: #000 !important;
 }
+.navbar-link[data-page="home"] i.fa-home {
+  top: -2px
+}
 
 .navbar-link[data-page="favorites"].active i.fa-heart {
-  color: #000 !important;
+  color: orange !important;
+}
+.navbar-link[data-page="contact"].active i.fa-envelope {
+  color: orange !important;
+}
+.navbar-link[data-page="home"].active i.fa-home {
+  color: orange !important;
 }
 
 

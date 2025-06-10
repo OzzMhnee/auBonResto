@@ -4,8 +4,10 @@
 
   <!-- Section Présentation et Réservation -->
   <div class="booking-container">
-    <h2>Découvrir le restaurant : <span id="restaurantName"></span></h2>
-    <p id="restaurantDescription"></p>
+    <h2 class="section-title">
+      Découvrir le restaurant : <span id="restaurantName"></span>
+    </h2>
+    <p class="restaurant-description" id="restaurantDescription"></p>
     <button class="reservation-btn" id="openReservationModal">
       Pour réserver une table, c'est ici !
     </button>
@@ -13,39 +15,24 @@
 
   <!-- Section Menu -->
   <div class="menu-container">
-    <h2>Menu</h2>
+    <h2 class="section-title">Menu</h2>
     <div class="menu-categories" id="menuCategories"></div>
     <div id="menuDetails"></div>
   </div>
 
-  <!-- Section Services -->
-  <div class="services-container" id="servicesSection">
-    <div class="section-header">
-      <h2>Nos Services</h2>
-      <p class="section-subtitle">
-        Une expérience complète pour tous vos besoins
-      </p>
-    </div>
-    <div class="services-grid"></div>
-  </div>
-
   <!-- Section Avis -->
   <div class="comments-container">
-    <div class="section-header">
-      <h2>Vous avez aimé, et vous en parlez !</h2>
-      <p class="section-subtitle">L'avis de nos clients compte</p>
-    </div>
+    <h2 class="section-title">Vous avez aimé, et vous en parlez !</h2>
+    <p class="section-subtitle">L'avis de nos clients compte</p>
+
     <div class="comments"></div>
   </div>
 
   <!-- Section Localisation -->
   <div class="map-container">
-    <div class="section-header">
-      <h2>Vous y rendre</h2>
-      <p class="section-subtitle">
-        Adresse, horaires et informations pratiques
-      </p>
-    </div>
+    <h2 class="section-title">Vous y rendre</h2>
+    <p class="section-subtitle">Adresse, horaires et informations pratiques</p>
+
     <div class="map-content">
       <div class="map-wrapper">
         <iframe
@@ -54,9 +41,9 @@
           width="600"
           height="450"
           style="border: 0"
+          background-color= "red"
           allowfullscreen
-          loading="lazy"
-        ></iframe>
+          loading="lazy"></iframe>
       </div>
       <div class="contact-card">
         <div class="card-header">
