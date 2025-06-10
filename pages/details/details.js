@@ -4,13 +4,11 @@ let restaurant = {};
 let currentSlide = 0;
 let autoSlideInterval = null;
 
-// === INITIALISATION (Compatible avec le système de routing existant) ===
-function loadRestaurantsData() {
-  return fetch("/data/restaurants.json")
-    .then((response) => response.json())
-    .then((data) => {
-      restaurants = data;
-    });
+// === INITIALISATION ===
+async function loadRestaurantsData() {
+  const response = await fetch("/data/restaurants.json");
+  const data = await response.json();
+  restaurants = data;
 }
 
 function initializeAllFeatures() {
@@ -44,7 +42,6 @@ function renderAll() {
   renderCarousel();
   renderRestaurantInfo();
   renderMenu();
-  renderServices();
   renderTestimonials();
   renderContact();
 }
@@ -292,81 +289,6 @@ function renderMenuDetails(activeIdx) {
   }
 }
 
-// === SERVICES ===
-function renderServices() {
-  const servicesSection = document.getElementById("servicesSection");
-  if (
-    !servicesSection ||
-    !restaurant.moreInfo ||
-    typeof restaurant.moreInfo !== "object"
-  )
-    return;
-
-  // Trouve le conteneur des services dans la nouvelle structure
-  let servicesGrid = servicesSection.querySelector(".services-grid");
-
-  // Si pas de structure moderne, crée la structure complète
-  if (!servicesGrid) {
-    servicesSection.innerHTML = `
-      <div class="section-header">
-        <h2>Nos Services</h2>
-        <p class="section-subtitle">Une expérience complète pour tous vos besoins</p>
-      </div>
-      
-      <div class="services-container">
-        <div class="services-grid">
-        </div>
-      </div>
-    `;
-    servicesGrid = servicesSection.querySelector(".services-grid");
-  }
-
-  // Génère les cartes de services
-  const servicesHTML = Object.entries(restaurant.moreInfo)
-    .map(([key, part], index) => {
-      const title = formatServiceTitle(key, part);
-      const hasImage = part.image && part.image.trim() !== "";
-
-      return `
-        <div class="service-card ${
-          !hasImage ? "no-image" : ""
-        }" style="animation-delay: ${index * 0.2}s">
-          ${
-            hasImage
-              ? `
-            <div class="service-image">
-              <img src="${part.image}" alt="${title}" />
-            </div>
-          `
-              : ``
-          }
-          <div class="service-content">
-            <h3 class="service-title">${title}</h3>
-            <p class="service-description">${part.text || ""}</p>
-          </div>
-        </div>
-      `;
-    })
-    .join("");
-
-  servicesGrid.innerHTML = servicesHTML;
-}
-
-function formatServiceTitle(key, service) {
-  if (service.label) return service.label;
-
-  const titleMap = {
-    traiteur: "Service Traiteur",
-    vins: "Cave à Vins",
-    vin: "Cave à Vins",
-    wine: "Cave à Vins",
-    catering: "Service Traiteur",
-  };
-
-  return (
-    titleMap[key.toLowerCase()] || key.charAt(0).toUpperCase() + key.slice(1)
-  );
-}
 
 // === TÉMOIGNAGES ===
 function renderTestimonials() {
@@ -415,40 +337,11 @@ function renderContact() {
   if (openingHours)
     openingHours.textContent = restaurant.contact?.openingHours || "";
 
-  setupSocialLinks();
 }
 
-function setupSocialLinks() {
-  if (!restaurant.name) return;
 
-  const socialLinks = {
-    facebook: `https://www.facebook.com/search/top/?q=${encodeURIComponent(
-      restaurant.name
-    )}`,
-    instagram: `https://www.instagram.com/explore/tags/${encodeURIComponent(
-      restaurant.name.replace(/\s+/g, "").toLowerCase()
-    )}/`,
-    linkedin: `https://www.linkedin.com/search/results/all/?keywords=${encodeURIComponent(
-      restaurant.name
-    )}`,
-    youtube: `https://www.youtube.com/results?search_query=${encodeURIComponent(
-      restaurant.name
-    )}`,
-  };
-
-  Object.keys(socialLinks).forEach((platform) => {
-    const socialIcon = document.querySelector(`.social-icon.${platform}`);
-    if (socialIcon) {
-      socialIcon.href = socialLinks[platform];
-      socialIcon.target = "_blank";
-      socialIcon.rel = "noopener noreferrer";
-    }
-  });
-}
-
-// === EVENT LISTENERS ===
+// === MODAL ===
 function setupEventListeners() {
-  // Modal de réservation
   const openBtn = document.getElementById("openReservationModal");
   const closeBtn = document.getElementById("closeReservationModal");
   const modal = document.getElementById("reservationModal");
