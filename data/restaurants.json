@@ -208,6 +208,406 @@
         "image": "/images/chezVincent/moreInfo2.png"
       }
     }
-  }
-
+  },
+  
+  {
+  "id": 2,
+  "name": "Winterfell",
+  "image_main": "/images/winterfell/main.png",
+  "logo": "/images/winterfell/logo.png",
+  "specialty": "Bar à jeux, burgers & bières artisanales",
+  "description": "Winterfell est un bar-restaurant à l’ambiance médiévale et geek, proposant une grande sélection de jeux de société, des burgers maison, des bières artisanales et des soirées à thème. Idéal pour passer un moment convivial entre amis ou en famille à Bègles.",
+  "rating": 5,
+  "contact": {
+    "address": "89 Avenue Salvador Allende",
+    "city": "33130 - Bègles",
+    "phone": "09 83 23 82 82",
+    "openingHours": "Ouvert du mardi au samedi de 17h à 1h, dimanche de 15h à 22h.",
+    "mapUrl": "https://maps.google.com/maps?q=Winterfell,+Avenue+Salvador+Allende,+33130+Bègles&output=embed"
+  },
+  "carousel": [
+    "/images/winterfell/carrousel1.png",
+    "/images/winterfell/carrousel2.png",
+    "/images/winterfell/carrousel3.png"
+  ],
+  "testimonials": [
+    {
+      "text": "Super ambiance, burgers délicieux <br>et jeux à volonté !",
+      "author": "Julien G.",
+      "avatar": "/images/general/Avatar1.png"
+    },
+    {
+      "text": "Un lieu parfait pour une soirée entre amis.",
+      "author": "Claire P.",
+      "avatar": "/images/general/Avatar2.png"
+    },
+    {
+      "text": "Accueil chaleureux et grande variété de bières.",
+      "author": "Nico S.",
+      "avatar": "/images/general/Avatar3.png"
+    }
+  ],
+  "menu": [
+    {
+      "id": 1,
+      "name": "Burgers",
+      "image": "/images/winterfell/category1.png",
+      "items": [
+        { "name": "Le Stark", "description": "Boeuf, cheddar, oignons confits, sauce Winterfell", "price": 13 },
+        { "name": "Le Lannister", "description": "Poulet croustillant, bacon, cheddar, sauce BBQ", "price": 13 },
+        { "name": "Le Végétarien", "description": "Galette de légumes, fromage, crudités, sauce yaourt", "price": 12 }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Snacks",
+      "image": "/images/winterfell/category2.png",
+      "items": [
+        { "name": "Frites maison", "price": 4 },
+        { "name": "Onion rings", "price": 5 },
+        { "name": "Planche mixte", "description": "Charcuteries et fromages", "price": 12 }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Desserts",
+      "image": "/images/winterfell/category3.png",
+      "items": [
+        { "name": "Brownie maison", "price": 5 },
+        { "name": "Cheesecake", "price": 5 }
+      ]
+    },
+    {
+      "id": 4,
+      "name": "Boissons",
+      "image": "/images/winterfell/category4.png",
+      "items": [
+        { "name": "Bière pression locale (50cl)", "price": 6 },
+        { "name": "Soda", "price": 3 }
+      ]
+    }
+  ]
+},
+{
+  "id": 3,
+  "name": "L'Inédit Bordeaux",
+  "image_main": "/images/inedit/main.png",
+  "logo": "/images/inedit/logo.png",
+  "specialty": "Cuisine française, bar à tapas, brasserie",
+  "description": "L'Inédit Bordeaux est un restaurant-brasserie moderne situé à Bègles, sur la route de Toulouse. Il propose une cuisine française inventive, des tapas à partager, des plats du jour, des burgers maison et une belle sélection de vins et cocktails. L'ambiance est conviviale, idéale pour un déjeuner, un dîner ou un afterwork entre amis.",
+  "rating": 4,
+  "contact": {
+    "address": "553 Route de Toulouse",
+    "city": "33130 - Bègles",
+    "phone": "05 56 85 97 13",
+    "openingHours": "Ouvert du lundi au samedi de 12h à 14h30 et de 19h à 23h.",
+    "mapUrl": "https://maps.google.com/maps?q=553+Route+de+Toulouse,+33130+Bègles&output=embed"
+  },
+  "carousel": [
+    "/images/inedit/carrousel1.png",
+    "/images/inedit/carrousel2.png",
+    "/images/inedit/carrousel3.png"
+  ],
+  "testimonials": [
+    {
+      "text": "Super adresse, plats copieux et ambiance chaleureuse !",
+      "author": "Sophie L.",
+      "avatar": "/images/general/Avatar1.png"
+    },
+    {
+      "text": "Le burger maison est excellent, service rapide.",
+      "author": "Marc D.",
+      "avatar": "/images/general/Avatar2.png"
+    },
+    {
+      "text": "Parfait pour un afterwork entre collègues.",
+      "author": "Julie P.",
+      "avatar": "/images/general/Avatar3.png"
+    }
+  ],
+  "menu": [
+    {
+      "id": 1,
+      "name": "Tapas & Entrées",
+      "image": "/images/inedit/entree.png",
+      "items": [
+        { "name": "Planche mixte (charcuterie & fromage)", "price": 15 },
+        { "name": "Accras de morue maison", "price": 8 },
+        { "name": "Camembert rôti au miel", "price": 9 }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Plats",
+      "image": "/images/inedit/plat.png",
+      "items": [
+        { "name": "Burger L'Inédit (boeuf, cheddar, sauce maison)", "price": 16 },
+        { "name": "Tartare de boeuf préparé", "price": 17 },
+        { "name": "Poisson du marché", "price": 18 }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Desserts",
+      "image": "/images/inedit/dessert.png",
+      "items": [
+        { "name": "Tiramisu maison", "price": 7 },
+        { "name": "Moelleux au chocolat", "price": 7 },
+        { "name": "Café gourmand", "price": 8 }
+      ]
+    },
+    {
+      "id": 4,
+      "name": "Boissons",
+      "image": "/images/inedit/boisson.png",
+      "items": [
+        { "name": "Verre de vin", "price": 4 },
+        { "name": "Bière pression (50cl)", "price": 6 },
+        { "name": "Cocktail maison", "price": 8 }
+      ]
+    }
+  ]
+},
+{
+  "id": 4,
+  "name": "Le Piccolo",
+  "image_main": "/images/piccolo/main.png",
+  "logo": "/images/piccolo/logo.png",
+  "specialty": "Cuisine italienne, pizzeria",
+  "description": "Le Piccolo est un restaurant italien convivial situé à Bègles sur la route de Toulouse. Il propose des pizzas au feu de bois, des pâtes fraîches, des antipasti et des desserts maison dans une ambiance chaleureuse et familiale.",
+  "rating": 4,
+  "contact": {
+    "address": "573 Route de Toulouse",
+    "city": "33130 - Bègles",
+    "phone": "05 56 85 15 15",
+    "openingHours": "Ouvert du mardi au dimanche de 12h à 14h et de 19h à 22h.",
+    "mapUrl": "https://maps.google.com/maps?q=573+Route+de+Toulouse,+33130+Bègles&output=embed"
+  },
+  "carousel": [
+    "/images/piccolo/carrousel1.png",
+    "/images/piccolo/carrousel2.png",
+    "/images/piccolo/carrousel3.png"
+  ],
+  "testimonials": [
+    {
+      "text": "Les meilleures pizzas du quartier, pâte fine et garniture généreuse !",
+      "author": "Antoine R.",
+      "avatar": "/images/general/Avatar1.png"
+    },
+    {
+      "text": "Accueil chaleureux, service rapide et plats savoureux.",
+      "author": "Lucia M.",
+      "avatar": "/images/general/Avatar2.png"
+    },
+    {
+      "text": "Un vrai goût d’Italie à Bègles, je recommande !",
+      "author": "Sébastien T.",
+      "avatar": "/images/general/Avatar3.png"
+    }
+  ],
+  "menu": [
+    {
+      "id": 1,
+      "name": "Antipasti & Entrées",
+      "image": "/images/piccolo/entree.png",
+      "items": [
+        { "name": "Bruschetta tomate & basilic", "price": 7 },
+        { "name": "Salade Caprese", "price": 8 },
+        { "name": "Assiette de charcuterie italienne", "price": 12 }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Pizzas",
+      "image": "/images/piccolo/pizza.png",
+      "items": [
+        { "name": "Margherita", "description": "Tomate, mozzarella, basilic", "price": 10 },
+        { "name": "Regina", "description": "Tomate, mozzarella, jambon, champignons", "price": 12 },
+        { "name": "Quattro Stagioni", "description": "Tomate, mozzarella, jambon, champignons, artichauts, olives", "price": 13 },
+        { "name": "Piccolo Spéciale", "description": "Tomate, mozzarella, chorizo, poivrons, oignons", "price": 14 }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Pâtes",
+      "image": "/images/piccolo/pates.png",
+      "items": [
+        { "name": "Spaghetti Carbonara", "price": 13 },
+        { "name": "Tagliatelles au saumon", "price": 14 },
+        { "name": "Lasagnes maison", "price": 14 }
+      ]
+    },
+    {
+      "id": 4,
+      "name": "Desserts",
+      "image": "/images/piccolo/dessert.png",
+      "items": [
+        { "name": "Tiramisu maison", "price": 6 },
+        { "name": "Panna cotta fruits rouges", "price": 6 },
+        { "name": "Glaces artisanales", "price": 5 }
+      ]
+    }
+  ]
+},
+{
+  "id": 5,
+  "name": "O'Tacos",
+  "image_main": "/images/otacos/main.png",
+  "logo": "/images/otacos/logo.png",
+  "specialty": "Tacos à la française, fast-food",
+  "description": "O'Tacos Bègles propose des tacos personnalisables à la française, avec un large choix de viandes, sauces, fromages et garnitures. Idéal pour un repas rapide et gourmand, sur place, à emporter ou en livraison.",
+  "rating": 3,
+  "contact": {
+    "address": "Avenue Danielle Mitterrand",
+    "city": "33130 - Bègles",
+    "phone": "09 86 46 56 78",
+    "openingHours": "Ouvert tous les jours de 11h à 23h.",
+    "mapUrl": "https://maps.google.com/maps?q=O'Tacos,+Avenue+Danielle+Mitterrand,+33130+Bègles&output=embed"
+  },
+  "carousel": [
+    "/images/otacos/carrousel1.png",
+    "/images/otacos/carrousel2.png",
+    "/images/otacos/carrousel3.png"
+  ],
+  "testimonials": [
+    {
+      "text": "Tacos bien garnis et service rapide, parfait pour une pause déjeuner.",
+      "author": "Kevin B.",
+      "avatar": "/images/general/Avatar1.png"
+    },
+    {
+      "text": "On peut vraiment composer son tacos comme on veut, top !",
+      "author": "Sarah M.",
+      "avatar": "/images/general/Avatar2.png"
+    },
+    {
+      "text": "Un fast-food sympa pour manger entre amis.",
+      "author": "Yanis L.",
+      "avatar": "/images/general/Avatar3.png"
+    }
+  ],
+  "menu": [
+    {
+      "id": 1,
+      "name": "Tacos",
+      "image": "/images/otacos/tacos.png",
+      "items": [
+        { "name": "Tacos Simple", "description": "1 viande au choix, sauce fromagère, frites", "price": 7 },
+        { "name": "Tacos Double", "description": "2 viandes au choix, sauce fromagère, frites", "price": 8.5 },
+        { "name": "Tacos Triple", "description": "3 viandes au choix, sauce fromagère, frites", "price": 10 }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Accompagnements",
+      "image": "/images/otacos/accompagnement.png",
+      "items": [
+        { "name": "Frites", "price": 2.5 },
+        { "name": "Cheese fries", "price": 3.5 },
+        { "name": "Onion rings", "price": 3 }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Desserts",
+      "image": "/images/otacos/dessert.png",
+      "items": [
+        { "name": "Cookie", "price": 2 },
+        { "name": "Brownie", "price": 2.5 },
+        { "name": "Tiramisu O'Tacos", "price": 3 }
+      ]
+    },
+    {
+      "id": 4,
+      "name": "Boissons",
+      "image": "/images/otacos/boisson.png",
+      "items": [
+        { "name": "Soda (33cl)", "price": 2 },
+        { "name": "Eau minérale", "price": 1.5 }
+      ]
+    }
+  ]
+},
+{
+  "id": 6,
+  "name": "Sushi Kobbo",
+  "image_main": "/images/sushikobbo/main.png",
+  "logo": "/images/sushikobbo/logo.png",
+  "specialty": "Cuisine japonaise, sushi, maki, yakitori",
+  "description": "Sushi Kobbo propose une cuisine japonaise authentique à Villenave-d'Ornon, avec un large choix de sushis, makis, sashimis, brochettes yakitori et plats chauds. Sur place, à emporter ou en livraison, profitez de produits frais et d’un service rapide.",
+  "rating": 4,
+  "contact": {
+    "address": "88 Avenue Mirieu de Labarre",
+    "city": "33140 - Villenave-d'Ornon",
+    "phone": "05 56 87 77 77",
+    "openingHours": "Ouvert du lundi au samedi de 11h30 à 14h30 et de 18h à 22h30.",
+    "mapUrl": "https://maps.google.com/maps?q=88+Avenue+Mirieu+de+Labarre,+33140+Villenave-d'Ornon&output=embed"
+  },
+  "carousel": [
+    "/images/sushikobbo/carrousel1.png",
+    "/images/sushikobbo/carrousel2.png",
+    "/images/sushikobbo/carrousel3.png"
+  ],
+  "testimonials": [
+    {
+      "text": "Sushis très frais, service rapide et efficace.",
+      "author": "Emma V.",
+      "avatar": "/images/general/Avatar1.png"
+    },
+    {
+      "text": "Excellent rapport qualité/prix, je recommande !",
+      "author": "David L.",
+      "avatar": "/images/general/Avatar2.png"
+    },
+    {
+      "text": "Large choix de menus et livraison toujours à l'heure.",
+      "author": "Sonia P.",
+      "avatar": "/images/general/Avatar3.png"
+    }
+  ],
+  "menu": [
+    {
+      "id": 1,
+      "name": "Menus",
+      "image": "/images/sushikobbo/menu.png",
+      "items": [
+        { "name": "Menu Sushi (8 pièces)", "description": "Sushis saumon, thon, crevette, omelette, riz vinaigré", "price": 13.9 },
+        { "name": "Menu Maki (18 pièces)", "description": "Makis saumon, concombre, avocat, thon", "price": 12.9 },
+        { "name": "Menu Yakitori", "description": "6 brochettes au choix, riz, soupe, salade", "price": 14.9 }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Sushis & Makis",
+      "image": "/images/sushikobbo/sushi.png",
+      "items": [
+        { "name": "Sushi saumon (2 pièces)", "price": 4.5 },
+        { "name": "Sushi thon (2 pièces)", "price": 4.8 },
+        { "name": "Maki saumon (6 pièces)", "price": 5.5 },
+        { "name": "California avocat/saumon (6 pièces)", "price": 6.5 }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Yakitori",
+      "image": "/images/sushikobbo/yakitori.png",
+      "items": [
+        { "name": "Brochette poulet (2 pièces)", "price": 4.5 },
+        { "name": "Brochette boeuf fromage (2 pièces)", "price": 5.5 },
+        { "name": "Brochette saumon (2 pièces)", "price": 5.5 }
+      ]
+    },
+    {
+      "id": 4,
+      "name": "Accompagnements",
+      "image": "/images/sushikobbo/accompagnement.png",
+      "items": [
+        { "name": "Riz nature", "price": 2.5 },
+        { "name": "Soupe miso", "price": 2.5 },
+        { "name": "Salade de choux", "price": 2.5 }
+      ]
+    }
+  ]
+}
+  }    
 ]
