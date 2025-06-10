@@ -20,13 +20,12 @@
   background: #fff;
   padding: 2.5rem 3rem;
   border-radius: 12px;
-  box-shadow: 0 8px 20px #111;
+  box-shadow: 0 0px 15px #8a8a8a;
   width: 450px;
   transition: transform 0.3s ease;
 }
 .contact-form:hover {
   transform: scale(1.05);
-  box-shadow: 0 15px 30px #111;
 }
 .contact-form > h2 {
   text-align: center;
@@ -94,7 +93,7 @@ textarea:valid + label {
 button {
   width: 100%;
   padding: 14px 0;
-  background: #8a8a8a;
+  background: #000;
   border: none;
   border-radius: 8px;
   color: white;
@@ -102,34 +101,29 @@ button {
   font-family: var(--font-family-primary);
   font-weight: 700;
   cursor: pointer;
-  box-shadow: 0 6px 15px #8a8a8a;
-  transition: background 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 0px 15px #8a8a8a;
+  transition: background-color 0.3s ease;
 }
 button:hover {
-  background: #111;
-  box-shadow: 0 8px 20px #111;
+  background: orange;
+  color: black;
+  box-shadow: 0 0px 20px #ffae00;
 }
-#confirmation-message {
-  background: #fff;
-  border-radius: 12px;
-  box-shadow: 0 8px 20px #111;
-  padding: 2.5rem 3rem;
-  text-align: center;
-  margin: 0 auto;
-  max-width: 450px;
+.confirmation-message {
+  
 }
-#confirmation-message h2 {
+.confirmation-message h2 {
+  margin-bottom: 1rem;
+}
+.confirmation-message > p {
   color: #8a8a8a;
   margin-bottom: 1rem;
 }
-#confirmation-message p {
-  color: #333;
-  margin-bottom: 2rem;
-}
 /* Responsive */
 @media (max-width: 480px) {
-  .contact-form, #confirmation-message {
-    width: 95vw;
-    padding: 2rem 1.5rem;
+  #form-container {
+    display: flex;
+    width: 85%;
+    margin: auto;
   }
 }

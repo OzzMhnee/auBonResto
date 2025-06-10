@@ -1,14 +1,16 @@
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-  var form = document.getElementById('contactForm');
-  var confirmation = document.getElementById('confirmation-message');
-  if(form && confirmation) {
-    form.addEventListener('submit', function(e) {
-      e.preventDefault();
-      form.style.display = 'none';
-      confirmation.style.display = 'block';
-      confirmation.scrollIntoView({behavior: 'smooth'});
-    });
-  }
-});
-</script>
+const form = document.getElementById('contactForm');
+
+form.addEventListener('submit', function (e) {
+  e.preventDefault(); // Empêche le rechargement de la page
+ if (form.checkValidity()) {    
+    form.innerHTML = `
+          <div class="confirmation-message">
+            <h2>Message bien reçu !</h2>
+            <p>Votre message a été transmis avec succès.<br/>On finit de manger et on revient vers vous dans les plus brefs délais !</p>
+            <button onclick="location.reload()">Envoyer un autre message</button></a>
+          </div>
+        `;
+      } else {
+        this.reportValidity();
+      }
+  });
