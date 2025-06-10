@@ -59,7 +59,7 @@
 
 .navbar-link {
   display: flex;
-  align-items: center;
+  align-items: baseline;
   gap: 0.5rem;
   padding: 0.75rem 1rem;
   text-decoration: none;
@@ -98,13 +98,21 @@
 .navbar-link[data-page="favorites"] i.fa-heart {
   color: gray !important;
 }
-
 .navbar-link[data-page="favorites"]:hover i.fa-heart {
   color: #000 !important;
 }
+.navbar-link[data-page="home"] i.fa-home {
+  top: -2px
+}
 
 .navbar-link[data-page="favorites"].active i.fa-heart {
-  color: #000 !important;
+  color: orange !important;
+}
+.navbar-link[data-page="contact"].active i.fa-envelope {
+  color: orange !important;
+}
+.navbar-link[data-page="home"].active i.fa-home {
+  color: orange !important;
 }
 
 
