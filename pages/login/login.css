@@ -27,7 +27,7 @@
   padding: 2.5rem 3rem;
   border-bottom-right-radius: 50px;
   border-top-right-radius: 50px;
-  box-shadow: 0 8px 20px #111;
+  box-shadow: 0px 0px 20px #8a8a8a;
   width: 450px;
   transition: transform 1s ease;
 }
@@ -37,19 +37,20 @@
   padding: 2.5rem 3rem;
   border-bottom-left-radius: 50px;
   border-top-left-radius: 50px;
-  box-shadow: 0 8px 20px #111;
+  box-shadow: 0px 0px 20px #8a8a8a;
   width: 450px;
   transition: transform 1s ease;
 }
 .contact-form1:hover, .contact-form2:hover {
   transform: scale(1.2);
-  box-shadow: 0 15px 30px #111;
 }
-.contact-form1 > h2, .contact-form2 > h2  {
+.contact-form1 > p, .contact-form2 > p  {
   text-align: center;
   margin-bottom: 1.5rem;
   color: #8a8a8a;
-font-size: 1.8rem;
+font-size: 1.2rem;
+font-family: var(--font-family-primary);
+  text-transform: uppercase;
   font-weight: 700;
   letter-spacing: 1.2px;
 }
@@ -75,7 +76,6 @@ label {
   position: absolute;
   top: 14px;
   left: 15px;
-  ;
   padding: 0 6px;
   color: #999;
   font-size: 0.9rem;
@@ -125,13 +125,9 @@ textarea:valid + label {
 button:hover {
   background: #111;
   box-shadow: 0 8px 20px #111;
+  transform: scale(1);
 }
-  @media (max-width: 480px) {
-  .contact-form {
-    width: 320px;
-    padding: 2rem 1.5rem;
-  }
-} */
+*/
 #form-container {
   background: whitesmoke;
   padding: 2.5rem 3rem;
@@ -222,40 +218,34 @@ input[type="password"]:valid + label {
 button[type="submit"] {
   width: 100%;
   padding: 14px 0;
-  background: #111;
+  box-shadow: 0 0px 15px #8a8a8a;
+  background: #000;
+  color: white;
   border: none;
   border-radius: 8px;
-  color: whitesmoke;
   font-size: 1.1rem;
   font-weight: 700;
   text-transform: uppercase;
   cursor: pointer;
-  box-shadow: 0 0px 20px #111;
-  transition: background 1.5s ease, box-shadow 1s ease;
+  transition: background-color 0.3s ease;
 }
-
 button[type="submit"]:hover {
-  background: whitesmoke;
-  color: #111;
-  border: 5px solid #111; 
-  box-shadow: 0 8px 40px #111;
+  background: orange;
+  color: black;
+  box-shadow: 0 0px 20px #ffae00;
 }
-
-
 #loginTab {
   border-bottom-right-radius: 30px;
-  border-top-right-radius: 30px;
+  border-top-right-radius: 30px;s
 }
 #registerTab {
   border-bottom-left-radius: 30px;
   border-top-left-radius: 30px;
 }
-
 .form-links {
   text-align: right;
   margin-bottom: 1rem;
 }
-
 .form-links a {
   color: #2575fc;
   text-decoration: none;
@@ -266,7 +256,6 @@ button[type="submit"]:hover {
   color: #6a11cb;
   text-decoration: underline;
 }
-
 .confirmation-message {
   background: whitesmoke;
   padding: 2.5rem 3rem;
@@ -277,8 +266,10 @@ button[type="submit"]:hover {
   text-align: center;
   animation: fadeIn 0.7s;
 }
-.confirmation-message h2 {
+.confirmation-message p {
   color: #111;
+  font-family: var(--font-family-primary);
+  text-transform: uppercase;
   margin-bottom: 1rem;
 }
 @keyframes fadeIn {
@@ -295,3 +286,16 @@ button[type="submit"]:hover {
   }
 }
 /* #endregion */
+
+@media (max-width: 480px) {
+  .contact-form {
+    width: 320px;
+
+    padding: 2rem 1.5rem;
+  }
+  #form-container {
+    display: flex;
+    width: 85%;
+    margin: auto;
+  }
+} 
