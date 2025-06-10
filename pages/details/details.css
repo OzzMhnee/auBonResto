@@ -9,14 +9,12 @@
   margin: 0 auto;
 }
 
-
-.section-header,
-.section-header span {
+.section-title {
   text-align: center;
   margin-bottom: 2rem;
   font-family: "Parisienne", cursive;
   font-size: 2.5rem;
-  color: #666;
+  color: red;
   margin-bottom: 1rem;
 }
 
@@ -24,6 +22,7 @@
   font-size: 1.1rem;
   color: #666;
   font-style: italic;
+  text-align: center;
 }
 
 /*        CAROUSEL           */
@@ -272,7 +271,9 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   gap: 2rem;
+  margin: 5rem auto;
 }
 
 .menu-categories {
@@ -471,11 +472,14 @@
 }
 
 /*        SERVICES           */
-.services-container {
+.service-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
   margin: 5rem auto;
-  padding: 4rem 2rem;
 }
-
 .services-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
@@ -531,15 +535,19 @@
 
 /*        COMMENTS           */
 .comments-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
   margin: 5rem auto;
-  padding: 4rem 2rem;
 }
 
 .comments {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   gap: 2rem;
-}
+} /* revoir dispo en ligne*/
 
 .cardComment {
   background: white;
@@ -591,8 +599,12 @@
 
 /*        MAP              */
 .map-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
   margin: 5rem auto;
-  padding: 4rem 2rem;
 }
 
 .map-content {
