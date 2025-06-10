@@ -1,87 +1,130 @@
 <section>
-  <div>
-<div>
-<div class="slideshowContainer " id="carouselContainer"></div>
+  <!-- Carousel -->
+  <div class="carousel-container" id="carouselContainer"></div>
 
-  <div id="logo">
-    <img id="logoImg" src="" alt="Logo restaurant" />
+  <!-- Section Présentation et Réservation -->
+  <div class="booking-container">
+    <h2>Découvrir le restaurant : <span id="restaurantName"></span></h2>
+    <p id="restaurantDescription"></p>
+    <button class="reservation-btn" id="openReservationModal">
+      Pour réserver une table, c'est ici !
+    </button>
   </div>
-</div>
-
-<main>
-  <!-- Modal de Réservation -->
-  <section class="sectBooking">
-    <div class="sectBookingVisi">
-      <h2>Découvrir le restaurant <span id="restaurantName"></span></h2>
-      <p id="restaurantDescription"></p>
-      <div id="wrapper">
-        <input type="radio" id="open" name="popup" />
-        <input type="radio" id="close" name="popup" />
-        <div id="popup">
-          <label class="submit" for="open"
-            >Pour réserver une table, c'est ici !</label
-          >
-        </div>
-        <div id="overlay"></div>
-        <div id="info">
-          <h3>Informations de réservation</h3>
-          <label for="close"><i class="fa fa-times-circle fa-lg"></i></label>
-          <p>Pour réserver une table, veuillez nous contacter au :</p>
-          <p><strong id="contactPhone"></strong></p>
-          <p id="contactOpening"></p>
-        </div>
-      </div>
-    </div>
-  </section>
 
   <!-- Section Menu -->
-  <section class="sectMenu">
+  <div class="menu-container">
     <h2>Menu</h2>
+    <div class="menu-categories" id="menuCategories"></div>
+    <div id="menuDetails"></div>
+  </div>
 
-  <div class="optionDisplayMenu" id="menuCategories"></div>
-<div id="menuDetails"></div>
-
-
-
-  <!-- Section Informations Supplémentaires -->
-<section class="sectMoreInfo" id="moreInfoSection"></section>
+  <!-- Section Services -->
+  <div class="services-container" id="servicesSection">
+    <div class="section-header">
+      <h2>Nos Services</h2>
+      <p class="section-subtitle">
+        Une expérience complète pour tous vos besoins
+      </p>
+    </div>
+    <div class="services-grid"></div>
+  </div>
 
   <!-- Section Avis -->
-  <section class="sectComments">
-    <h2>Vous avez aimé, et vous en parlez !</h2>
+  <div class="comments-container">
+    <div class="section-header">
+      <h2>Vous avez aimé, et vous en parlez !</h2>
+      <p class="section-subtitle">L'avis de nos clients compte</p>
+    </div>
     <div class="comments"></div>
-  </section>
+  </div>
 
   <!-- Section Localisation -->
-  <section class="sectMaps">
-    <div>
+  <div class="map-container">
+    <div class="section-header">
       <h2>Vous y rendre</h2>
-      <iframe
-        id="mapIframe"
-        src=""
-        width="600"
-        height="450"
-        style="border: 0"
-        allowfullscreen=""
-        loading="lazy"
-        referrerpolicy="no-referrer-when-downgrade">
-      </iframe>
+      <p class="section-subtitle">
+        Adresse, horaires et informations pratiques
+      </p>
     </div>
-
-    <!-- Section Contact et réseaux -->
-    <div class="adress">
-      <img id="logoMapImg" src="" alt="Logo restaurant" />
-      <p id="addressBlock"></p>
-      <div class="reseaux">
-        <img src="/images/general/iconFacebook.png" alt="Facebook" />
-        <img src="/images/general/iconInstagram.png" alt="Instagram" />
-        <img src="/images/general/iconLinkedin.png" alt="LinkedIn" />
-        <img src="/images/general/iconYoutube.png" alt="YouTube" />
+    <div class="map-content">
+      <div class="map-wrapper">
+        <iframe
+          id="mapIframe"
+          src=""
+          width="600"
+          height="450"
+          style="border: 0"
+          allowfullscreen
+          loading="lazy"
+        ></iframe>
+      </div>
+      <div class="contact-card">
+        <div class="card-header">
+          <h3 id="restaurantNameMap"></h3>
+        </div>
+        <div class="contact-details">
+          <div class="detail-group">
+            <div class="detail-icon">
+              <i class="fas fa-map-marker-alt"></i>
+            </div>
+            <div class="detail-content">
+              <p>Adresse</p>
+              <small id="addressBlock"></small>
+            </div>
+          </div>
+          <div class="detail-group">
+            <div class="detail-icon"><i class="fas fa-phone"></i></div>
+            <div class="detail-content">
+              <p>Téléphone</p>
+              <small id="phoneNumber"></small>
+            </div>
+          </div>
+          <div class="detail-group">
+            <div class="detail-icon"><i class="fas fa-clock"></i></div>
+            <div class="detail-content">
+              <p>Horaires</p>
+              <small id="openingHours"></small>
+            </div>
+          </div>
+        </div>
+        <div class="social-section">
+          <h4>Suivez-nous</h4>
+          <div class="social-links">
+            <a href="#" class="social-icon facebook"
+              ><i class="fab fa-facebook-f"></i
+            ></a>
+            <a href="#" class="social-icon instagram"
+              ><i class="fab fa-instagram"></i
+            ></a>
+            <a href="#" class="social-icon linkedin"
+              ><i class="fab fa-linkedin-in"></i
+            ></a>
+            <a href="#" class="social-icon youtube"
+              ><i class="fab fa-youtube"></i
+            ></a>
+          </div>
+        </div>
       </div>
     </div>
-  </section>
-</main>
-</div>
-</section>
+  </div>
 
-<script src="/pages/details/details.js"></script>
+  <!-- Modal de réservation -->
+  <div class="modal-overlay" id="reservationModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title">Informations de réservation</h3>
+        <button class="modal-close" id="closeReservationModal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p class="modal-text">
+          Pour réserver une table, nous vous invitons à nous contacter
+          directement au :
+          <span id="contactPhone">05 05 05 05 05</span>
+        </p>
+        <div class="modal-hours" id="contactOpening">
+          <span></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
