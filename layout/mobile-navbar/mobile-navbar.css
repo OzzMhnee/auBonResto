@@ -27,6 +27,7 @@
   justify-content: center;
   z-index: 10;
   border-radius: 8px;
+  background-color: rgba(255, 255, 255, 0.8);
   transition: background-color 0.3s ease, opacity 0.3s ease;
 }
 
@@ -136,7 +137,6 @@
   color: inherit;
 }
 
-/* Correction pour l'icône cœur */
 .mobile-nav-btn a[href*="favorites"] i.fa-heart {
   color: #333 !important;
 }
