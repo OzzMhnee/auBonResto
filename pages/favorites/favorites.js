@@ -42,10 +42,9 @@ function renderFavorites(favoriteRestaurants) {
   // Si aucun favori, afficher un message
   if (favoriteRestaurants.length === 0) {
     container.innerHTML = `
-      <div style="text-align: center; width: 100%; padding: 50px;">
-        <h3>Aucun restaurant en favoris</h3>
-        <p>Ajoutez des restaurants à vos favoris depuis la page d'accueil !</p>
-        <a href="/index.html?page=home" style="color: #111; font-weight: bold;">← Retour à l'accueil</a>
+      <div style="display: flex; flex-direction:column; align-items: center; justify-content:center; gap:10px; width: 100%; padding: 50px;">
+        <h3 style="font-family:Roboto; display:flex; align-items:center; gap: 20px">Aucun restaurant en favori <span style="font-size: 2rem">😢</span></h3>
+        <p>Ajoutez-en depuis la page d'accueil !</p>
       </div>
     `;
     return;
