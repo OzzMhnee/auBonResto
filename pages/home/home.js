@@ -391,23 +391,6 @@ function isMobile() {
   return window.innerWidth <= 768;
 }
 
-// Fonction pour positionner un dropdown menu en mobile
-function positionDropdownMobile(dropdownToggle, dropdownMenu) {
-  if (isMobile() && dropdownMenu.classList.contains("show")) {
-    const rect = dropdownToggle.getBoundingClientRect();
-    dropdownMenu.style.top = rect.bottom + 4 + "px";
-    dropdownMenu.style.left = rect.left + "px";
-    dropdownMenu.style.width = rect.width + "px";
-    dropdownMenu.style.maxWidth = rect.width + "px";
-  } else {
-    // Réinitialiser les styles inline en desktop
-    dropdownMenu.style.top = "";
-    dropdownMenu.style.left = "";
-    dropdownMenu.style.width = "";
-    dropdownMenu.style.maxWidth = "";
-  }
-}
-
 // Application des filtres
 function applyFilters() {
   const searchTerm = document

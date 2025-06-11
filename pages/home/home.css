@@ -7,9 +7,8 @@
 .contentFavoris {
   display: flex;
   justify-content: center;
-  font-size: 17px; /* MH  modification de taille texte de 20 à 17 car choquait vis à vis de Navbar  transition: all 0.2s ease;
-  position: relative;
-}  text-align: center; /* MH le justify ne suffisait pas avec le responsive */
+  font-size: 17px; /* MH  modification de taille texte de 20 à 17 car choquait vis à vis de Navbar */
+  text-align: center; /* MH le justify ne suffisait pas avec le responsive */
 }
 
 .titleFavoris {
@@ -45,6 +44,9 @@
   text-align: center;
   border-radius: 4%;
   background-color: white;
+  /* EFFETS CONSERVÉS - avec optimisation */
+  will-change: transform; /* Optimisation GPU */
+  contain: layout style; /* Containment pour limiter l'impact */
 }
 
 .card img {
@@ -158,13 +160,31 @@
   color: white;
 }
 
-/*        SEARCH & FILTERS        */
+/* ========================= */
+/*      SEARCH & FILTERS     */
+/* ========================= */
 .search-filters-container {
   max-width: 1200px;
   margin: 3rem auto 2rem;
   padding: 0 2rem;
+  position: relative;
+  z-index: 1;
+  isolation: isolate; /* Isolation du stacking context */
 }
 
+#resultsCount {
+  font-size: 1.1rem;
+  color: #666;
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  background: rgba(255, 165, 0, 0.1);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 165, 0, 0.2);
+}
+
+/* ========================= */
+/*       SEARCH SECTION      */
+/* ========================= */
 .search-section {
   margin-bottom: 1.5rem;
 }
@@ -225,6 +245,9 @@
   color: white;
 }
 
+/* ========================= */
+/*       FILTERS SECTION     */
+/* ========================= */
 .filters-section {
   display: flex;
   flex-wrap: wrap;
@@ -236,7 +259,6 @@
   border-radius: 15px;
   box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
   backdrop-filter: blur(10px);
-  position: relative;
 }
 
 .filter-group {
@@ -255,7 +277,6 @@
   font-weight: 600;
   color: #555;
   margin-bottom: 0.25rem;
-  position: relative;
 }
 
 .filter-label i {
@@ -279,9 +300,7 @@
   box-shadow: 0 0 0 3px rgba(255, 165, 0, 0.1);
 }
 
-/* Dropdown de filtrage par notes avec cases à cocher */
 .rating-dropdown {
-  position: relative;
   width: 100%;
 }
 
@@ -298,7 +317,6 @@
   font-size: 1rem;
   color: #333;
   transition: all 0.3s ease;
-  position: relative;
 }
 
 .dropdown-toggle:hover {
@@ -400,7 +418,6 @@
   background: #111;
   color: white;
   border-color: #111;
-  transform: translateY(-2px);
 }
 
 .results-info {
@@ -409,19 +426,7 @@
   padding: 0 2rem;
 }
 
-#resultsCount {
-  font-size: 1.1rem;
-  color: #666;
-  font-weight: 500;
-  padding: 0.5rem 1rem;
-  background: rgba(255, 165, 0, 0.1);
-  border-radius: 20px;
-  border: 1px solid rgba(255, 165, 0, 0.2);
-}
-
-/* Dropdown de filtrage par spécialités avec cases à cocher */
 .specialty-dropdown {
-  position: relative;
   width: 100%;
 }
 
@@ -438,7 +443,6 @@
   font-size: 1rem;
   color: #333;
   transition: all 0.3s ease;
-  position: relative;
 }
 
 .specialty-dropdown .dropdown-toggle:hover {
@@ -504,9 +508,7 @@
   accent-color: #ffa500;
 }
 
-/* Dropdown de filtrage par villes avec cases à cocher */
 .city-dropdown {
-  position: relative;
   width: 100%;
 }
 
@@ -589,32 +591,32 @@
   accent-color: #ffa500;
 }
 
-/* RESPONSIVE pour les dropdowns */
+.rating-dropdown .dropdown-toggle {
+  min-width: 220px;
+}
+
+.specialty-dropdown .dropdown-toggle {
+  min-width: 220px;
+}
+
+.city-dropdown .dropdown-toggle {
+  min-width: 250px;
+}
+
+/* RESPONSIVE */
 @media (max-width: 768px) {
   .filters-section {
     flex-direction: column;
     align-items: stretch;
-    gap: 2rem; /* Augmentation de l'espace entre les filtres */
+    gap: 2rem;
   }
 
   .filter-group {
     width: 100%;
-    position: relative;
   }
 
-  /* Ajuster l'espacement vertical entre les groupes de filtres */
   .filter-group:not(:last-child) {
     margin-bottom: 1rem;
-  }
-
-  .filter-label {
-    position: relative;
-  }
-
-  .rating-dropdown,
-  .specialty-dropdown,
-  .city-dropdown {
-    position: relative;
   }
 
   .rating-dropdown .dropdown-menu,
@@ -626,7 +628,20 @@
     max-width: 100%;
     left: 0;
     right: 0;
-    margin-top: 0.5rem; /* Petit espace supplémentaire */
+  }
+
+  @media (max-width: 768px) {
+    .filter-group:nth-child(1) {
+      z-index: 3;
+    }
+
+    .filter-group:nth-child(2) {
+      z-index: 2;
+    }
+
+    .filter-group:nth-child(3) {
+      z-index: 1;
+    }
   }
 
   .rating-dropdown .dropdown-menu {
