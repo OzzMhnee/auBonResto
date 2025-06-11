@@ -12,10 +12,19 @@ document.addEventListener("DOMContentLoaded", () => {
     "/layout/cookies/cookies.html",
     "/layout/cookies/cookies.css"
   ).then(() => {
-
     const cookiesScript = document.createElement("script");
     cookiesScript.src = "/layout/cookies/cookies.js";
     document.body.appendChild(cookiesScript);
+  });
+
+  loadHTML(
+    "back-to-top-container",
+    "/layout/back-to-top/back-to-top.html",
+    "/layout/back-to-top/back-to-top.css"
+  ).then(() => {
+    const backToTopScript = document.createElement("script");
+    backToTopScript.src = "/layout/back-to-top/back-to-top.js";
+    document.body.appendChild(backToTopScript);
   });
 
   const params = new URLSearchParams(window.location.search);

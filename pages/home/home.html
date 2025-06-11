@@ -2,9 +2,8 @@
   <div>
     <div class="title">
       <h1 class="titleFavoris">Nos restaurants</h1>
-      <br /><br /><br />
-      <span class="contentFavoris">
-        Découvrez nos restaurants partenaires et ajoutez vos favoris.
+            <span class="contentFavoris">
+        Découvrez nos restaurants partenaires et ajoutez les en favoris !
       </span>
     </div>
 
@@ -28,12 +27,13 @@
 
       <!-- Filtres -->
       <div class="filters-section">
+        <!-- Filtre Notes -->
         <div class="filter-group">
           <label for="ratingFilter" class="filter-label">
             <i class="fas fa-star"></i>
             Notes
           </label>
-          <div class="rating-dropdown" id="ratingFilter">
+          <div class="rating-dropdown" id="ratingFilter" data-filter-type="rating">
             <button class="dropdown-toggle" type="button">
               <span class="dropdown-text">Sélectionner les notes</span>
               <i class="fas fa-chevron-down"></i>
@@ -93,34 +93,34 @@
           </div>
         </div>
 
+        <!-- Filtre Type de cuisine -->
         <div class="filter-group">
           <label for="specialtyFilter" class="filter-label">
             <i class="fas fa-utensils"></i>
             Type de cuisine
           </label>
-          <div class="specialty-dropdown" id="specialtyFilter">
+          <div class="specialty-dropdown" id="specialtyFilter" data-filter-type="specialty">
             <button class="dropdown-toggle" type="button">
               <span class="dropdown-text">Tous les types</span>
               <i class="fas fa-chevron-down"></i>
             </button>
             <div class="dropdown-menu">
-              <!-- Les options seront générées dynamiquement par JavaScript -->
             </div>
           </div>
         </div>
 
+        <!-- Filtre Ville -->
         <div class="filter-group">
           <label for="cityFilter" class="filter-label">
             <i class="fas fa-map-marker-alt"></i>
             Ville
           </label>
-          <div class="city-dropdown" id="cityFilter">
+          <div class="city-dropdown" id="cityFilter" data-filter-type="city">
             <button class="dropdown-toggle" type="button">
               <span class="dropdown-text">Toutes les villes</span>
               <i class="fas fa-chevron-down"></i>
             </button>
             <div class="dropdown-menu">
-              <!-- Les options seront générées dynamiquement par JavaScript -->
             </div>
           </div>
         </div>
@@ -134,7 +134,7 @@
 
     <!-- Résultats -->
     <div class="results-info">
-      <span id="resultsCount">0 restaurants trouvés</span>
+      <span id="resultsCount">0 restaurant trouvé</span>
     </div>
 
     <!-- Cards des restaurants -->

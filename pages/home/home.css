@@ -4,19 +4,20 @@
 
 /* Styles spécifiques à la page home */
 
-.contentFavoris {
-  display: flex;
-  justify-content: center;
-  font-size: 17px; /* MH  modification de taille texte de 20 à 17 car choquait vis à vis de Navbar */
-  text-align: center; /* MH le justify ne suffisait pas avec le responsive */
-}
-
 .titleFavoris {
   display: flex;
   text-align: center;
   justify-content: center;
   font-size: 40px;
-  margin-top: 13px; /* MH  centrage vertical du titre de la page mobile dans la zone nav */
+  margin-top: 5rem; /* MH  centrage vertical du titre de la page mobile dans la zone nav */
+}
+
+.contentFavoris {
+  display: flex;
+  justify-content: center;
+  font-size: 17px; /* MH  modification de taille texte de 20 à 17 car choquait vis à vis de Navbar */
+  text-align: center; /* MH le justify ne suffisait pas avec le responsive */
+  padding-top: 12px; /*CP suppression des br dans le code HTML au profit d'un padding */
 }
 
 .divCards {
@@ -24,7 +25,7 @@
   /* flex-direction: row;   MH  ligne mise en commentaire sans incidence, axe natif */
   flex-wrap: wrap;
   max-width: 1460px; /* MH  modification pour largeur == largeur navbar + padding LR */
-  margin: 0 auto; /* MH  modification pour largeur == largeur navbar */
+  margin: 5rem auto; /* MH  modification pour largeur == largeur navbar */
   padding-top: 80px;
   padding-left: 30px; /* MH  ajout d'un espace min entre les cards et le bord de l'écran */
   padding-right: 30px; /* MH  ajout d'un espace min entre les cards et le bord de l'écran */
@@ -165,7 +166,7 @@
 /* ========================= */
 .search-filters-container {
   max-width: 1200px;
-  margin: 3rem auto 2rem;
+  margin: 5rem auto 2rem;
   padding: 0 2rem;
   position: relative;
   z-index: 1;
@@ -631,6 +632,10 @@
   }
 
   @media (max-width: 768px) {
+    .divCards {
+      margin-top: 2rem;
+      padding-top: 20px;
+    }
     .filter-group:nth-child(1) {
       z-index: 3;
     }
@@ -677,5 +682,15 @@
 
   .stars-display i {
     font-size: 0.9rem;
+  }
+}
+
+@media (min-width: 769px) {
+  .titleFavoris {
+    margin-top: 10rem;
+  }
+
+  .divCards {
+    padding-top: 10px;
   }
 }
