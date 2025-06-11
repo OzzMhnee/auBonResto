@@ -8,14 +8,144 @@
       </span>
     </div>
 
+    <!-- Section Recherche et Filtres -->
+    <div class="search-filters-container">
+      <!-- Barre de recherche -->
+      <div class="search-section">
+        <div class="search-bar">
+          <i class="fas fa-search search-icon"></i>
+          <input
+            type="text"
+            id="searchInput"
+            placeholder="Rechercher un restaurant ou une spécialité..."
+            autocomplete="off"
+          />
+          <button id="clearSearch" class="clear-btn" style="display: none">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Filtres -->
+      <div class="filters-section">
+        <div class="filter-group">
+          <label for="ratingFilter" class="filter-label">
+            <i class="fas fa-star"></i>
+            Notes
+          </label>
+          <div class="rating-dropdown" id="ratingFilter">
+            <button class="dropdown-toggle" type="button">
+              <span class="dropdown-text">Sélectionner les notes</span>
+              <i class="fas fa-chevron-down"></i>
+            </button>
+            <div class="dropdown-menu">
+              <label class="checkbox-item">
+                <input type="checkbox" value="5" />
+                <span class="stars-display">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                </span>
+              </label>
+              <label class="checkbox-item">
+                <input type="checkbox" value="4" />
+                <span class="stars-display">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="far fa-star"></i>
+                </span>
+              </label>
+              <label class="checkbox-item">
+                <input type="checkbox" value="3" />
+                <span class="stars-display">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="far fa-star"></i>
+                  <i class="far fa-star"></i>
+                </span>
+              </label>
+              <label class="checkbox-item">
+                <input type="checkbox" value="2" />
+                <span class="stars-display">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="far fa-star"></i>
+                  <i class="far fa-star"></i>
+                  <i class="far fa-star"></i>
+                </span>
+              </label>
+              <label class="checkbox-item">
+                <input type="checkbox" value="1" />
+                <span class="stars-display">
+                  <i class="fas fa-star"></i>
+                  <i class="far fa-star"></i>
+                  <i class="far fa-star"></i>
+                  <i class="far fa-star"></i>
+                  <i class="far fa-star"></i>
+                </span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div class="filter-group">
+          <label for="specialtyFilter" class="filter-label">
+            <i class="fas fa-utensils"></i>
+            Type de cuisine
+          </label>
+          <div class="specialty-dropdown" id="specialtyFilter">
+            <button class="dropdown-toggle" type="button">
+              <span class="dropdown-text">Tous les types</span>
+              <i class="fas fa-chevron-down"></i>
+            </button>
+            <div class="dropdown-menu">
+              <!-- Les options seront générées dynamiquement par JavaScript -->
+            </div>
+          </div>
+        </div>
+
+        <div class="filter-group">
+          <label for="cityFilter" class="filter-label">
+            <i class="fas fa-map-marker-alt"></i>
+            Ville
+          </label>
+          <div class="city-dropdown" id="cityFilter">
+            <button class="dropdown-toggle" type="button">
+              <span class="dropdown-text">Toutes les villes</span>
+              <i class="fas fa-chevron-down"></i>
+            </button>
+            <div class="dropdown-menu">
+              <!-- Les options seront générées dynamiquement par JavaScript -->
+            </div>
+          </div>
+        </div>
+
+        <button id="resetFilters" class="reset-btn">
+          <i class="fas fa-undo"></i>
+          Réinitialiser
+        </button>
+      </div>
+    </div>
+
+    <!-- Résultats -->
+    <div class="results-info">
+      <span id="resultsCount">0 restaurants trouvés</span>
+    </div>
+
+    <!-- Cards des restaurants -->
     <div class="divCards">
-      <div class="card">
+      <div class="card template-card" style="display: none">
         <img class="restaurant-image" src="{image}" alt="{name}" />
         <button class="button">
           <i class="fa-solid fa-heart" id="fav{id}"></i>
         </button>
-        <h2 class="restaurant-name">{name}</h2> <!-- MH Déplacement de quelques éléments entre eux pour me faciliter en css -->
-        <div class="stars">{stars}</div>        <!-- MH pour gérer les alignements / multiligne ds les cards -->
+        <h2 class="restaurant-name">{name}</h2>
+        <div class="stars">{stars}</div>
         <p class="specialty">{specialty}</p>
         <p class="address">{address}</p>
         <div class="btn-favorites">
