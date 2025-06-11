@@ -305,7 +305,7 @@
   },
   {
     "id": 3,
-    "name": "L'Inédit Bordeaux",
+    "name": "L'Inédit",
     "image_main": "/images/inedit/main.png",
     "logo": "/images/inedit/logo.png",
     "specialty": "Cuisine française, bar à tapas, brasserie",
@@ -1434,7 +1434,7 @@
     "name": "Le Carnaval Café",
     "image_main": "/images/carnaval/main.png",
     "logo": "/images/carnaval/logo.png",
-    "specialty": "Brasserie, cuisine française, pizzas, burgers",
+    "specialty": "Brasserie, cuisine française",
     "description": "Le Carnaval Café est une brasserie conviviale à Bègles, proposant une cuisine française variée, des pizzas au feu de bois, des burgers maison et des plats du jour. L'établissement dispose d'une grande terrasse et d'une ambiance chaleureuse, idéale pour les repas en famille, entre amis ou collègues.",
     "rating": 4,
     "contact": {
