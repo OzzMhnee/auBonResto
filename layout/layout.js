@@ -7,6 +7,17 @@ document.addEventListener("DOMContentLoaded", () => {
     "/layout/footer/footer.css"
   );
 
+  loadHTML(
+    "cookies-container",
+    "/layout/cookies/cookies.html",
+    "/layout/cookies/cookies.css"
+  ).then(() => {
+
+    const cookiesScript = document.createElement("script");
+    cookiesScript.src = "/layout/cookies/cookies.js";
+    document.body.appendChild(cookiesScript);
+  });
+
   const params = new URLSearchParams(window.location.search);
   const page = params.get("page") || "home";
   const htmlPath = `/pages/${page}/${page}.html`;
@@ -21,11 +32,10 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-
 function loadPageScript(page) {
   const scriptPath = `/pages/${page}/${page}.js`;
-  
-  const script = document.createElement('script');
+
+  const script = document.createElement("script");
   script.src = scriptPath;
   script.onload = () => {
     if (window.initializePage) {
