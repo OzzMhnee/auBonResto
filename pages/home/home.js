@@ -2,6 +2,7 @@
 let restaurants = [];
 let filteredRestaurants = [];
 let favorites = JSON.parse(localStorage.getItem("restaurantFavorites") || "[]");
+let originalTemplate = null;
 
 // Initialisation
 window.initializePage = function (page) {
@@ -12,14 +13,133 @@ window.initializePage = function (page) {
 
 // Initialisation automatique si on est sur la page home
 document.addEventListener("DOMContentLoaded", function () {
-  // Vérifier si on est sur la page home
   const urlParams = new URLSearchParams(window.location.search);
   const page = urlParams.get("page") || "home";
-
   if (page === "home") {
     loadAndRender();
   }
 });
+
+// Classe pour gérer les dropdowns de manière générique
+class DropdownManager {
+  constructor(id, config) {
+    this.id = id;
+    this.config = config;
+    this.element = document.getElementById(id);
+    this.toggle = this.element?.querySelector(".dropdown-toggle");
+    this.menu = this.element?.querySelector(".dropdown-menu");
+    this.textElement = this.element?.querySelector(".dropdown-text");
+    this.checkboxes = this.element?.querySelectorAll('input[type="checkbox"]');
+
+    this.init();
+  }
+
+  init() {
+    if (!this.element) return;
+
+    // Event listeners
+    this.toggle?.addEventListener("click", (e) => this.handleToggle(e));
+    this.checkboxes?.forEach((cb) => {
+      cb.addEventListener("change", () => {
+        this.updateText();
+        applyFilters();
+      });
+    });
+
+    // Fermer si clic ailleurs
+    document.addEventListener("click", (e) => {
+      if (!this.element.contains(e.target)) {
+        this.close();
+      }
+    });
+  }
+
+  handleToggle(e) {
+    e.preventDefault();
+
+    if (this.isMobile()) {
+      const wasOpen = this.menu.classList.contains("show");
+      this.closeAllDropdowns();
+      if (!wasOpen) this.open();
+    } else {
+      this.menu.classList.toggle("show");
+      this.toggle.classList.toggle("active");
+    }
+  }
+
+  open() {
+    this.menu?.classList.add("show");
+    this.toggle?.classList.add("active");
+  }
+
+  close() {
+    this.menu?.classList.remove("show");
+    this.toggle?.classList.remove("active");
+  }
+
+  updateText() {
+    const checked = Array.from(this.checkboxes).filter((cb) => cb.checked);
+
+    if (checked.length === 0) {
+      this.textElement.textContent = this.config.defaultText;
+    } else if (checked.length === 1) {
+      this.textElement.textContent = this.config.singleText
+        ? this.config.singleText(checked[0])
+        : checked[0].nextElementSibling.textContent;
+    } else {
+      this.textElement.textContent = this.config.multipleText(checked.length);
+    }
+  }
+
+  getSelected() {
+    return Array.from(this.checkboxes)
+      .filter((cb) => cb.checked)
+      .map((cb) =>
+        this.config.getValue ? this.config.getValue(cb) : cb.value
+      );
+  }
+
+  reset() {
+    this.checkboxes.forEach((cb) => (cb.checked = false));
+    this.updateText();
+    this.close();
+  }
+
+  isMobile() {
+    return window.innerWidth <= 768;
+  }
+
+  closeAllDropdowns() {
+    // Cette méthode sera appelée par l'instance, mais agit globalement
+    document.querySelectorAll(".dropdown-menu.show").forEach((menu) => {
+      menu.classList.remove("show");
+    });
+    document.querySelectorAll(".dropdown-toggle.active").forEach((toggle) => {
+      toggle.classList.remove("active");
+    });
+  }
+}
+
+// Configuration des dropdowns
+const dropdownConfigs = {
+  ratingFilter: {
+    defaultText: "Sélectionner les notes",
+    singleText: (cb) => `${cb.value} étoile${cb.value > 1 ? "s" : ""}`,
+    multipleText: (count) => `${count} notes sélectionnées`,
+    getValue: (cb) => parseInt(cb.value),
+  },
+  specialtyFilter: {
+    defaultText: "Tous les types",
+    multipleText: (count) => `${count} types sélectionnés`,
+  },
+  cityFilter: {
+    defaultText: "Toutes les villes",
+    multipleText: (count) => `${count} villes sélectionnées`,
+  },
+};
+
+// Instances des dropdowns
+let dropdowns = {};
 
 // Chargement des données
 async function loadAndRender() {
@@ -29,12 +149,11 @@ async function loadAndRender() {
       throw new Error("Erreur lors de la récupération des données");
 
     restaurants = await response.json();
-    filteredRestaurants = [...restaurants]; // Copie pour les filtres
+    filteredRestaurants = [...restaurants];
 
-    populateFilters(); // Nouvelle fonction pour remplir les dropdowns
+    populateFilters();
     setupSearchAndFilters();
-    setupSpecialtyDropdown();
-    setupCityDropdown();
+    initializeDropdowns();
     render(filteredRestaurants);
     initFavorites();
     initDetailButtons();
@@ -44,73 +163,69 @@ async function loadAndRender() {
   }
 }
 
+// Initialisation des dropdowns avec la classe générique
+function initializeDropdowns() {
+  Object.keys(dropdownConfigs).forEach((id) => {
+    dropdowns[id] = new DropdownManager(id, dropdownConfigs[id]);
+  });
+}
+
 // Fonction pour remplir les dropdowns avec les données du JSON
 function populateFilters() {
   // Remplir le filtre des spécialités
-  const specialtyDropdown = document.getElementById("specialtyFilter");
-  if (specialtyDropdown) {
-    const dropdownMenu = specialtyDropdown.querySelector(".dropdown-menu");
-    // Extraire toutes les spécialités individuelles des tableaux specialties
+  const specialtyMenu = document.querySelector(
+    "#specialtyFilter .dropdown-menu"
+  );
+  if (specialtyMenu) {
     const allSpecialties = restaurants.flatMap((r) => r.specialties || []);
-    const uniqueSpecialties = [...new Set(allSpecialties)].filter(Boolean);
-    uniqueSpecialties.sort();
+    const uniqueSpecialties = [...new Set(allSpecialties)]
+      .filter(Boolean)
+      .sort();
 
-    dropdownMenu.innerHTML = uniqueSpecialties
+    specialtyMenu.innerHTML = uniqueSpecialties
       .map(
         (specialty) => `
-      <label class="checkbox-item">
-        <input type="checkbox" value="${specialty.toLowerCase()}" />
-        <span>${specialty.charAt(0).toUpperCase() + specialty.slice(1)}</span>
-      </label>
-    `
+        <label class="checkbox-item">
+          <input type="checkbox" value="${specialty.toLowerCase()}" />
+          <span>${specialty.charAt(0).toUpperCase() + specialty.slice(1)}</span>
+        </label>
+      `
       )
       .join("");
   }
 
   // Remplir le filtre des villes
-  const cityDropdown = document.getElementById("cityFilter");
-  if (cityDropdown) {
-    const dropdownMenu = cityDropdown.querySelector(".dropdown-menu");
+  const cityMenu = document.querySelector("#cityFilter .dropdown-menu");
+  if (cityMenu) {
     const cities = [
       ...new Set(restaurants.map((r) => r.contact?.city).filter(Boolean)),
-    ];
-    cities.sort();
+    ].sort();
 
-    dropdownMenu.innerHTML = cities
+    cityMenu.innerHTML = cities
       .map(
         (city) => `
-      <label class="checkbox-item">
-        <input type="checkbox" value="${city}" />
-        <span>${city}</span>
-      </label>
-    `
+        <label class="checkbox-item">
+          <input type="checkbox" value="${city}" />
+          <span>${city}</span>
+        </label>
+      `
       )
       .join("");
   }
 }
 
-// Configuration de la recherche et des filtres
+// Configuration de la recherche et des filtres (simplifiée)
 function setupSearchAndFilters() {
   const searchInput = document.getElementById("searchInput");
   const clearBtn = document.getElementById("clearSearch");
-  const ratingFilter = document.getElementById("ratingFilter");
-  const specialtyFilter = document.getElementById("specialtyFilter");
-  const cityFilter = document.getElementById("cityFilter");
   const resetBtn = document.getElementById("resetFilters");
 
-  if (
-    !searchInput ||
-    !clearBtn ||
-    !ratingFilter ||
-    !specialtyFilter ||
-    !cityFilter ||
-    !resetBtn
-  ) {
-    console.error("Un ou plusieurs éléments de filtrage sont manquants");
+  if (!searchInput || !clearBtn || !resetBtn) {
+    console.error("Éléments de filtrage manquants");
     return;
   }
 
-  // Recherche en temps réel avec debounce
+  // Recherche avec debounce
   searchInput.addEventListener(
     "input",
     debounce((e) => {
@@ -128,316 +243,42 @@ function setupSearchAndFilters() {
     applyFilters();
   });
 
-  // Configuration du système de dropdown avec cases à cocher pour les notes
-  setupRatingDropdown();
   // Reset
   resetBtn.addEventListener("click", resetAllFilters);
 }
 
-// Fonction debounce pour optimiser la recherche
-function debounce(func, wait) {
-  let timeout;
-  return function executedFunction(...args) {
-    const later = () => {
-      clearTimeout(timeout);
-      func(...args);
-    };
-    clearTimeout(timeout);
-    timeout = setTimeout(later, wait);
-  };
-}
-
-// Configuration du système de dropdown avec cases à cocher pour les notes
-function setupRatingDropdown() {
-  const ratingDropdown = document.getElementById("ratingFilter");
-  const dropdownToggle = ratingDropdown.querySelector(".dropdown-toggle");
-  const dropdownMenu = ratingDropdown.querySelector(".dropdown-menu");
-  const checkboxes = ratingDropdown.querySelectorAll('input[type="checkbox"]');
-  const dropdownText = ratingDropdown.querySelector(".dropdown-text");
-
-  // Gestion du clic sur le bouton dropdown
-  dropdownToggle.addEventListener("click", (e) => {
-    e.preventDefault();
-
-    // En mobile, fermer tous les autres dropdowns d'abord
-    if (isMobile()) {
-      const wasOpen = dropdownMenu.classList.contains("show");
-      closeAllDropdowns();
-
-      // Si ce dropdown n'était pas ouvert, l'ouvrir
-      if (!wasOpen) {
-        dropdownMenu.classList.add("show");
-        dropdownToggle.classList.add("active");
-      }
-    } else {
-      // En desktop, comportement normal
-      dropdownMenu.classList.toggle("show");
-      dropdownToggle.classList.toggle("active");
-    }
-  });
-
-  // Fermer le dropdown si on clique ailleurs
-  document.addEventListener("click", (e) => {
-    if (!ratingDropdown.contains(e.target)) {
-      dropdownMenu.classList.remove("show");
-      dropdownToggle.classList.remove("active");
-    }
-  });
-
-  // Gestion des changements de checkboxes
-  checkboxes.forEach((checkbox) => {
-    checkbox.addEventListener("change", () => {
-      updateDropdownText();
-      applyFilters();
-    });
-  });
-
-  // Fonction pour mettre à jour le texte du dropdown
-  function updateDropdownText() {
-    const checkedBoxes = Array.from(checkboxes).filter((cb) => cb.checked);
-    if (checkedBoxes.length === 0) {
-      dropdownText.textContent = "Sélectionner les notes";
-    } else if (checkedBoxes.length === 1) {
-      dropdownText.textContent = `${checkedBoxes[0].value} étoile${
-        checkedBoxes[0].value > 1 ? "s" : ""
-      }`;
-    } else {
-      dropdownText.textContent = `${checkedBoxes.length} notes sélectionnées`;
-    }
-  }
-
-  // Fonction pour obtenir les notes sélectionnées
-  ratingDropdown.getSelectedRatings = () => {
-    return Array.from(checkboxes)
-      .filter((cb) => cb.checked)
-      .map((cb) => parseInt(cb.value));
-  };
-
-  // Fonction pour réinitialiser les checkboxes
-  ratingDropdown.resetRatings = () => {
-    checkboxes.forEach((cb) => (cb.checked = false));
-    updateDropdownText();
-    dropdownMenu.classList.remove("show");
-    dropdownToggle.classList.remove("active");
-  };
-}
-
-// Configuration du système de dropdown avec cases à cocher pour les spécialités
-function setupSpecialtyDropdown() {
-  const specialtyDropdown = document.getElementById("specialtyFilter");
-  const dropdownToggle = specialtyDropdown.querySelector(".dropdown-toggle");
-  const dropdownMenu = specialtyDropdown.querySelector(".dropdown-menu");
-  const checkboxes = specialtyDropdown.querySelectorAll(
-    'input[type="checkbox"]'
-  );
-  const dropdownText = specialtyDropdown.querySelector(".dropdown-text");
-
-  // Gestion du clic sur le bouton dropdown
-  dropdownToggle.addEventListener("click", (e) => {
-    e.preventDefault();
-
-    // En mobile, fermer tous les autres dropdowns d'abord
-    if (isMobile()) {
-      const wasOpen = dropdownMenu.classList.contains("show");
-      closeAllDropdowns();
-
-      // Si ce dropdown n'était pas ouvert, l'ouvrir
-      if (!wasOpen) {
-        dropdownMenu.classList.add("show");
-        dropdownToggle.classList.add("active");
-      }
-    } else {
-      // En desktop, comportement normal
-      dropdownMenu.classList.toggle("show");
-      dropdownToggle.classList.toggle("active");
-    }
-  });
-
-  // Fermer le dropdown si on clique ailleurs
-  document.addEventListener("click", (e) => {
-    if (!specialtyDropdown.contains(e.target)) {
-      dropdownMenu.classList.remove("show");
-      dropdownToggle.classList.remove("active");
-    }
-  });
-
-  // Gestion des changements de checkboxes
-  checkboxes.forEach((checkbox) => {
-    checkbox.addEventListener("change", () => {
-      updateDropdownText();
-      applyFilters();
-    });
-  });
-
-  // Fonction pour mettre à jour le texte du dropdown
-  function updateDropdownText() {
-    const checkedBoxes = Array.from(checkboxes).filter((cb) => cb.checked);
-    if (checkedBoxes.length === 0) {
-      dropdownText.textContent = "Tous les types";
-    } else if (checkedBoxes.length === 1) {
-      dropdownText.textContent = checkedBoxes[0].nextElementSibling.textContent;
-    } else {
-      dropdownText.textContent = `${checkedBoxes.length} types sélectionnés`;
-    }
-  }
-
-  // Fonction pour obtenir les spécialités sélectionnées
-  specialtyDropdown.getSelectedSpecialties = () => {
-    return Array.from(checkboxes)
-      .filter((cb) => cb.checked)
-      .map((cb) => cb.value);
-  };
-
-  // Fonction pour réinitialiser les checkboxes
-  specialtyDropdown.resetSpecialties = () => {
-    checkboxes.forEach((cb) => (cb.checked = false));
-    updateDropdownText();
-    dropdownMenu.classList.remove("show");
-    dropdownToggle.classList.remove("active");
-  };
-}
-
-// Configuration du système de dropdown avec cases à cocher pour les villes
-function setupCityDropdown() {
-  const cityDropdown = document.getElementById("cityFilter");
-  const dropdownToggle = cityDropdown.querySelector(".dropdown-toggle");
-  const dropdownMenu = cityDropdown.querySelector(".dropdown-menu");
-  const checkboxes = cityDropdown.querySelectorAll('input[type="checkbox"]');
-  const dropdownText = cityDropdown.querySelector(".dropdown-text");
-
-  // Gestion du clic sur le bouton dropdown
-  dropdownToggle.addEventListener("click", (e) => {
-    e.preventDefault();
-
-    // En mobile, fermer tous les autres dropdowns d'abord
-    if (isMobile()) {
-      const wasOpen = dropdownMenu.classList.contains("show");
-      closeAllDropdowns();
-
-      // Si ce dropdown n'était pas ouvert, l'ouvrir
-      if (!wasOpen) {
-        dropdownMenu.classList.add("show");
-        dropdownToggle.classList.add("active");
-      }
-    } else {
-      // En desktop, comportement normal
-      dropdownMenu.classList.toggle("show");
-      dropdownToggle.classList.toggle("active");
-    }
-  });
-
-  // Fermer le dropdown si on clique ailleurs
-  document.addEventListener("click", (e) => {
-    if (!cityDropdown.contains(e.target)) {
-      dropdownMenu.classList.remove("show");
-      dropdownToggle.classList.remove("active");
-    }
-  });
-
-  // Gestion des changements de checkboxes
-  checkboxes.forEach((checkbox) => {
-    checkbox.addEventListener("change", () => {
-      updateDropdownText();
-      applyFilters();
-    });
-  });
-
-  // Fonction pour mettre à jour le texte du dropdown
-  function updateDropdownText() {
-    const checkedBoxes = Array.from(checkboxes).filter((cb) => cb.checked);
-    if (checkedBoxes.length === 0) {
-      dropdownText.textContent = "Toutes les villes";
-    } else if (checkedBoxes.length === 1) {
-      dropdownText.textContent = checkedBoxes[0].nextElementSibling.textContent;
-    } else {
-      dropdownText.textContent = `${checkedBoxes.length} villes sélectionnées`;
-    }
-  }
-
-  // Fonction pour obtenir les villes sélectionnées
-  cityDropdown.getSelectedCities = () => {
-    return Array.from(checkboxes)
-      .filter((cb) => cb.checked)
-      .map((cb) => cb.value);
-  };
-
-  // Fonction pour réinitialiser les checkboxes
-  cityDropdown.resetCities = () => {
-    checkboxes.forEach((cb) => (cb.checked = false));
-    updateDropdownText();
-    dropdownMenu.classList.remove("show");
-    dropdownToggle.classList.remove("active");
-  };
-}
-
-// Fonction utilitaire pour fermer tous les dropdowns
-function closeAllDropdowns() {
-  const dropdowns = ["ratingFilter", "specialtyFilter", "cityFilter"];
-  dropdowns.forEach((id) => {
-    const dropdown = document.getElementById(id);
-    if (dropdown) {
-      const menu = dropdown.querySelector(".dropdown-menu");
-      const toggle = dropdown.querySelector(".dropdown-toggle");
-      if (menu && toggle) {
-        menu.classList.remove("show");
-        toggle.classList.remove("active");
-      }
-    }
-  });
-}
-
-// Fonction pour vérifier si on est en mode mobile
-function isMobile() {
-  return window.innerWidth <= 768;
-}
-
-// Application des filtres
+// Application des filtres (simplifiée)
 function applyFilters() {
   const searchTerm = document
     .getElementById("searchInput")
     .value.toLowerCase()
     .trim();
-  const ratingFilter = document.getElementById("ratingFilter");
-  const selectedRatings = ratingFilter.getSelectedRatings
-    ? ratingFilter.getSelectedRatings()
-    : [];
-  const specialtyFilter = document.getElementById("specialtyFilter");
-  const selectedSpecialties = specialtyFilter.getSelectedSpecialties
-    ? specialtyFilter.getSelectedSpecialties()
-    : [];
-  const cityFilter = document.getElementById("cityFilter");
-  const selectedCities = cityFilter.getSelectedCities
-    ? cityFilter.getSelectedCities()
-    : [];
+  const selectedRatings = dropdowns.ratingFilter?.getSelected() || [];
+  const selectedSpecialties = dropdowns.specialtyFilter?.getSelected() || [];
+  const selectedCities = dropdowns.cityFilter?.getSelected() || [];
 
   filteredRestaurants = restaurants.filter((restaurant) => {
-    // Recherche par nom ou spécialités (dans le tableau specialties)
     const matchesSearch =
       !searchTerm ||
       restaurant.name.toLowerCase().includes(searchTerm) ||
-      (restaurant.specialties &&
-        restaurant.specialties.some((s) =>
-          s.toLowerCase().includes(searchTerm)
-        )) ||
+      restaurant.specialties?.some((s) =>
+        s.toLowerCase().includes(searchTerm)
+      ) ||
       restaurant.specialty.toLowerCase().includes(searchTerm);
 
-    // Filtre par note (système de checkboxes multiples)
     const matchesRating =
       selectedRatings.length === 0 ||
       selectedRatings.includes(restaurant.rating);
 
-    // Filtre par spécialité (système de checkboxes multiples)
     const matchesSpecialty =
       selectedSpecialties.length === 0 ||
-      (restaurant.specialties &&
-        restaurant.specialties.some((s) =>
-          selectedSpecialties.includes(s.toLowerCase())
-        )) ||
+      restaurant.specialties?.some((s) =>
+        selectedSpecialties.includes(s.toLowerCase())
+      ) ||
       selectedSpecialties.some((selected) =>
         restaurant.specialty.toLowerCase().includes(selected)
       );
 
-    // Filtre par ville (système de checkboxes multiples)
     const matchesCity =
       selectedCities.length === 0 ||
       (restaurant.contact?.city &&
@@ -450,36 +291,91 @@ function applyFilters() {
   initFavorites();
   initDetailButtons();
   updateResultsCount();
-  showNoResults(filteredRestaurants.length === 0);
 }
 
 // Réinitialisation des filtres
 function resetAllFilters() {
   const searchInput = document.getElementById("searchInput");
   const clearBtn = document.getElementById("clearSearch");
-  const ratingFilter = document.getElementById("ratingFilter");
-  const specialtyFilter = document.getElementById("specialtyFilter");
-  const cityFilter = document.getElementById("cityFilter");
 
   if (searchInput) searchInput.value = "";
   if (clearBtn) clearBtn.style.display = "none";
-  if (ratingFilter && ratingFilter.resetRatings) ratingFilter.resetRatings();
-  if (specialtyFilter && specialtyFilter.resetSpecialties)
-    specialtyFilter.resetSpecialties();
-  if (cityFilter && cityFilter.resetCities) cityFilter.resetCities();
+
+  Object.values(dropdowns).forEach((dropdown) => dropdown?.reset());
 
   filteredRestaurants = [...restaurants];
   render(filteredRestaurants);
   initFavorites();
   initDetailButtons();
   updateResultsCount();
-  showNoResults(false);
 }
 
-// Fonction globale pour réinitialiser (appelée depuis le HTML)
-window.resetAllFilters = resetAllFilters;
+// Affichage des cards (optimisé)
+function render(restaurantsToRender = restaurants) {
+  const container = document.querySelector(".divCards");
+  if (!container) return;
 
-// Mise à jour du compteur de résultats
+  // Sauvegarder le template au premier appel
+  if (!originalTemplate) {
+    const templateCard = container.querySelector(".card.template-card");
+    if (!templateCard) return;
+    originalTemplate = templateCard.outerHTML;
+  }
+
+  if (restaurantsToRender.length === 0) {
+    container.innerHTML = originalTemplate;
+    return;
+  }
+
+  const html = restaurantsToRender
+    .map((restaurant) =>
+      originalTemplate
+        .replace(/template-card/g, "")
+        .replace(/style="display:\s*none;?"/g, "")
+        .replace(/{(\w+)}/g, (match, key) => {
+          switch (key) {
+            case "id":
+              return restaurant.id;
+            case "name":
+              return restaurant.name;
+            case "image":
+              return restaurant.image_main;
+            case "specialty":
+              return restaurant.specialty;
+            case "address":
+              return restaurant.contact?.address || "";
+            case "stars":
+              return generateStars(restaurant.rating);
+            default:
+              return match;
+          }
+        })
+    )
+    .join("");
+
+  container.innerHTML = originalTemplate + html;
+}
+
+// Fonctions utilitaires
+function debounce(func, wait) {
+  let timeout;
+  return function executedFunction(...args) {
+    const later = () => {
+      clearTimeout(timeout);
+      func(...args);
+    };
+    clearTimeout(timeout);
+    timeout = setTimeout(later, wait);
+  };
+}
+
+function generateStars(rating) {
+  return Array.from(
+    { length: 5 },
+    (_, i) => `<i class="fa-${i < rating ? "solid" : "regular"} fa-star"></i>`
+  ).join("");
+}
+
 function updateResultsCount() {
   const resultsCountElement = document.getElementById("resultsCount");
   if (!resultsCountElement) return;
@@ -493,78 +389,6 @@ function updateResultsCount() {
       : `${count} restaurants trouvés`;
 
   resultsCountElement.textContent = resultText;
-}
-
-// Affichage du message "aucun résultat"
-function showNoResults(show) {
-  const noResults = document.getElementById("noResults");
-  const divCards = document.querySelector(".divCards");
-
-  if (noResults && divCards) {
-    if (show) {
-      noResults.style.display = "block";
-      divCards.style.display = "none";
-    } else {
-      noResults.style.display = "none";
-      divCards.style.display = "flex";
-    }
-  }
-}
-
-// Variable globale pour stocker le template original
-let originalTemplate = null;
-
-// Affichage des cards (modifié pour accepter un tableau filtré)
-function render(restaurantsToRender = restaurants) {
-  const container = document.querySelector(".divCards");
-
-  if (!container) {
-    console.error("Container non trouvé");
-    return;
-  }
-
-  // Sauvegarder le template original au premier appel
-  if (!originalTemplate) {
-    const templateCard = container.querySelector(".card.template-card");
-    if (!templateCard) {
-      console.error("Template non trouvé");
-      return;
-    }
-    originalTemplate = templateCard.outerHTML;
-  }
-
-  // Si aucun restaurant à afficher
-  if (restaurantsToRender.length === 0) {
-    container.innerHTML = originalTemplate; // Garder seulement le template
-    return;
-  }
-
-  // Génération des cartes avec le template original
-  const html = restaurantsToRender
-    .map((restaurant) =>
-      originalTemplate
-        .replace(/template-card/g, "") // Retirer la classe template
-        .replace(/style="display:\s*none;?"/g, "") // Retirer le style display:none du template
-        .replace(/style="display:\s*none"/g, "") // Sans point-virgule aussi
-        .replace(/{id}/g, restaurant.id)
-        .replace(/{name}/g, restaurant.name)
-        .replace(/{image}/g, restaurant.image_main)
-        .replace(/{specialty}/g, restaurant.specialty)
-        .replace(/{address}/g, restaurant.contact?.address || "")
-        .replace(/{stars}/g, generateStars(restaurant.rating))
-    )
-    .join("");
-
-  // Ajouter le template caché + les cartes générées
-  container.innerHTML = originalTemplate + html;
-}
-
-// Génération des étoiles (selon rating du fichier restaurants.json)
-function generateStars(rating) {
-  return Array.from(
-    { length: 5 },
-    (_, i) => `<i class="fa-${i < rating ? "solid" : "regular"} fa-star"></i>`
-  ).join("");
 }
 
 // Initialisation des favoris
@@ -593,7 +417,7 @@ function initDetailButtons() {
   });
 }
 
-// Toggle "ajouter/supprimer" favoris
+// Toggle favoris
 function toggleFavorite(id, heart) {
   if (favorites.includes(id)) {
     favorites = favorites.filter((fav) => fav !== id);
@@ -602,7 +426,5 @@ function toggleFavorite(id, heart) {
     favorites.push(id);
     heart.className = "fa-solid fa-heart active";
   }
-
-  // Sauvegarde dans localStorage
   localStorage.setItem("restaurantFavorites", JSON.stringify(favorites));
 }
