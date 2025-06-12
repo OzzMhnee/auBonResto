@@ -174,15 +174,7 @@
   margin-bottom: 20px;
 }
 
-.no-favorites a {
-  color: #111;
-  text-decoration: none;
-  font-weight: bold;
-}
 
-.no-favorites a:hover {
-  text-decoration: underline;
-}
 @media (min-width: 769px) {
   .titleFavoris {
     margin-top: 10rem;
