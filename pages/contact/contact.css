@@ -17,6 +17,8 @@
   display: none; 
 }
 .contact-form {
+  margin-top: 200px;
+  margin-bottom: 200px;
   background: #fff;
   padding: 2.5rem 3rem;
   border-radius: 12px;
@@ -121,10 +123,14 @@ button:hover {
   margin-bottom: 1rem;
 }
 /* Responsive */
-@media (max-width: 480px) {
+@media (max-width: 500px) {
   #form-container {
     display: flex;
     width: 85%;
     margin: auto;
+  }
+  .contact-form {
+    margin-top: 100px;
+  margin-bottom: 100px;
   }
 }
