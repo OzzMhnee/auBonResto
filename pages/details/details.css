@@ -12,20 +12,14 @@
   text-align: center;
   margin-bottom: 1rem;
   font-family: "Roboto", cursive;
-  font-size: 2.5rem;
+  font-size: 1.7rem;
   color: gray;
 }
 
 .section-title span {
 font-family: "Parisienne", cursive;
-}
-
-.section-subtitle {
-  font-size: 1.1rem;
-  color: #666;
-  font-style: italic;
-  text-align: center;
-  margin-bottom: 1rem;
+  font-size: 2.5rem;
+  margin-left: 8px;
 }
 
 /*        CAROUSEL           */
@@ -192,7 +186,7 @@ font-family: "Parisienne", cursive;
 .menuCategory img {
   width: clamp(100px, 12vw, 160px);
   height: 240px;
-  border-radius: 60px;
+  border-radius: 30px;
   filter: grayscale(1);
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
   transition: all 0.3s ease;
@@ -205,6 +199,8 @@ font-family: "Parisienne", cursive;
   transform: translateY(-5px);
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
 }
+
+
 
 .menuCategory h3 {
   font-family: "Roboto", sans-serif;
@@ -714,10 +710,7 @@ font-family: "Parisienne", cursive;
     justify-content: center;
   }
 
-  .menuCategory img {
-    width: clamp(90px, 14vw, 140px);
-    height: 200px;
-  }
+
 
   .menuCategoryDetails {
     padding: 2rem 1.5rem;
@@ -726,16 +719,13 @@ font-family: "Parisienne", cursive;
   }
 
   .booking-container,
-  .menu-container,
-  .comments-container,
-  .map-container {
+  .menu-container {
     margin: 2rem auto;
   }
 }
 
 @media (max-width: 768px) {
-  .comments-container,
-  .map-container,
+
   .menu-container,
   .booking-container {
     padding: 2rem 1rem;
@@ -797,9 +787,9 @@ font-family: "Parisienne", cursive;
   }
 
   .menuCategory img {
-    width: clamp(70px, 20vw, 110px);
+
     height: 150px;
-    border-radius: 40px;
+
   }
 
   .menuCategoryDetails {

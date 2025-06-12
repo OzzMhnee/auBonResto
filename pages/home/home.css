@@ -17,7 +17,8 @@
   justify-content: center;
   font-size: 17px; /* MH  modification de taille texte de 20 à 17 car choquait vis à vis de Navbar */
   text-align: center; /* MH le justify ne suffisait pas avec le responsive */
-  padding-top: 12px; /*CP suppression des br dans le code HTML au profit d'un padding */
+  padding-top: 12px;
+  margin-inline: 1rem; /*CP suppression des br dans le code HTML au profit d'un padding */
 }
 
 .divCards {

@@ -27,9 +27,10 @@
     color: #444;
     margin-top: 2rem;
     margin-bottom: 1rem;
-    font-size: 1.5rem;
     border-bottom: 2px solid #e9ecef;
     padding-bottom: 0.5rem;
+      font-family: "Roboto", sans-serif;
+  font-size: 1.2rem;
 }
 
 .mentions-content p {
