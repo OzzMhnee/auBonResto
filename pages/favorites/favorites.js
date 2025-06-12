@@ -1,6 +1,7 @@
 // Variables initiales
 let restaurants = [];
 let favorites = JSON.parse(localStorage.getItem("restaurantFavorites") || "[]");
+let originalTemplate = null;
 
 // Initialisation de la page Favoris
 window.initializePage = function (page) {
@@ -39,6 +40,11 @@ function renderFavorites(favoriteRestaurants) {
     return;
   }
 
+  // Sauvegarder le template original une seule fois
+  if (!originalTemplate) {
+    originalTemplate = templateCard.outerHTML;
+  }
+
   // Si aucun favori, afficher un message
   if (favoriteRestaurants.length === 0) {
     container.innerHTML = `
@@ -50,11 +56,9 @@ function renderFavorites(favoriteRestaurants) {
     return;
   }
 
-  const template = templateCard.outerHTML;
-
   const html = favoriteRestaurants
     .map((restaurant) =>
-      template
+      originalTemplate
         .replace(/{id}/g, restaurant.id)
         .replace(/{name}/g, restaurant.name)
         .replace(/{image}/g, restaurant.image_main)
