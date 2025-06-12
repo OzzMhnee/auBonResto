@@ -76,8 +76,8 @@ margin-inline: 2rem ;
   text-align: center;
   font-size: 0.8rem;
   color: #888;
-  margin-top: 2rem;
-  border-top: 1px solid #eee;
+  margin: 2rem 2rem 0 2rem;
+  border-top: 1px solid #d7d3d3;
   padding-top: 1rem;
 }
 
