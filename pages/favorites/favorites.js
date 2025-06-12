@@ -49,7 +49,7 @@ function renderFavorites(favoriteRestaurants) {
   if (favoriteRestaurants.length === 0) {
     container.innerHTML = `
       <div style="display: flex; flex-direction:column; align-items: center; justify-content:center; gap:10px; width: 100%; padding: 50px;">
-        <h3 style="font-family:Roboto; display:flex; align-items:center; gap: 20px">Aucun restaurant en favori <span style="font-size: 2rem">😢</span></h3>
+        <h3 style="font-family:Roboto; display:flex; align-items:baseline; gap: 10px">Aucun restaurant en favori <span style="font-size: 1.6rem">😢</span></h3>
         <p>Ajoutez-en depuis la page d'accueil !</p>
       </div>
     `;
